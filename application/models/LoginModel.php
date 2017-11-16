@@ -2,21 +2,12 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
  
   class LoginModel extends CI_Model {
+      public function __construct(){
+          parent::__construct();
+      }
 
-public function login($data){
-      $query = $this->db->get_where('admin', array('id_member' => $data['id_member']));
-      if ($query->num_rows() == 0){
-        return false;
-      }
-      else{
-        //Compare the password attempt with the password we have stored.
-        $result = $query->row_array();
-          $validPassword = password_verify($data['password'], $result['password']);
-          if($validPassword){
-              return $result = $query->row_array();
-          }
-        
-      }
+public function login($table, $data){
+    return $this->db->get_where($table,$data);
     }
 
     public function change_pwd($data, $id){

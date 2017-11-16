@@ -31,7 +31,7 @@
                 <?php if(isset($msg) || validation_errors() !== ''): ?>
                 <div class="alert alert-warning alert-dismissible">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                    <h4><i class="icon fa fa-warning"></i> Alert!</h4>
+                    <h4><i class="icon fa fa-warning"></i> Peringatan!</h4>
                     <?= validation_errors();?>
                     <?= isset($msg)? $msg: ''; ?>
                 </div>
@@ -39,16 +39,16 @@
 
                   <?php echo form_open(base_url('auth/login'), 'class="login-form" '); ?>
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" placeholder="NIP/NIM" name="id_member" id="id_member"/>
+                        <input type="text" class="form-control" placeholder="NIP atau NIM" name="id_member" id="id_member"/>
                         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="password" class="form-control" placeholder="Password" name="password" id="password"/>
+                        <input type="password" name="password" id="password" class="form-control" placeholder="Password"/>
                         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                     </div>
                     <div class="row">
                         <div class="col-xs-4">
-                            <button value="Submit" type="submit" name="submit" id="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+                            <input value="Submit" type="submit" name="submit" id="submit" class="btn btn-primary btn-block btn-flat">
                         </div><!-- /.col -->
                     </div>
                     <?php echo form_close(); ?>

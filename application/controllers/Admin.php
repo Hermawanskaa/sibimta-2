@@ -5,19 +5,19 @@ class Admin extends CI_Controller {
 
 public function __construct() {
 		parent::__construct();
-		$this->load->model('adminModel');
+		$this->load->model('AdminModel');
 		}
 
 public function validation(){
-	if($this->session->userdata('login')){
+	if(!$this->session->userdata('is_logged_in')){
 		redirect('login','refresh');
 	}
 }
 
 public function index(){
-	$this->validation();
+	//$this->validation();
 	//$this->load->view('admin/dosen/dosen_list');
-	$data['all_users'] =  $this->adminModel->get_all_users();
+	$data['all_users'] =  $this->AdminModel->get_all_users();
 	$data['view'] = 'admin/dosen/dosen_list';
 	$this->load->view('admin/dosen/dosen_list', $data);
 }
@@ -197,7 +197,7 @@ public function add_dosen(){
 						'email' => $this->input->post('email'),
 					);
 					$data = $this->security->xss_clean($data);
-					$result = $this->adminModel->add_user($data);
+					$result = $this->AdminModel->add_user($data);
 					if($result){
 						$this->session->set_flashdata('msg', 'Record is Added Successfully!');
 						redirect(base_url('admin'));
@@ -241,7 +241,7 @@ public function add_dosen(){
 				}
 			}
 			else{
-				$data['user'] = $this->adminModel->get_user_by_id($id);
+				$data['user'] = $this->AdminModel->get_user_by_id($id);
 				$data['view'] = 'admin/dosen/dosen_edit';
 				$this->load->view('admin/dosen/dosen_edit', $data);
 			}
@@ -262,7 +262,7 @@ public function add_dosen(){
 						'email' => $this->input->post('email'),
 					);
 					$data = $this->security->xss_clean($data);
-					$result = $this->adminModel->edit_user($data, $id);
+					$result = $this->AdminModel->edit_user($data, $id);
 					if($result){
 						$this->session->set_flashdata('msg', 'Record is Updated Successfully!');
 						redirect(base_url('admin'));

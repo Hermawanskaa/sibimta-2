@@ -5,11 +5,11 @@
 
 		public function __construct(){
 			parent::__construct();
-			$this->load->model('loginModel');
+			$this->load->model('LoginModel');
 		} 
 
 		public function index(){
-			if($this->session->has_userdata('id_member'))
+			if($this->session->has_userdata('is_logged_in'))
 			{
 				redirect('admin');
 			}
@@ -18,40 +18,82 @@
 			}
 		}
 
-		public function login(){
+		public function login()
+        {
 
-			if($this->input->post('submit')){
-				$this->form_validation->set_rules('id_member', 'id_member', 'trim|required');
-				$this->form_validation->set_rules('password', 'Password', 'trim|required');
+            if ($this->input->post('submit')) {
+                $this->form_validation->set_rules('id_member', 'id_member', 'trim|required');
+                $this->form_validation->set_rules('password', 'Password', 'trim|required');
 
-				if ($this->form_validation->run() == FALSE) {
-					$this->load->view('login/login');
-				}
-				else {
-					$data = array(
-					'id_member' => $this->input->post('id_member'),
-					'password' => $this->input->post('password')
-					);
-					$result = $this->loginModel->login($data);
-					if ($result == TRUE) {
-						$admin_data = array(
-							'id_member' => $result['id_member'],
-						 	'nama' => $result['nama'],
-						 	'validated' => TRUE
-						);
-						$this->session->set_userdata($admin_data);
-						redirect(base_url('admin'), 'refresh');
-					}
-					else{
-						$data['msg'] = 'Invalid Email or Password!';
-						$this->load->view('login/login', $data);
-					}
-				}
-			}
-			else{
-				$this->load->view('login/login');
-			}
-		}	
+                if ($this->form_validation->run() == FALSE) {
+                    $this->load->view('auth/login');
+                } else {
+                    $id_member = $this->input->post('id_member');
+                    $password = $this->input->post('password');
+                    $data = array(
+                        'id_member' => $id_member,
+                        'pass' => $password
+                    );
+                    //ADMIN
+                    $result = $this->LoginModel->login('admin', $data)->num_rows();
+                    if ($result > 0) {
+                        $data_session = array(
+                            'nama' => $id_member,
+                            'status' => 'login',
+                            'is_loggerd_in' => TRUE
+                        );
+                        $this->session->set_userdata($data_session);
+                        redirect(base_url('admin'));
+                    } else {
+                        //DOSEN
+                        $result = $this->LoginModel->login('dosen', $data)->num_rows();
+                        if ($result > 0) {
+                            $data_session = array(
+                                'nama' => $id_member,
+                                'status' => 'login',
+                                'is_loggerd_in' => TRUE
+                            );
+                            $this->session->set_userdata($data_session);
+                            redirect(base_url('admin'));
+                        } else {
+                            //MAHASISWA
+                            $result = $this->LoginModel->login('mahasiswa', $data)->num_rows();
+                            if ($result > 0) {
+                                $data_session = array(
+                                    'nama' => $id_member,
+                                    'status' => 'login',
+                                    'is_loggerd_in' => TRUE
+                                );
+                                $this->session->set_userdata($data_session);
+                                redirect(base_url('admin'));
+                            } else {
+                                //KAJUR
+                                $result = $this->LoginModel->login('kajur', $data)->num_rows();
+                                if ($result > 0) {
+                                    $data_session = array(
+                                        'nama' => $id_member,
+                                        'status' => 'login',
+                                        'is_loggerd_in' => TRUE
+                                    );
+                                    $this->session->set_userdata($data_session);
+                                    redirect(base_url('admin'));
+                                } else {
+                                    redirect('auth/error');
+                                }
+                            }
+                        }
+
+                    }
+                }
+            }
+        }
+
+        public function error(){
+            $data['msg'] = '<br>Username atau Password yang anda masukkan salah.';
+            $this->load->view('login/login', $data);
+        }
+
+
 
 		public function change_pwd(){
 			$id = $this->session->userdata('admin_id');

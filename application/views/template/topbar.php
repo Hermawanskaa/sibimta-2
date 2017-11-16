@@ -84,6 +84,7 @@
                                     <img src="<?php echo base_url('assets/AdminLTE-2.0.5/dist/img/user2-160x160.jpg') ?>" class="img-circle" alt="User Image" />
                                     <p><?= ucwords($this->session->userdata('nama')); ?>
                                     </p>
+
                                 </li>
                                 
                                 <!-- Menu Footer-->

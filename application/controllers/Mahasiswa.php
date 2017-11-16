@@ -8,11 +8,11 @@ public function __construct(){
 	$this->load->Model('MahasiswaModel');
 }
 
-public function validation(){
-	if(!$this->session->userdata('login')){
-		redirect('login','refresh');
-	}
-}
+    public function validation(){
+        if(!$this->session->userdata('is_mahasiswa_login')){
+            redirect('auth','refresh');
+        }
+    }
 
 public function index(){
 	$this->validation();

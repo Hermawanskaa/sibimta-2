@@ -8,11 +8,11 @@ public function __construct(){
 	$this->load->Model('KajurModel');
 }
 
-public function validation(){
-	if(!$this->session->userdata('login')){
-		redirect('login','refresh');
-	}
-}
+    public function validation(){
+        if(!$this->session->userdata('is_kajur_login')){
+            redirect('auth','refresh');
+        }
+    }
 
 public function index(){
 	$this->validation();
@@ -29,7 +29,7 @@ public function bimbingan(){
 
 public function list_m(){
 	$this->validation();
-	$session = $this->$session->userdata('login');
+	$session = $this->session->userdata('login');
 	$jurusan = $this->KajurModel->get_all_where('kajur','id_member',$session['id_member']);
 	$data['judul'] = $this->KajurModel->mhs_ta($jurusan[0]->jurusan);
 	$this->template->render('kajur/list_m',$data);

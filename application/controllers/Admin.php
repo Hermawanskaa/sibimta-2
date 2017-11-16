@@ -8,14 +8,14 @@ public function __construct() {
 		$this->load->model('AdminModel');
 		}
 
-public function validation(){
-	if(!$this->session->userdata('is_logged_in')){
-		redirect('auth/login','refresh');
-	}
-}
+    public function validation(){
+        if(!$this->session->userdata('is_admin_login')){
+            redirect('auth','refresh');
+        }
+    }
 
 public function index(){
-    //$this->validation();
+    $this->validation();
 	//$this->load->view('admin/dosen/dosen_list');
 	$data['all_users'] =  $this->AdminModel->get_all_users();
 	$data['view'] = 'admin/dosen/dosen_list';

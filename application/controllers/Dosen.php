@@ -8,11 +8,12 @@ class Dosen extends CI_Controller {
 	$this->load->Model('DosenModel');
 }
 
-public function validation(){
-	if(!$this->session->userdata('login')){
-		redirect('login','refresh');
-	}
-}
+
+    public function validation(){
+        if(!$this->session->userdata('is_admin_login')){
+            redirect('auth','refresh');
+        }
+    }
 
 public function index(){
 	$this->validation();

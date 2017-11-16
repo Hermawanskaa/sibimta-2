@@ -1,4 +1,4 @@
-</head>
+<header>
 <body class="skin-blue">
     <!-- Site wrapper -->
     <div class="wrapper">
@@ -76,15 +76,13 @@
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <img src="<?php echo base_url('assets/AdminLTE-2.0.5/dist/img/user2-160x160.jpg') ?>" class="user-image" alt="User Image"/>
-                                <span class="hidden-xs">Alexander Pierce</span>
+                                <span class="hidden-xs"><?= ucwords($this->session->userdata('nama')); ?></span>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- User image -->
                                 <li class="user-header">
                                     <img src="<?php echo base_url('assets/AdminLTE-2.0.5/dist/img/user2-160x160.jpg') ?>" class="img-circle" alt="User Image" />
-                                    <p>
-                                        Alexander Pierce - Web Developer
-                                        <small>Member since Nov. 2012</small>
+                                    <p><?= ucwords($this->session->userdata('nama')); ?>
                                     </p>
                                 </li>
                                 

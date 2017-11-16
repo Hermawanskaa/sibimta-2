@@ -10,12 +10,12 @@ public function __construct() {
 
 public function validation(){
 	if(!$this->session->userdata('is_logged_in')){
-		redirect('login','refresh');
+		redirect('auth/login','refresh');
 	}
 }
 
 public function index(){
-	//$this->validation();
+    //$this->validation();
 	//$this->load->view('admin/dosen/dosen_list');
 	$data['all_users'] =  $this->AdminModel->get_all_users();
 	$data['view'] = 'admin/dosen/dosen_list';
@@ -83,7 +83,7 @@ public function del_cekjudul($id){
 	redirect('admin/list_cekjudul');
 }
 
-public function lihat_judul(){
+public function lihat_judul($id){
 	$this->validation();
 	$data['cek_judul'] = $this->AdminModel->get_all_where('cek_judul','id_skripsi',$id);
 }
@@ -155,12 +155,12 @@ public function do_Upload($gambar){
 	$this->Upload->do_Upload($gambar);
 	$images = $this->Upload->data($gambar);
 	$images_data = $this->Upload->data($gambar);
-	$images_name = $image_data['file_name'];
+	$images_name = $images_data['file_name'];
 	$config = array('source_image'=>$images_data['full_path'],
 					'maintain_ratio'=>true,'width'=>300,'height'=>1,'master_dim'=>'width');
 	$this->load->library('image_lib',$config);
 	$this->image_lib->resize();
-	return  $image_name;
+	return  $images_name;
 }
 
 public function update_pass(){
@@ -253,7 +253,7 @@ public function add_dosen(){
 			redirect(base_url('admin'));
 		}
 
-		public function view_dosen(){
+		public function view_dosen($data,$id){
 			$data = array(
 						'id_member' => $this->input->post('id_member'),
 						'nama' => $this->input->post('nama'),

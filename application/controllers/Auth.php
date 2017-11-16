@@ -20,7 +20,6 @@
 
 		public function login()
         {
-
             if ($this->input->post('submit')) {
                 $this->form_validation->set_rules('id_member', 'id_member', 'trim|required');
                 $this->form_validation->set_rules('password', 'Password', 'trim|required');
@@ -123,7 +122,7 @@
 				
 		public function logout(){
 			$this->session->sess_destroy();
-			redirect(base_url('admin/auth/login'), 'refresh');
+			$this->load->view('login/login', 'refresh');
 		}
 			
 	}  // end class

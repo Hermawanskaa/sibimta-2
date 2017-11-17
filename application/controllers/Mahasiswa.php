@@ -72,7 +72,7 @@ public function save_ujian(){
 	$session = $this->session->userdata('login');
 	$config['Upload_path'] = './assets/file/ujian';
 	$config['allowed_types'] = 'pdf|jpg|jpeg|png';
-	$this->load->library('Upload',$config);
+	$this->load->library('AjaxUpload',$config);
 	if(!$this->Upload->do_Upload()){
 		$error = array('error'=>$this->Upload->display_errors());
 		echo "-------".$id_judul = $this->input->post('id_judul');

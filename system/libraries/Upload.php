@@ -154,7 +154,7 @@ class CI_Upload {
 	public $file_ext_tolower = FALSE;
 
 	/**
-	 * Upload path
+	 * AjaxUpload path
 	 *
 	 * @var	string
 	 */
@@ -296,7 +296,7 @@ class CI_Upload {
 		$this->_mimes =& get_mimes();
 		$this->_CI =& get_instance();
 
-		log_message('info', 'Upload Class Initialized');
+		log_message('info', 'AjaxUpload Class Initialized');
 	}
 
 	// --------------------------------------------------------------------
@@ -624,7 +624,7 @@ class CI_Upload {
 	// --------------------------------------------------------------------
 
 	/**
-	 * Set Upload Path
+	 * Set AjaxUpload Path
 	 *
 	 * @param	string	$path
 	 * @return	CI_Upload
@@ -980,7 +980,7 @@ class CI_Upload {
 	// --------------------------------------------------------------------
 
 	/**
-	 * Validate Upload Path
+	 * Validate AjaxUpload Path
 	 *
 	 * Verifies that it is a valid upload path with proper permissions.
 	 *
@@ -1150,7 +1150,7 @@ class CI_Upload {
 	 */
 	public function set_error($msg, $log_level = 'error')
 	{
-		$this->_CI->lang->load('upload');
+		$this->_CI->lang->load('AjaxUpload');
 
 		is_array($msg) OR $msg = array($msg);
 		foreach ($msg as $val)

@@ -92,7 +92,7 @@ public function save_download(){
 	$this->validation();
 	$config['Upload_path'] = '.uploads/akademik';
 	$config['allowed_types'] = 'pdf|docx|doc|rar|xlsx|xls|jpeg|jpg|png|zip|pptx|ppt';
-	$this->load->library('Upload',$config);
+	$this->load->library('AjaxUpload',$config);
 	if (!$this->Upload->do_Upload()){
 		$error = array('error'=>$this->Upload->display_errors());
 		$file = null;
@@ -151,7 +151,7 @@ public function profile(){
 public function do_Upload($gambar){
 	$config = array('allowed_types'=>'jpg|jpeg|png|gif',
 					'Upload_path'=>'./uploads/foto/admin','max_size'=>30000);
-	$this->load->library('Upload',$config);
+	$this->load->library('AjaxUpload',$config);
 	$this->Upload->do_Upload($gambar);
 	$images = $this->Upload->data($gambar);
 	$images_data = $this->Upload->data($gambar);

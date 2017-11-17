@@ -268,7 +268,7 @@ if ( ! function_exists('form_password'))
 if ( ! function_exists('form_upload'))
 {
 	/**
-	 * Upload Field
+	 * AjaxUpload Field
 	 *
 	 * Identical to the input function but adds the "file" type
 	 *

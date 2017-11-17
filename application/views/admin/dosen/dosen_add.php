@@ -27,7 +27,7 @@ $this->load->view('admin/template/sidebar');
             <div class="row">
          <div class="widget-user-header">
         <div class="col-sm-1">
-            <img class="img-circle" src="assets/img/add2.png" alt="User Avatar">
+            <img class="img-circle" src="/assets/img/add.png" alt="User Avatar">
             <div class="col-sm-1">
         </div>
         </div>

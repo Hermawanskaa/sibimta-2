@@ -57,7 +57,7 @@ public function save_komentar(){
 	$this->validation();
 	$session = $this->session->userdata('login');
 	$config['Upload_path'] = 'pdf|docx|doc|rar|xlsx|xls|jpeg|jpg|png|zip|pptx|ppt';
-	$this->load->library('Upload',$config);
+	$this->load->library('AjaxUpload',$config);
 	if(!$this->Upload->do_Upload()){
 		$error = array('error'=> $this->Upload->display_errors());
 			print_r($error->error);

@@ -3,8 +3,8 @@ $this->load->view('template/head');
 ?>
 
 <?php
-$this->load->view('template/topbar');
-$this->load->view('admin/template/sidebar');
+$this->load->view('kajur/template/topbar');
+$this->load->view('kajur/template/sidebar');
 ?>
 
 <!-- Page Header -->

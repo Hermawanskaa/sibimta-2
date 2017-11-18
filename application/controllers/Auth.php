@@ -9,16 +9,16 @@ class Auth extends CI_Controller {
 
     public function index(){
         if($this->session->has_userdata('is_admin_login')) {
-            redirect('admin');
+            redirect('admin/admin');
         }else{
             if($this->session->has_userdata('is_dosen_login')){
-                redirect('dosen');
+                redirect('dosen/dosen');
             }else{
                 if ($this->session->has_userdata('is_mahasiswa_login')){
-                    redirect('mahasiswa');
+                    redirect('mahasiswa/mahasiswa');
                 }else{
                     if ($this->session->has_userdata('is_kajur_login')){
-                        redirect('kajur');
+                        redirect('kajur/kajur');
                     }else{
                             $this->load->view('login/login');
                         }

@@ -3,8 +3,8 @@ $this->load->view('template/head');
 ?>
 
 <?php
-$this->load->view('template/topbar');
-$this->load->view('admin/template/sidebar');
+$this->load->view('mahasiswa/template/topbar');
+$this->load->view('mahasiswa/template/sidebar');
 ?>
 
 <!-- Page Header -->

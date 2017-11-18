@@ -2,8 +2,9 @@
 $this->load->view('template/head');
 ?>
 <link rel="stylesheet" href="<?= base_url() ?>assets/AdminLTE-2.0.5/plugins/datatables/dataTables.bootstrap.css">
+
 <?php
-$this->load->view('template/topbar');
+$this->load->view('admin/template/topbar');
 $this->load->view('admin/template/sidebar');
 ?>
 

@@ -11,7 +11,7 @@ class Admin extends CI_Controller {
     public function validation(){
         if(!$this->session->userdata('is_admin_login')){
             redirect('auth','refresh');
-            
+
         }
     }
 

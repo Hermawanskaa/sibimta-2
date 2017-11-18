@@ -132,8 +132,8 @@ class Admin extends CI_Controller {
 
     public function list_dosen($offset=0)
     {
+        $this->validation();
         $jumlah = $this->db->get('dosen');
-        $config['base_url'] = base_url() . '/paging/view';
         $config['total_rows'] = $jumlah->num_rows();
         $config['per_page'] = 3;
         $config['uri_segment'] = 3;

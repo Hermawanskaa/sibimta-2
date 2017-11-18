@@ -1,13 +1,32 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+
 class Auth extends CI_Controller {
     public function __construct(){
         parent::__construct();
         $this->load->model('LoginModel');
     }
+
     public function index(){
-            $this->load->view('login/login');
-    }
+        if($this->session->has_userdata('is_admin_login')) {
+            redirect('admin');
+        }else{
+            if($this->session->has_userdata('is_dosen_login')){
+                redirect('dosen');
+            }else{
+                if ($this->session->has_userdata('is_mahasiswa_login')){
+                    redirect('mahasiswa');
+                }else{
+                    if ($this->session->has_userdata('is_kajur_login')){
+                        redirect('kajur');
+                    }else{
+                            $this->load->view('login/login');
+                        }
+                    }
+                }
+            }
+        }
+
 
     public function login()
     {
@@ -111,8 +130,9 @@ class Auth extends CI_Controller {
 
     public function logout(){
         $this->session->sess_destroy();
-        $this->load->view('login/login', 'refresh');
+        redirect('auth');
     }
 
 }
+
 ?>

@@ -53,13 +53,14 @@ $this->load->view('admin/template/sidebar');
       <div class="form-group">
         <label for="id_member" class="col-sm-2 control-label">NIP</label>
         <div class="col-sm-6">
-          <input type="input" class="form-control" name="id_member" id="id_member" value="<?= $user['id_member']; ?>" placeholder="Id Member">
+          <input type="input" class="form-control" name="id_member" id="id_member" value="<?= $user['id_member']; ?>" placeholder="Id Member" disabled>
         </div>
       </div>
       <div class="form-group">
         <label for="nama" class="col-sm-2 control-label">Nama</label>
         <div class="col-sm-6">
           <input type="input" class="form-control" name="nama" id="nama" value="<?= $user['nama']; ?>" placeholder="nama">
+            </tr>
         </div>
       </div>
       <div class="form-group">

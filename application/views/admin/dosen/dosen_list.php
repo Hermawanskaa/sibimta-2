@@ -1,7 +1,7 @@
 <?php 
 $this->load->view('template/head');
 ?>
-
+<link rel="stylesheet" href="<?= base_url() ?>assets/AdminLTE-2.0.5/plugins/datatables/dataTables.bootstrap.css">
 <?php
 $this->load->view('template/topbar');
 $this->load->view('admin/template/sidebar');
@@ -53,11 +53,11 @@ $this->load->view('admin/template/sidebar');
                   <?= validation_errors();?>
                   <?= isset($msg)? $msg: ''; ?>
               </div>
-            <?php endif; ?> 
+            <?php endif; ?>
 
                   <form name="form_dosen" id="form_dosen" action="">
-                  <div class="table-responsive"> 
-                  <table class="table table-bordered table-striped dataTable">
+                  <div class="table-responsive">
+                  <table id="list_dosen" class="table table-bordered table-striped dataTable">
                      <thead>
                         <tr class="">
                            <th>NIP</th>
@@ -70,23 +70,34 @@ $this->load->view('admin/template/sidebar');
                         </tr>
                      </thead>
                      <tbody id="tbody_dosen">
-                        <tr>
-                          <?php foreach($all_users as $row): ?>
-                           <td><?= $row['id_member']; ?></td> 
-                           <td><?= $row['pass']; ?></td> 
-                           <td><?= $row['nama']; ?></td> 
-                           <td><?= $row['alamat']; ?></td> 
-                           <td><?= $row['no_hp']; ?></td> 
-                           <td><?= $row['email']; ?></td> 
+
+                          <?php
+                          $no = $offset;
+                          foreach($data as $row): ?>
+                          <tr>
+                            <td><?php echo $row->id_member; ?></td>
+                            <td><?php echo $row->pass; ?></td>
+                            <td><?php echo $row->nama; ?></td>
+                            <td><?php echo $row->alamat; ?></td>
+                            <td><?php echo $row->no_hp; ?></td>
+                            <td><?php echo $row->email; ?></td>
                            <td width="200">
-                              <a href="<?= base_url('admin/view_dosen/'.$row['id_member']); ?>" class="label-default"><i class="fa fa-newspaper-o"></i> View
-                              
-                              <a href="<?= base_url('admin/edit_dosen/'.$row['id_member']); ?>" class="label-default"><i class="fa fa-edit "></i> Update</a>
-                              
-                              <a href="<?= base_url('admin/delete_dosen/'.$row['id_member']); ?>" data-href="" class="label-default remove-data"><i class="fa fa-close"></i> Remove</a>
+
+                              <a href="<?= base_url('admin/view_dosen/'.$row->id_member); ?>" class="label-default"><i class="fa fa-newspaper-o"></i> View
+
+                              <a href="<?= base_url('admin/edit_dosen/'.$row->id_member); ?>" class="label-default"><i class="fa fa-edit "></i> Update</a>
+
+                              <a href="<?= base_url('admin/delete_dosen/'.$row->id_member); ?>" data-href="" class="label-default remove-data"><i class="fa fa-close"></i> Remove</a>
                            </td>
                         </tr>
-                         <?php endforeach; ?>
+                          <?php endforeach; ?>
+                          <?php if ($data == 0) :?>
+                              <tr>
+                                  <td colspan="100">
+                                      Dosen data is not available
+                                  </td>
+                              </tr>
+                          <?php endif; ?>
                      </tbody>
                   </table>
                   </div>
@@ -118,20 +129,20 @@ $this->load->view('admin/template/sidebar');
                         </button>
                      </div>
                   </div>
-                  </form>                  
+                  </form>
                   <div class="col-md-4">
-                     <div class="dataTables_paginate paging_simple_numbers pull-right" id="example2_paginate" >
-                     </div>
-                    </div>
-                  </div>
+                      <div class="dataTables_paginate paging_simple_numbers pull-right" id="example2_paginate" >
+                          <?= $halaman; ?>
+                      </div>
                 </div>
             </div>
          </div>
       </div>
 </section>
 
-<?php 
+<?php
 $this->load->view('template/js');
 ?>
 
-<script src="<?= base_url() ?>public/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="<?= base_url() ?>assets/AdminLTE-2.0.5/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="<?= base_url() ?>assets/AdminLTE-2.0.5/plugins/datatables/dataTables.bootstrap.min.js"></script>

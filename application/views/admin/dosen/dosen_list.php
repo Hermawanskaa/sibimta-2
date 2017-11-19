@@ -90,6 +90,8 @@ $this->load->view('admin/template/sidebar');
 
                               <a href="<?= base_url('admin/delete_dosen/'.$row->id_member); ?>" data-href="" class="label-default remove-data"><i class="fa fa-close"></i> Remove</a>
                            </td>
+
+
                         </tr>
                           <?php endforeach; ?>
                           <?php if ($data == 0) :?>

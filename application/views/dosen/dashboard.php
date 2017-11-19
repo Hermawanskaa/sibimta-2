@@ -17,8 +17,8 @@ $this->load->view('template/head');
 <link href="<?php echo base_url('assets/AdminLTE-2.4.2/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') ?>" rel="stylesheet" type="text/css" />
 
 <?php
-$this->load->view('template/topbar');
-$this->load->view('admin/template/sidebar');
+$this->load->view('dosen/template/topbar');
+$this->load->view('dosen/template/sidebar');
 ?>
 
 <!-- Content Header (Page header) -->

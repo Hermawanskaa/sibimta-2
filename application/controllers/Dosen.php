@@ -10,14 +10,14 @@ class Dosen extends CI_Controller {
 
 
     public function validation(){
-        if(!$this->session->userdata('is_admin_login')){
+        if(!$this->session->userdata('is_dosen_login')){
             redirect('auth','refresh');
         }
     }
 
 public function index(){
 	$this->validation();
-	$this->template->render('dosen/home');
+	$this->load->view('dosen/Dashboard');
 }
 
 public function bimbingan(){

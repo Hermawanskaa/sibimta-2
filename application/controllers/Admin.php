@@ -17,7 +17,7 @@ class Admin extends CI_Controller {
 
     public function index(){
         $this->validation();
-        $this->load->view('admin/home');
+        $this->load->view('admin/dashboard');
     }
 
     //CRUD DOSEN

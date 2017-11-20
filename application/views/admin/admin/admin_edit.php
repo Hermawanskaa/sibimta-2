@@ -49,59 +49,87 @@ $this->load->view('admin/template/sidebar');
                   <?= isset($msg)? $msg: ''; ?>
               </div>
             <?php endif; ?>
-           
-    <?php echo form_open(base_url('admin/edit/'.$user['id']), 'class="form-horizontal"' )?> 
-    <div class="box-body">
-      <div class="form-group">
-        <label for="id_member" class="col-sm-2 control-label">NIP</label>
-        <div class="col-sm-6">
-          <input type="input" class="form-control" id="id_member" value="<?= $user['id_member']; ?>">
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="nama" class="col-sm-2 control-label">Nama</label>
-        <div class="col-sm-6">
-          <input type="input" class="form-control" id="nama" value="<?= $user['nama']; ?>">
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="alamat" class="col-sm-2 control-label">Alamat</label>
-        <div class="col-sm-6">
-          <input type="alamat" class="form-control" id="alamat" value="<?= $user['alamat']; ?>">
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="no_hp" class="col-sm-2 control-label">No Hp</label>
-        <div class="col-sm-6">
-          <input type="no Hp" class="form-control" id="no_hp" value="<?= $user['no_hp']; ?>">
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="email" class="col-sm-2 control-label">Email</label>
-        <div class="col-sm-6">
-          <input type="email" class="form-control" id="email" value="<?= $user['email']; ?>">
-        </div>
-      </div>
-    </div>
 
-<!-- Footer Content -->
-    <div class="box box-footer">
-                            <button class="btn btn-primary" id="btn_save" data-stype='stay' type="submit" name="submit" value="Update User">
-                            <i class="fa fa-save" ></i> Save Save and Go to The List
-                            </button>
-                            <button class="btn btn-default col" id="btn_cancel">
-                            <i class="fa fa-undo"></i> Cancel
-                            </button> 
-                        </div>
-    <?php echo form_close(); ?>
-               </div>
-           </div>
+    <?php echo form_open(base_url('admin/admin/edit_admin'),  'class="form-horizontal"');  ?>
+    <form role="form" class="form-horizontal" enctype="multipart/form-data" action="<?=base_url('admin/admin/edit_admin');?>" method="POST" >
+        <div class="box-body">
+            <div class="form-group">
+                <label for="nip" class="col-sm-2 control-label">NIP</label>
+                <div class="col-sm-6">
+                    <input type="input" class="form-control" name="nip" id="nip" placeholder="NIP">
+                </div>
             </div>
-            <!--/box body -->
-         </div>
-         <!--/box -->
+            <div class="form-group">
+                <label for="nama" class="col-sm-2 control-label">Nama</label>
+                <div class="col-sm-6">
+                    <input type="input" class="form-control" name="nama" id="nama" placeholder="Nama">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="password" class="col-sm-2 control-label">Password</label>
+                <div class="col-sm-6">
+                    <input type="input" class="form-control" name="password" id="password" placeholder="Password">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="no_hp" class="col-sm-2 control-label">Nomor Hp</label>
+                <div class="col-sm-6">
+                    <input type="number" class="form-control" name="no_hp" id="no_hp" placeholder="Nomor HP">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="alamat" class="col-sm-2 control-label">Alamat</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" name="alamat" id="alamat" placeholder="Alamat">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="email" class="col-sm-2 control-label">Email</label>
+                <div class="col-sm-6">
+                    <input type="email" class="form-control" name="email" id="email" placeholder="Email">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="Foto" class="col-sm-2 control-label">Foto</label>
+                <div class="col-sm-6">
+                    <input type="foto" class="form-control" name="foto" id="foto" placeholder="foto">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="level" class="col-sm-2 control-label">Level Admin</label>
+                <div class="col-sm-6">
+                    <input type="number" class="form-control" name="level" id="level" placeholder="Level Admin">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="foto" class="col-sm-2 control-label">Avatar</label>
+                <div class="col-sm-6">
+                    <?php echo form_open_multipart('admin/admin/upload_adm');?>
+                    <input name="foto" id="foto" type="file" class="form-control" />
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Footer Content -->
+        <div class="box box-footer">
+            <button class="btn btn-primary" type="submit" name="submit" value="Add User" id="submit" data-stype='stay'>
+                <i class="fa fa-save" ></i> Save and Go to The List
+            </button>
+            <button class="btn btn-default col" id="btn_cancel">
+                <i class="fa fa-undo"></i> Cancel
+            </button>
+        </div>
+        <?php echo form_close( ); ?>
+</div>
       </div>
+   </div>
+    <!--/box body -->
+    </div>
+    <!--/box -->
+    </div>
 </section>
+
 
 <?php 
 $this->load->view('template/js');

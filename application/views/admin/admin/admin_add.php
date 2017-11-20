@@ -43,42 +43,42 @@ $this->load->view('admin/template/sidebar');
 <?php if(isset($msg) || validation_errors() !== ''): ?>
               <div class="alert alert-warning alert-dismissible">
                   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                  <h4><i class="icon fa fa-warning"></i> Alert!</h4>
+                  <h4><i class="icon fa fa-warning"></i> Peringatan!</h4>
                   <?= validation_errors();?>
                   <?= isset($msg)? $msg: ''; ?>
               </div>
             <?php endif; ?>
-           
-    <?php echo form_open(base_url('admin/add'), 'class="form-horizontal"');  ?> 
+
+    <?php echo form_open(base_url('admin/admin/add_admin'),  'class="form-horizontal"');  ?>
     <div class="box-body">
       <div class="form-group">
-        <label for="id_member" class="col-sm-2 control-label">NIP</label>
+        <label for="nip" class="col-sm-2 control-label">NIP</label>
         <div class="col-sm-6">
-          <input type="input" class="form-control" name="id_member" id="id_member" placeholder="Id Member">
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="password" class="col-sm-2 control-label">Password</label>
-        <div class="col-sm-6">
-          <input type="password" class="form-control" name="password" id="password" placeholder="password">
+          <input type="input" class="form-control" name="nip" id="nip" placeholder="NIP">
         </div>
       </div>
       <div class="form-group">
         <label for="nama" class="col-sm-2 control-label">Nama</label>
         <div class="col-sm-6">
-          <input type="input" class="form-control" name="nama" id="nama" placeholder="nama">
+          <input type="input" class="form-control" name="nama" id="nama" placeholder="Nama">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password" class="col-sm-2 control-label">Password</label>
+        <div class="col-sm-6">
+          <input type="input" class="form-control" name="password" id="password" placeholder="Password">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="no_hp" class="col-sm-2 control-label">Nomor Hp</label>
+        <div class="col-sm-6">
+          <input type="number" class="form-control" name="no_hp" id="no_hp" placeholder="Nomor HP">
         </div>
       </div>
       <div class="form-group">
         <label for="alamat" class="col-sm-2 control-label">Alamat</label>
         <div class="col-sm-6">
-          <input type="alamat" class="form-control" name="alamat" id="alamat" placeholder="Alamat">
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="no_hp" class="col-sm-2 control-label">No Hp</label>
-        <div class="col-sm-6">
-          <input type="no Hp" class="form-control" name="no_hp" id="no_hp" placeholder="Nomor Hp">
+          <input type="text" class="form-control" name="alamat" id="alamat" placeholder="Alamat">
         </div>
       </div>
       <div class="form-group">
@@ -87,12 +87,27 @@ $this->load->view('admin/template/sidebar');
           <input type="email" class="form-control" name="email" id="email" placeholder="Email">
         </div>
       </div>
+      </div>
+        <div class="form-group">
+            <label for="level" class="col-sm-2 control-label">Level Admin</label>
+            <div class="col-sm-6">
+                <input type="number" class="form-control" name="level" id="level" placeholder="Level Admin">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="foto" class="col-sm-2 control-label">Avatar</label>
+            <div class="col-sm-6">
+                <?php echo form_open_multipart('admin/admin/upload_adm');?>
+                <input name="foto" id="foto" type="file" class="form-control" />
+            </div>
+        </div>
+
     </div>
 
 <!-- Footer Content -->
     <div class="box box-footer">
                             <button class="btn btn-primary" type="submit" name="submit" value="Add User" id="submit" data-stype='stay'>
-                            <i class="fa fa-save" ></i> Save and Go to The List
+                            <i class="fa fa-save" ></i> Save
                             </button>
                             <button class="btn btn-default col" id="btn_cancel">
                             <i class="fa fa-undo"></i> Cancel

@@ -38,7 +38,7 @@ $this->load->view('admin/template/sidebar');
                                 </div>
                             </div>
                             <h3 class="widget-user-username">Dosen</h3>
-                            <h5 class="widget-user-desc">List All Dosen <i class="label bg-yellow">items</i></h5>
+                            <h5 class="widget-user-desc">List All Dosen <i href="" class="label bg-yellow"><?php echo $total_rows ?> items</i></h5>
                             <hr>
                         </div>
                     </div>
@@ -79,10 +79,9 @@ $this->load->view('admin/template/sidebar');
                                     <tbody id="tbody_dosen">
 
                                     <?php
-                                    $no = $offset;
-                                    foreach($data as $row): ?>
+                                    foreach($admin_data as $row): ?>
                                         <tr>
-                                            <th><?php echo $row->id; ?></th>
+                                            <td width="80px"><?php echo $row->id; ?></td>
                                             <td><?php echo $row->nip; ?></td>
                                             <td><?php echo $row->nama; ?></td>
                                             <td><?php echo $row->no_hp; ?></td>
@@ -96,7 +95,13 @@ $this->load->view('admin/template/sidebar');
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>
-
+                                    <?php if ($total_rows == 0) :?>
+                                        <tr>
+                                            <td colspan="100">
+                                                data is not available
+                                            </td>
+                                        </tr>
+                                    <?php endif; ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -106,32 +111,25 @@ $this->load->view('admin/template/sidebar');
                     <div class="row">
                         <div class="col-md-8">
                             <div class="col-sm-3 padd-left-0">
-                                <input type="text" class="form-control" name="q" id="filter" placeholder="Filter" value="">
+                                <input type="text" class="form-control" name="q" value="<?php echo $q; ?>" placeholder="Filter">
                             </div>
-                            <div class="col-sm-3 padd-left-0 ">
-                                <select type="text" class="form-control chosen chosen-select" name="f" id="field" >
-                                    <option value="">All</option>
-                                    <option value="id_member">Id Member</option>
-                                    <option value="pass">Pass</option>
-                                    <option value="nama">Nama</option>
-                                    <option value="alamat">Alamat</option>
-                                    <option value="no_hp">No Hp</option>
-                                    <option value="email">Email</option>
-                                </select>
-                            </div>
-
-
-                            <!-- Footer Content -->
                             <div class="col-sm-1 padd-left-0 ">
-                                <button type="submit" class="btn btn-flat" name="sbtn" id="sbtn" value="Apply" title="filter search">
-                                    Filter
-                                </button>
+                                <?php
+                                if ($q <> '')
+                                {
+                                    ?>
+                                    <a href="<?php echo site_url('admin/admin/list_admin'); ?>" class="btn btn-primary">Reset</a>
+                                    <?php
+                                }
+                                ?>
+                                <button class="btn btn-primary" type="submit">Search</button>
                             </div>
+
                         </div>
                         </form>
                         <div class="col-md-4">
                             <div class="dataTables_paginate paging_simple_numbers pull-right" id="example2_paginate" >
-                                <?= $halaman; ?>
+                                <?= $pagination; ?>
                             </div>
                         </div>
                     </div>

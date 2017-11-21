@@ -136,16 +136,20 @@ class Admin extends CI_Controller {
         $data['user'] = $this->AdminModel->get_admin_by_id($id);
         $data['view'] = 'admin/admin/admin_view';
         $this->load->view('admin/admin/admin_view', $data);
-
     }
 
-    public function list_admin($offset=0){
+    public function list_admin(){
         $this->validation();
-        $jumlah = $this->db->get('admin');
-        $config['base_url'] = base_url() . '/admin/admin/list_admin';
-        $config['total_rows'] = $jumlah->num_rows();
-        $config['per_page'] = 10;
-        $config['uri_segment'] = 3;
+
+        $q = urldecode($this->input->get('q', TRUE));
+        $start = intval($this->input->get('start'));
+        if ($q <> '') {
+            $config['base_url'] = base_url() . '/admin/admin/list_admin?q=' . urlencode($q);
+            $config['first_url'] = base_url() . '/admin/admin/list_admin?q=' . urlencode($q);
+        } else {
+            $config['base_url'] = base_url() . '/admin/admin/list_admin';
+            $config['first_url'] = base_url() . '/admin/admin/list_admin';
+        }
         $config['num_tag_open'] = '<li>';
         $config['num_tag_close'] = '</li>';
         $config['full_tag_open'] = '<ul class="pagination">';
@@ -164,10 +168,22 @@ class Admin extends CI_Controller {
         $config['prev_tag_close'] = '</li>';
         $config['cur_tag_open'] = '<li class="active"><a href="#">';
         $config['cur_tag_close'] = '</a></li>';
+
+        $config['page'] = 10;
+        $config['page_query_string'] = TRUE;
+        $config['total_rows'] = $this->AdminModel->total_admin($q);
+        $row = $this->AdminModel->get_limit_admin($config['page'], $start, $q);
+        $this->load->library('pagination');
         $this->pagination->initialize($config);
-        $data['halaman'] = $this->pagination->create_links();
-        $data['offset'] = $offset;
-        $data['data'] = $this->AdminModel->list_admin($config['per_page'], $offset);
+
+        $data = array(
+            'admin_data' => $row,
+            'q' => $q,
+            'pagination' => $this->pagination->create_links(),
+            'total_rows' => $config['total_rows'],
+            'start' => $start,
+            'uri_segment' => 2,
+        );
         $this->load->view('admin/admin/admin_list', $data);
     }
 }

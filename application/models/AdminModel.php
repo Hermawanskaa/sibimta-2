@@ -39,7 +39,33 @@ class AdminModel extends CI_Model{
     function list_admin($num, $offset)  {
         $query = $this->db->get('admin',$num, $offset);
         return $query->result();
+    }
 
+    function getall_admin($limit = null,$offset=null,$key=null) {
+        $this->db->from($this->table);
+        if($limit != null){
+            $this->db->limit($limit,$offset);
+        }
+        if ($key != null) {
+            $this->db->or_like($key);
+        }
+        $query = $this->db->get();
+
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        }
+    }
+
+    function count_admin(){
+        $query = $this->db->get('admin');
+        return $result = $query->result_array();
+    }
+
+    function  count_admin_search($orlike) {
+        $this->db->or_like($orlike);
+        $query = $this->db->get($this->table);
+
+        return $query->num_rows();
     }
 }
 

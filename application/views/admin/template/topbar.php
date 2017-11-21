@@ -4,7 +4,7 @@
     <div class="wrapper">
 
         <header class="main-header">
-            <a href="#" class="logo"><b>SIBIMTA</b>UMY</a>
+            <a href="<?php echo base_url('admin/dashboard') ?>" class="logo"><b>SIBIMTA</b>UMY</a>
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top" role="navigation">
                 <!-- Sidebar toggle button-->

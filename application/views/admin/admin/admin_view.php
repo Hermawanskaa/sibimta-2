@@ -28,7 +28,7 @@ $this->load->view('admin/template/sidebar');
             <div class="row">
          <div class="widget-user-header">
         <div class="col-sm-1">
-            <img class="img-circle" src="assets/img/view.png" alt="User Avatar">
+            <img class="img-circle" src="<?php echo base_url('/assets/img/view.png') ?>" alt="User Avatar">
             <div class="col-sm-1">
         </div>
         </div>
@@ -45,48 +45,56 @@ $this->load->view('admin/template/sidebar');
                     <div class="form-group ">
                         <label for="content" class="col-sm-2 control-label">NIP</label>
                         <div class="col-sm-8">
-                        </div>
-                    </div>
-                                         
-                    <div class="form-group ">
-                        <label for="content" class="col-sm-2 control-label">Pass</label>
-                        <div class="col-sm-8">
+                            <?= $user['nip']; ?>
                         </div>
                     </div>
                                          
                     <div class="form-group ">
                         <label for="content" class="col-sm-2 control-label">Nama</label>
                         <div class="col-sm-8">
+                            <?= $user['nama']; ?>
+                        </div>
+                    </div>
+                                         
+                    <div class="form-group ">
+                        <label for="content" class="col-sm-2 control-label">Password</label>
+                        <div class="col-sm-8">
+                            <?= $user['password']; ?>
+                        </div>
+                    </div>
+                                         
+                    <div class="form-group ">
+                        <label for="content" class="col-sm-2 control-label">No HP</label>
+                        <div class="col-sm-8">
+                            <?= $user['no_hp']; ?>
                         </div>
                     </div>
                                          
                     <div class="form-group ">
                         <label for="content" class="col-sm-2 control-label">Alamat</label>
                         <div class="col-sm-8">
-                        </div>
-                    </div>
-                                         
-                    <div class="form-group ">
-                        <label for="content" class="col-sm-2 control-label">No Hp</label>
-                        <div class="col-sm-8">
+                           <?= $user['alamat']; ?>
                         </div>
                     </div>
                     <div class="form-group ">
                         <label for="content" class="col-sm-2 control-label">Email</label>
                         <div class="col-sm-8">
+                            <?= $user['email']; ?>
                         </div>
                     </div>
+                      <div class="form-group ">
+                          <label for="content" class="col-sm-2 control-label">Level</label>
+                          <div class="col-sm-8">
+                              <?= $user['level']; ?>
+                          </div>
+                      </div>
                     <br>
                     <br>
 
 <!-- Footer Content -->
                     <div class="box box-footer">
-                            <button class="btn btn-primary" id="btn_save" data-stype='back'>
-                            <i class="ion ion-ios-list-outline" ></i> Edit Admin
-                            </button>
-                            <button class="btn btn-default col" id="btn_cancel">
-                            <i class="fa fa-undo"></i> Go Admin List
-                            </button> 
+                        <a href="<?= base_url('admin/admin/edit_admin/'.$user['nip']); ?>" class="btn btn-primary" ><i class="ion ion-ios-list-outline""></i> Update</a>
+                        <a class="btn btn-primary" href="<?= base_url('admin/admin/list_admin'); ?>"><i class="fa fa-undo"" data-stype='back'></i> Back to List</a>
                         </div>
                   </div>
                </div>

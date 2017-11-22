@@ -44,23 +44,46 @@ class AdminModel extends CI_Model
 
     }
 
-    function total_admin($q = NULL)
+    public function total_rows()
     {
-        $this->db->like('nip', $q);
-        $this->db->or_like('nama', $q);
-        $this->db->or_like('no_hp', $q);
-        $this->db->from('admin');
-        return $this->db->count_all_results();
+        if(!empty($_GET['keyword'])) {
+            return $this->db->from('admin')
+                ->like('nip', $_GET['keyword'])
+                ->or_like('nama', $_GET['keyword'])
+                ->or_like('no_hp', $_GET['keyword'])
+                ->or_like('alamat', $_GET['keyword'])
+                ->or_like('email', $_GET['keyword'])
+                ->or_like('level', $_GET['keyword'])
+                ->order_by('nip', 'DESC')
+                ->count_all_results();
+        } else {
+            return $this->db->from('admin')
+                ->count_all_results();
+        }
     }
 
-    function get_limit_admin($limit, $start = 0, $q = NULL)
+    public function index_limit($limit, $start = 0)
     {
-        $this->db->order_by('id', 'nip');
-        $this->db->like('nip', $q);
-        $this->db->or_like('nama', $q);
-        $this->db->or_like('no_hp', $q);
-        $this->db->limit($limit, $start);
-        return $this->db->get('admin')->result();
+        if(!empty($_GET['keyword'])) {
+            return $this->db->select('*')
+                ->from('admin')
+                ->like('nip', $_GET['keyword'])
+                ->or_like('nama', $_GET['keyword'])
+                ->or_like('no_hp', $_GET['keyword'])
+                ->or_like('alamat', $_GET['keyword'])
+                ->or_like('email', $_GET['keyword'])
+                ->or_like('level', $_GET['keyword'])
+                ->order_by('nip', 'DESC')
+                ->limit($limit, $start)
+                ->get()->result();
+        } else {
+            return $this->db->select('*')
+                ->from('admin')
+                ->order_by('nip', 'DESC')
+                ->limit($limit, $start)
+                ->get()->result();
+        }
+
     }
 }
 

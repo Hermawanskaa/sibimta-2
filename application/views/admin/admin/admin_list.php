@@ -38,7 +38,7 @@ $this->load->view('admin/template/sidebar');
                                 </div>
                             </div>
                             <h3 class="widget-user-username">Dosen</h3>
-                            <h5 class="widget-user-desc">List All Dosen <i href="" class="label bg-yellow"><?php echo $total_rows ?> items</i></h5>
+                            <h5 class="widget-user-desc">List All Dosen <i href="" class="label bg-yellow"> items</i></h5>
                             <hr>
                         </div>
                     </div>
@@ -62,7 +62,7 @@ $this->load->view('admin/template/sidebar');
                             </div>
                         <?php }?>
 
-                        <form name="form_dosen" id="form_dosen" action="">
+                        <form name="form_dosen" id="form_dosen" action="<?php echo site_url('admin/admin/list_admin'); ?>">
                             <div class="table-responsive">
                                 <table id="list_dosen" class="table table-bordered table-striped dataTable">
                                     <thead>
@@ -77,10 +77,7 @@ $this->load->view('admin/template/sidebar');
                                     </tr>
                                     </thead>
                                     <tbody id="tbody_dosen">
-
-                                    <?php
-                                    foreach($admin_data as $row): ?>
-                                        <tr>
+                                    <?php foreach($admin_data as $row): ?>
                                             <td width="80px"><?php echo $row->id; ?></td>
                                             <td><?php echo $row->nip; ?></td>
                                             <td><?php echo $row->nama; ?></td>
@@ -98,13 +95,6 @@ $this->load->view('admin/template/sidebar');
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>
-                                    <?php if ($total_rows == 0) :?>
-                                        <tr>
-                                            <td colspan="100">
-                                                data is not available
-                                            </td>
-                                        </tr>
-                                    <?php endif; ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -113,30 +103,23 @@ $this->load->view('admin/template/sidebar');
                     <!-- /.widget-user -->
                     <div class="row">
                         <div class="col-md-8">
+                            <div class="col-sm-3 padd-left-0 " >
+                                <input type="text" class="form-control input-md" name="keyword" value="<?php echo (!empty($_GET['keyword'])) ? $_GET['keyword'] : ''; ?>" placeholder="Search for...">
+                            </div>
                             <div class="col-sm-3 padd-left-0">
-                                <input type="text" class="form-control" name="q" value="<?php echo $q; ?>" placeholder="Filter">
-                            </div>
-
-                            <div class="col-sm-1 padd-left-0 ">
-                                <?php
-                                if ($q <> '')
-                                {
-                                    ?>
-                                    <a href="<?php echo site_url('admin/admin/list_admin'); ?>" class="btn btn-primary">Reset</a>
-                                    <?php
-                                }
-                                ?>
+                                <button class="btn btn-primary btn-md" type="submit" name="submit" value="cari">Filter</button>
                             </div>
                         </div>
-                        </form>
-                        <div class="col-md-4">
-                            <div class="dataTables_paginate paging_simple_numbers pull-right" id="example2_paginate" >
-                                <?= $pagination; ?>
-                            </div>
+                    </form>             <div class="col-md-4">
+                            <nav class="text-right">
+                                <?php echo $pagination; ?>
+                            </nav>
                         </div>
-                    </div>
                 </div>
             </div>
+        </div>
+    </div>
+    </div>
 </section>
 
 <?php 

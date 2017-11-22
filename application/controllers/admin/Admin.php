@@ -34,6 +34,7 @@ class Admin extends CI_Controller {
             $this->form_validation->set_message('min_length', '{field} minimal {param} karakter.');
             $this->form_validation->set_message('matches', '{field} tidak sama dengan {param}.');
 
+                $upload = 'avatar';
                 $foto = preg_replace("/^(.+?);.*$/", "\\1", $_FILES['avatar']['name']);
                 $config['upload_path'] = './uploads/foto/admin/';
                 $config['allowed_types'] = 'gif|jpg|png';
@@ -41,13 +42,18 @@ class Admin extends CI_Controller {
                 $config['file_name'] = $foto;
                 $config['overwrite'] = false;
                 $this->load->library('upload', $config);
-                $data['avatar'] = $this->upload->data()['file_name'];
 
-
-            if ($this->form_validation->run() == FALSE || (!$this->upload->do_upload('avatar')&&!empty($_FILES['avatar']['name']))) {
+            if ($this->form_validation->run() == FALSE || (!$this->upload->do_upload($upload)&&!empty($_FILES['avatar']['name']))) {
                 $data['view'] = 'admin/admin/admin_add';
                 $this->load->view('admin/admin/admin_add', $data);
             } else {
+
+                if (!empty($foto)){
+                    $gambar	=	$foto;
+                }else{
+                    // No file selected - set default image
+                    $gambar='anonim.png';
+                }
                 $data = array(
                     'nip' => $this->input->post('nip'),
                     'nama' => $this->input->post('nama'),
@@ -55,7 +61,7 @@ class Admin extends CI_Controller {
                     'no_hp' => $this->input->post('no_hp'),
                     'alamat' => $this->input->post('alamat'),
                     'email' => $this->input->post('email'),
-                    'foto' => $foto,
+                    'foto' => $gambar,
                     'level' => $this->input->post('level'),
                 );
                 $data = $this->security->xss_clean($data);
@@ -77,18 +83,7 @@ class Admin extends CI_Controller {
         if ($this->input->post('submit')) {
             $this->validation();
 
-            if (!empty($_FILES['avatar']['name'])) {
-                $foto = preg_replace("/^(.+?);.*$/", "\\1", $_FILES['avatar']['name']);
-                $config['upload_path'] = './uploads/foto/admin/';
-                $config['allowed_types'] = 'jpg|jpeg|png|gif';
-                $config['max_size'] = 2000;
-                $config['file_name'] = $foto;
-                $this->load->library('upload', $config);
-                if (!$this->upload->do_upload('avatar')) {
-                    exit($this->upload->display_errors());
-                }
-                $data['avatar'] = $this->upload->data()['file_name'];
-            }
+
                 $this->form_validation->set_rules('nama', 'nama', 'trim|required|xss_clean');
                 $this->form_validation->set_rules('password', 'password', 'trim|required|xss_clean');
                 $this->form_validation->set_rules('no_hp', 'no_hp', 'trim|required|xss_clean');
@@ -96,18 +91,34 @@ class Admin extends CI_Controller {
                 $this->form_validation->set_rules('email', 'email', 'trim|required|xss_clean');
                 $this->form_validation->set_rules('level', 'level', 'trim|required|xss_clean');
 
-                if ($this->form_validation->run() == FALSE) {
+            $upload = 'avatar';
+            $foto = preg_replace("/^(.+?);.*$/", "\\1", $_FILES['avatar']['name']);
+            $config['upload_path'] = './uploads/foto/admin/';
+            $config['allowed_types'] = 'gif|jpg|png';
+            $config['max_size'] = 2000;
+            $config['file_name'] = $foto;
+            $config['overwrite'] = false;
+            $this->load->library('upload', $config);
+
+
+            if ($this->form_validation->run() == FALSE || (!$this->upload->do_upload($upload)&&!empty($_FILES['avatar']['name']))) {
                     $data['user'] = $this->AdminModel->get_admin_by_id($id);
                     $data['view'] = 'admin/admin/admin_edit';
                     $this->load->view('admin/admin/admin_edit', $data);
                 } else {
-                    $data = array(
+                if (!empty($foto)){
+                    $gambar	=	$foto;
+                }else{
+                    $gambar='anonim.png';
+                }
+
+                $data = array(
                         'nama' => $this->input->post('nama'),
                         'password' => $this->input->post('password'),
                         'no_hp' => $this->input->post('no_hp'),
                         'alamat' => $this->input->post('alamat'),
                         'email' => $this->input->post('email'),
-                        'foto' => $foto,
+                        'foto' => $gambar,
                         'level' => $this->input->post('level'),
                     );
                     $data = $this->security->xss_clean($data);
@@ -140,7 +151,6 @@ class Admin extends CI_Controller {
 
     public function list_admin(){
         $this->validation();
-
         $q = urldecode($this->input->get('q', TRUE));
         $start = intval($this->input->get('start'));
         if ($q <> '') {
@@ -148,7 +158,7 @@ class Admin extends CI_Controller {
             $config['first_url'] = base_url() . '/admin/admin/list_admin?q=' . urlencode($q);
         } else {
             $config['base_url'] = base_url() . '/admin/admin/list_admin';
-            $config['first_url'] = base_url() . '/admin/admin/list_admin';
+           $config['first_url'] = base_url() . '/admin/admin/list_admin';
         }
         $config['num_tag_open'] = '<li>';
         $config['num_tag_close'] = '</li>';

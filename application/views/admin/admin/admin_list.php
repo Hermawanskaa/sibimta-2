@@ -55,7 +55,7 @@ $this->load->view('admin/template/sidebar');
                             </div>
                         <?php endif; ?>
                         <?php if ($this->session->flashdata('msg')) { ?>
-                            <div class="alert alert-warning alert-dismissible">
+                            <div class="alert alert-success alert-dismissible">
                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                                 <h4><i class="icon fa fa-warning"></i> Peringatan!</h4>
                                 <?php echo $this->session->flashdata('msg');?>
@@ -89,9 +89,12 @@ $this->load->view('admin/template/sidebar');
                                             <td><?php echo $row->email; ?></td>
                                             <td><?php echo $row->level; ?></td>
                                             <td width="200">
-                                                <a href="<?= base_url('admin/admin/view_admin/'.$row->nip); ?>" class="label-default"><i class="fa fa-newspaper-o"></i> View</a>
-                                                <a href="<?= base_url('admin/admin/edit_admin/'.$row->nip); ?>" class="label-default"><i class="fa fa-edit "></i> Update</a>
-                                                <a href="<?= base_url('admin/admin/delete_admin/'.$row->nip); ?>" class="label-default remove-data"><i class="fa fa-close"></i> Remove</a>
+                                                <a href="<?= base_url('admin/admin/view_admin/'.$row->nip); ?>" class="label-default">
+                                                    <i class="fa fa-newspaper-o"></i> View</a>
+                                                <a href="<?= base_url('admin/admin/edit_admin/'.$row->nip); ?>" class="label-default">
+                                                    <i class="fa fa-edit "></i> Update</a>
+                                                <a href="<?= base_url('admin/admin/delete_admin/'.$row->nip); ?>" class="label-default remove-data">
+                                                    <i class="fa fa-close"></i> Remove</a>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>
@@ -113,6 +116,7 @@ $this->load->view('admin/template/sidebar');
                             <div class="col-sm-3 padd-left-0">
                                 <input type="text" class="form-control" name="q" value="<?php echo $q; ?>" placeholder="Filter">
                             </div>
+
                             <div class="col-sm-1 padd-left-0 ">
                                 <?php
                                 if ($q <> '')
@@ -122,9 +126,7 @@ $this->load->view('admin/template/sidebar');
                                     <?php
                                 }
                                 ?>
-                                <button class="btn btn-primary" type="submit">Search</button>
                             </div>
-
                         </div>
                         </form>
                         <div class="col-md-4">

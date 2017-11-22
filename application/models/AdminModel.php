@@ -44,12 +44,6 @@ class AdminModel extends CI_Model
 
     }
 
-    function list_admin($num, $offset)
-    {
-        $query = $this->db->get('admin', $num, $offset);
-        return $query->result();
-    }
-
     function total_admin($q = NULL)
     {
         $this->db->like('nip', $q);
@@ -58,12 +52,10 @@ class AdminModel extends CI_Model
         $this->db->from('admin');
         return $this->db->count_all_results();
     }
-    public $id = 'id';
-    public $order = 'nip';
 
     function get_limit_admin($limit, $start = 0, $q = NULL)
     {
-        $this->db->order_by($this->id, $this->order);
+        $this->db->order_by('id', 'nip');
         $this->db->like('nip', $q);
         $this->db->or_like('nama', $q);
         $this->db->or_like('no_hp', $q);

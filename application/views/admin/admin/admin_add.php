@@ -49,7 +49,7 @@ $this->load->view('admin/template/sidebar');
               </div>
             <?php endif; ?>
     <?php if ($this->session->flashdata('msg')) { ?>
-        <div class="alert alert-warning alert-dismissible">
+        <div class="alert alert-success alert-dismissible">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
             <h4><i class="icon fa fa-warning"></i> Peringatan!</h4>
             <?php echo $this->session->flashdata('msg');?>

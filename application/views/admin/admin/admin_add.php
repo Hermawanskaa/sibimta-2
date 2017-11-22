@@ -9,12 +9,12 @@ $this->load->view('admin/template/sidebar');
 <!-- Page Header -->
 <section class="content-header">
    <h1>
-      Admin      <small>Add Admin</small>
+       Admin Dashboard      <small>Add Admin</small>
    </h1>
    <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
       <li class=""><a  href="">Admin</a></li>
-      <li class="active">Add Admin</li>
+      <li class="active">Add New Admin</li>
    </ol>
 </section>
 
@@ -32,7 +32,7 @@ $this->load->view('admin/template/sidebar');
         </div>
         </div>
         <h3 class="widget-user-username">Admin</h3>
-        <h5 class="widget-user-desc">Add Admin</h5>
+        <h5 class="widget-user-desc">Add New Admin</h5>
         <hr>
   </div>
 </div>

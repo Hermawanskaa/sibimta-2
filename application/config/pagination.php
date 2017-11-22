@@ -3,7 +3,7 @@ if(!defined('BASEPATH')) exit('No direct script access allowed');
 
 $config['query_string_segment'] = 'start';
 
-$config['full_tag_open'] = '<ul class="pagination pagination-sm">';
+$config['full_tag_open'] = '<ul class="pagination pagination-md">';
 $config['full_tag_close'] = '</ul>';
 
 $config['first_link'] = 'First';
@@ -29,5 +29,5 @@ $config['num_tag_open'] = '<li class="page">';
 $config['num_tag_close'] = '</li>';
 
 
-/* End of file pagination.php */
-/* Location: ./application/config/pagination.php */
+/* End of file Pagination.php */
+/* Location: ./application/config/Pagination.php */

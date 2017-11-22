@@ -30,8 +30,8 @@
                     <i class="fa fa-dashboard"></i> <span>Dosen</span> <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="<?php echo site_url('dashboard1') ?>"><i class="fa fa-circle-o"></i>Daftar Mahasiswa</a></li>
-                    <li><a href="<?php echo site_url('dashboard2') ?>"><i class="fa fa-circle-o"></i> Input Mahasiswa</a></li>
+                    <li><a href="<?php echo site_url('admin/dosen/list_dosen') ?>"><i class="fa fa-circle-o"></i>Daftar Dosen</a></li>
+                    <li><a href="<?php echo site_url('admin/dosen/add_dosen') ?>"><i class="fa fa-circle-o"></i> Input Dosen</a></li>
                 </ul>
             </li>
 

@@ -10,7 +10,7 @@ $this->load->view('admin/template/sidebar');
 <!-- Page Header -->
 <section class="content-header">
     <h1>
-        Admin      <small>Detail Admin</small>
+        Admin Dashboard      <small>Detail Admin</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>

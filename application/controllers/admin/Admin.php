@@ -21,7 +21,7 @@ class Admin extends CI_Controller
     public function index()
     {
         $this->validation();
-        $this->load->view('admin/dashboard');
+        $this->load->view('admin/admin/admin_list');
     }
 
     public function add_admin()
@@ -35,6 +35,7 @@ class Admin extends CI_Controller
             $this->form_validation->set_rules('no_hp', 'no_hp', 'trim|required|xss_clean|min_length[10]');
             $this->form_validation->set_rules('alamat', 'alamat', 'trim|required|xss_clean|min_length[5]');
             $this->form_validation->set_rules('email', 'email', 'trim|required|xss_clean|min_length[5]');
+
             $this->form_validation->set_rules('level', 'level', 'trim|required|xss_clean');
             $this->form_validation->set_message('required', '%s tidak boleh kosong');
             $this->form_validation->set_message('min_length', '{field} minimal {param} karakter.');
@@ -89,13 +90,16 @@ class Admin extends CI_Controller
         if ($this->input->post('submit')) {
             $this->validation();
 
+            $this->form_validation->set_rules('nama', 'nama', 'trim|required|xss_clean|min_length[5]');
+            $this->form_validation->set_rules('password', 'password', 'trim|required|xss_clean|min_length[5]');
+            $this->form_validation->set_rules('no_hp', 'no_hp', 'trim|required|xss_clean|min_length[10]');
+            $this->form_validation->set_rules('alamat', 'alamat', 'trim|required|xss_clean|min_length[5]');
+            $this->form_validation->set_rules('email', 'email', 'trim|required|xss_clean|min_length[5]');
 
-            $this->form_validation->set_rules('nama', 'nama', 'trim|required|xss_clean');
-            $this->form_validation->set_rules('password', 'password', 'trim|required|xss_clean');
-            $this->form_validation->set_rules('no_hp', 'no_hp', 'trim|required|xss_clean');
-            $this->form_validation->set_rules('alamat', 'alamat', 'trim|required|xss_clean');
-            $this->form_validation->set_rules('email', 'email', 'trim|required|xss_clean');
             $this->form_validation->set_rules('level', 'level', 'trim|required|xss_clean');
+            $this->form_validation->set_message('required', '%s tidak boleh kosong');
+            $this->form_validation->set_message('min_length', '{field} minimal {param} karakter.');
+            $this->form_validation->set_message('matches', '{field} tidak sama dengan {param}.');
 
             $upload = 'avatar';
             $foto = preg_replace("/^(.+?);.*$/", "\\1", $_FILES['avatar']['name']);
@@ -114,7 +118,7 @@ class Admin extends CI_Controller
             } else {
                 if (!empty($foto)) {
                     $gambar = $foto;
-                } else {
+                }else{
                     $gambar = 'anonim.png';
                 }
 
@@ -167,25 +171,6 @@ class Admin extends CI_Controller
         $config['suffix'] = (!empty($_GET)) ? '?' . http_build_query($_GET, '', "&") : '';
         $config['first_url'] = $config['base_url'] . $config['suffix'];
         $config['query_string_segment'] = 'start';
-
-        $config['num_tag_open'] = '<li>';
-        $config['num_tag_close'] = '</li>';
-        $config['full_tag_open'] = '<ul class="pagination">';
-        $config['full_tag_close'] = '</ul>';
-        $config['first_link'] = 'First';
-        $config['first_tag_open'] = '<li>';
-        $config['first_tag_close'] = '</li>';
-        $config['last_link'] = 'Last';
-        $config['last_tag_open'] = '<li>';
-        $config['last_tag_close'] = '</li>';
-        $config['next_link'] = 'Next';
-        $config['next_tag_open'] = '<li>';
-        $config['next_tag_close'] = '</li>';
-        $config['prev_link'] = 'Prev';
-        $config['prev_tag_open'] = '<li>';
-        $config['prev_tag_close'] = '</li>';
-        $config['cur_tag_open'] = '<li class="active"><a href="#">';
-        $config['cur_tag_close'] = '</a></li>';
 
         $this->pagination->initialize($config);
         $start = $this->uri->segment(4, 0);

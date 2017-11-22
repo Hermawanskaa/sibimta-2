@@ -10,7 +10,7 @@ $this->load->view('admin/template/sidebar');
 <!-- Page Header -->
 <section class="content-header">
    <h1>
-      Admin      <small>Detail Admin</small>
+      Admin Dashboard     <small>Detail Admin</small>
    </h1>
    <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -55,14 +55,7 @@ $this->load->view('admin/template/sidebar');
                             <?= $user['nama']; ?>
                         </div>
                     </div>
-                                         
-                    <div class="form-group ">
-                        <label for="content" class="col-sm-2 control-label">Password</label>
-                        <div class="col-sm-8">
-                            <?= $user['password']; ?>
-                        </div>
-                    </div>
-                                         
+
                     <div class="form-group ">
                         <label for="content" class="col-sm-2 control-label">No HP</label>
                         <div class="col-sm-8">

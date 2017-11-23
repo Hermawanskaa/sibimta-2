@@ -98,7 +98,7 @@ $this->load->view('admin/template/sidebar');
                                     <tbody id="tbody_dosen">
                                     <?php if (!empty($dosen_data)) : ?>
                                     <?php foreach($dosen_data as $row): ?>
-                                        <td><?php echo $row->id; ?></td>
+                                        <td><?php echo $row->id_dosen; ?></td>
                                         <td><?php echo $row->nip; ?></td>
                                         <td><?php echo $row->nama; ?></td>
                                         <td><?php echo $row->no_hp; ?></td>

@@ -99,7 +99,7 @@ $this->load->view('admin/template/sidebar');
                                 <tbody id="tbody_admin">
                                 <?php if (!empty($admin_data)) : ?>
                                 <?php foreach($admin_data as $row): ?>
-                                    <td><?php echo $row->id; ?></td>
+                                    <td><?php echo $row->id_admin; ?></td>
                                     <td><?php echo $row->nip; ?></td>
                                     <td><?php echo $row->nama; ?></td>
                                     <td><?php echo $row->no_hp; ?></td>

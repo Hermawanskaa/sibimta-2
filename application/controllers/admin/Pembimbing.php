@@ -5,7 +5,7 @@ class Pembimbing extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->model('AdminModel');
+        $this->load->model('PembimbingModel');
     }
 
     public function validation(){
@@ -17,7 +17,7 @@ class Pembimbing extends CI_Controller {
 
     public function index(){
         $this->validation();
-        $this->load->view('admin/dashboard');
+        $this->load->view('admin/pembimbing/pembimbing_list');
     }
 }
 

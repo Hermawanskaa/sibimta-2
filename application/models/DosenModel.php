@@ -23,13 +23,13 @@ class DosenModel extends CI_Model
 
     public function get_dosen_by_id($id)
     {
-        $query = $this->db->get_where('dosen', array('nip' => $id));
+        $query = $this->db->get_where('dosen', array('dsn_nip' => $id));
         return $result = $query->row_array();
     }
 
     public function edit_dosen($data, $id)
     {
-        $this->db->where('nip', $id);
+        $this->db->where('dsn_nip', $id);
         $this->db->update('dosen', $data);
         return true;
     }
@@ -48,12 +48,12 @@ class DosenModel extends CI_Model
     {
         if(!empty($_GET['keyword'])) {
             return $this->db->from('dosen')
-                ->like('nip', $_GET['keyword'])
-                ->or_like('nama', $_GET['keyword'])
-                ->or_like('no_hp', $_GET['keyword'])
-                ->or_like('alamat', $_GET['keyword'])
-                ->or_like('email', $_GET['keyword'])
-                ->order_by('nip', 'DESC')
+                ->like('dsn_nip', $_GET['keyword'])
+                ->or_like('dsn_nama', $_GET['keyword'])
+                ->or_like('dsn_nohp', $_GET['keyword'])
+                ->or_like('dsn_alamat', $_GET['keyword'])
+                ->or_like('dsn_email', $_GET['keyword'])
+                ->order_by('dsn_nip', 'DESC')
                 ->count_all_results();
         } else {
             return $this->db->from('dosen')
@@ -66,18 +66,18 @@ class DosenModel extends CI_Model
         if(!empty($_GET['keyword'])) {
             return $this->db->select('*')
                 ->from('dosen')
-                ->like('nip', $_GET['keyword'])
-                ->or_like('nama', $_GET['keyword'])
-                ->or_like('no_hp', $_GET['keyword'])
-                ->or_like('alamat', $_GET['keyword'])
-                ->or_like('email', $_GET['keyword'])
-                ->order_by('nip', 'DESC')
+                ->like('dsn_nip', $_GET['keyword'])
+                ->or_like('dsn_nama', $_GET['keyword'])
+                ->or_like('dsn_nohp', $_GET['keyword'])
+                ->or_like('dsn_alamat', $_GET['keyword'])
+                ->or_like('dsn_email', $_GET['keyword'])
+                ->order_by('dsn_nip', 'DESC')
                 ->limit($limit, $start)
                 ->get()->result();
         } else {
             return $this->db->select('*')
                 ->from('dosen')
-                ->order_by('nip', 'DESC')
+                ->order_by('dsn_nip', 'DESC')
                 ->limit($limit, $start)
                 ->get()->result();
         }

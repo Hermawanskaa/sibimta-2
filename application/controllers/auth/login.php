@@ -36,17 +36,17 @@ class login extends CI_Controller {
                 $username = $this->security->xss_clean($this->input->post('username'));
                 $password = $this->security->xss_clean($this->input->post('password'));
                 $data = array(
-                    'nip' => $username,
-                    'password' => $password
+                    'adm_nip' => $username,
+                    'adm_password' => $password
                 );
                 $result = $this->LoginModel->login('Admin',$data);
                 $rows = $result->num_rows();
                 if ($rows > 0) {
                     $result = $result->row_array();
                     $data_session = array(
-                        'nama' => $result['nama'],
-                        'nip' => $result['nip'],
-                        'foto' => $result['foto'],
+                        'nama' => $result['adm_nama'],
+                        'nip' => $result['adm_nip'],
+                        'foto' => $result['adm_foto'],
                         'is_admin_login' => TRUE
                     );
                     $this->session->set_userdata($data_session);
@@ -55,17 +55,17 @@ class login extends CI_Controller {
                 //DOSEN
                 else{
                     $data = array(
-                        'nip' => $username,
-                        'password' => $password
+                        'dsn_nip' => $username,
+                        'dsn_password' => $password
                     );
                     $result = $this->LoginModel->login('dosen',$data);
                     $rows = $result->num_rows();
                     if ($rows > 0) {
                         $result = $result->row_array();
                         $data_session = array(
-                            'nama' => $result['nama'],
-                            'nip' => $result['nip'],
-                            'foto' => $result['foto'],
+                            'nama' => $result['dsn_nama'],
+                            'nip' => $result['dsn_nip'],
+                            'foto' => $result['dsn_foto'],
                             'is_dosen_login' => TRUE
                         );
                         $this->session->set_userdata($data_session);
@@ -75,17 +75,17 @@ class login extends CI_Controller {
                  //MAHASISWA
                     else{
                         $data = array(
-                            'nim' => $username,
-                            'password' => $password
+                            'mhs_nim' => $username,
+                            'mhs_password' => $password
                         );
                         $result = $this->LoginModel->login('mahasiswa',$data);
                         $rows = $result->num_rows();
                         if ($rows > 0) {
                             $result = $result->row_array();
                             $data_session = array(
-                                'nama' => $result['nama'],
-                                'nim' => $result['nim'],
-                                'foto' => $result['foto'],
+                                'nama' => $result['mhs_nama'],
+                                'nim' => $result['mhs_nim'],
+                                'foto' => $result['mhs_foto'],
                                 'is_mahasiswa_login' => TRUE
                             );
                             $this->session->set_userdata($data_session);

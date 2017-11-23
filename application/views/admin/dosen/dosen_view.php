@@ -45,41 +45,41 @@ $this->load->view('admin/template/sidebar');
                  <div class="form-group ">
                      <label for="content" class="col-sm-2 control-label">NIP</label>
                      <div class="col-sm-8">
-                         <?= $user['nip']; ?>
+                         <?= $user['dsn_nip']; ?>
                      </div>
                  </div>
 
                  <div class="form-group ">
                      <label for="content" class="col-sm-2 control-label">Nama</label>
                      <div class="col-sm-8">
-                         <?= $user['nama']; ?>
+                         <?= $user['dsn_nama']; ?>
                      </div>
                  </div>
 
                  <div class="form-group ">
                      <label for="content" class="col-sm-2 control-label">Password</label>
                      <div class="col-sm-8">
-                         <?= $user['password']; ?>
+                         <?= $user['dsn_password']; ?>
                      </div>
                  </div>
 
                  <div class="form-group ">
                      <label for="content" class="col-sm-2 control-label">No HP</label>
                      <div class="col-sm-8">
-                         <?= $user['no_hp']; ?>
+                         <?= $user['dsn_nohp']; ?>
                      </div>
                  </div>
 
                  <div class="form-group ">
                      <label for="content" class="col-sm-2 control-label">Alamat</label>
                      <div class="col-sm-8">
-                         <?= $user['alamat']; ?>
+                         <?= $user['dsn_alamat']; ?>
                      </div>
                  </div>
                  <div class="form-group ">
                      <label for="content" class="col-sm-2 control-label">Email</label>
                      <div class="col-sm-8">
-                         <?= $user['email']; ?>
+                         <?= $user['dsn_email']; ?>
                      </div>
                  </div>
                  <br>
@@ -87,7 +87,7 @@ $this->load->view('admin/template/sidebar');
 
                  <!-- Footer Content -->
                  <div class="box box-footer">
-                     <a href="<?= base_url('admin/dosen/edit_dosen/'.$user['nip']); ?>" class="btn btn-primary" ><i class="ion ion-ios-list-outline""></i> Update</a>
+                     <a href="<?= base_url('admin/dosen/edit_dosen/'.$user['dsn_nip']); ?>" class="btn btn-primary" ><i class="ion ion-ios-list-outline""></i> Update</a>
                      <a class="btn btn-primary" href="<?= base_url('admin/dosen/list_dosen'); ?>"><i class="fa fa-undo"" data-stype='back'></i> Back to List</a>
                  </div>
              </div>

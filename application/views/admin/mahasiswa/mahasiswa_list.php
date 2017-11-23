@@ -100,21 +100,22 @@ $this->load->view('admin/template/sidebar');
                                 <tbody id="tbody_admin">
                                 <?php if (!empty($mahasiswa_data)) : ?>
                                 <?php foreach($mahasiswa_data as $row): ?>
-                                    <td><?php echo $row->id_mahasiswa; ?></td>
-                                    <td><?php echo $row->nim; ?></td>
-                                    <td><?php echo $row->nama; ?></td>
-                                    <td><?php echo $row->no_hp; ?></td>
-                                    <td><?php echo $row->alamat; ?></td>
-                                    <td><?php echo $row->email; ?></td>
-                                    <td><?php echo $row->angkatan; ?></td>
-                                    <td><?php echo $row->id_jurusan; ?></td>
+                                    <td><?php echo $row->mhs_id; ?></td>
+                                    <td><?php echo $row->mhs_nim; ?></td>
+                                    <td><?php echo $row->mhs_nama; ?></td>
+                                    <td><?php echo $row->mhs_nohp; ?></td>
+                                    <td><?php echo $row->mhs_alamat; ?></td>
+                                    <td><?php echo $row->mhs_email; ?></td>
+                                    <td><?php echo $row->mhs_angkatan; ?></td>
+                                    <td><?php echo $row->jrs_id; ?></td>
+
 
                                     <td width="200">
-                                        <a href="<?= base_url('admin/mahasiswa/view_mahasiswa/'.$row->nim); ?>" class="label-default bg">
+                                        <a href="<?= base_url('admin/mahasiswa/view_mahasiswa/'.$row->mhs_nim); ?>" class="label-default bg">
                                             <i class="fa fa-newspaper-o"></i> View</a>
-                                        <a href="<?= base_url('admin/admin/edit_mahasiswa/'.$row->nim); ?>" class="label-default">
+                                        <a href="<?= base_url('admin/mahasiswa/edit_mahasiswa/'.$row->mhs_nim); ?>" class="label-default">
                                             <i class="fa fa-edit "></i> Update</a>
-                                        <a href="" data-href="<?= base_url('admin/mahasiswa/delete_mahasiswa/'.$row->nim); ?>" class="label-default remove-data">
+                                        <a href="" data-href="<?= base_url('admin/mahasiswa/delete_mahasiswa/'.$row->mhs_nim); ?>" class="label-default remove-data">
                                             <i class="fa fa-close"></i> Remove</a>
                                     </td>
                                     </tr>

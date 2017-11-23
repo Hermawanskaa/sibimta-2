@@ -56,42 +56,42 @@ $this->load->view('admin/template/sidebar');
                         </div>
                     <?php }?>
 
-                    <?php echo form_open_multipart(base_url('admin/dosen/edit_dosen/'.$user['nip']),  'class="form-horizontal"');  ?>
+                    <?php echo form_open_multipart(base_url('admin/dosen/edit_dosen/'.$user['dsn_nip']),  'class="form-horizontal"');  ?>
                     <div class="box-body">
                         <div class="form-group">
                             <label for="nip" class="col-sm-2 control-label">NIP</label>
                             <div class="col-sm-6">
-                                <input type="input" class="form-control" name="nip" id="nip" placeholder="NIP" value="<?= $user['nip']; ?>" disabled>
+                                <input type="input" class="form-control" name="nip" id="nip" placeholder="NIP" value="<?= $user['dsn_nip']; ?>" disabled>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="nama" class="col-sm-2 control-label">Nama</label>
                             <div class="col-sm-6">
-                                <input type="input" class="form-control" name="nama" id="nama" placeholder="Nama" value="<?= $user['nama']; ?>">
+                                <input type="input" class="form-control" name="nama" id="nama" placeholder="Nama" value="<?= $user['dsn_nama']; ?>">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="password" class="col-sm-2 control-label">Password</label>
                             <div class="col-sm-6">
-                                <input type="input" class="form-control" name="password" id="password" placeholder="Password" value="<?= $user['password']; ?>">
+                                <input type="input" class="form-control" name="password" id="password" placeholder="Password" value="<?= $user['dsn_password']; ?>">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="no_hp" class="col-sm-2 control-label">Nomor Hp</label>
                             <div class="col-sm-6">
-                                <input type="number" class="form-control" name="no_hp" id="no_hp" placeholder="Nomor HP" value="<?= $user['no_hp']; ?>">
+                                <input type="number" class="form-control" name="no_hp" id="no_hp" placeholder="Nomor HP" value="<?= $user['dsn_nohp']; ?>">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="alamat" class="col-sm-2 control-label">Alamat</label>
                             <div class="col-sm-6">
-                                <input type="text" class="form-control" name="alamat" id="alamat" placeholder="Alamat" value="<?= $user['alamat']; ?>">
+                                <input type="text" class="form-control" name="alamat" id="alamat" placeholder="Alamat" value="<?= $user['dsn_alamat']; ?>">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="email" class="col-sm-2 control-label">Email</label>
                             <div class="col-sm-6">
-                                <input type="email" class="form-control" name="email" id="email" placeholder="Email" value="<?= $user['email']; ?>">
+                                <input type="email" class="form-control" name="email" id="email" placeholder="Email" value="<?= $user['dsn_email']; ?>">
                             </div>
                         </div>
                     </div>

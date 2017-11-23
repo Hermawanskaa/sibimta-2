@@ -45,46 +45,46 @@ $this->load->view('admin/template/sidebar');
                     <div class="form-group ">
                         <label for="content" class="col-sm-2 control-label">NIM</label>
                         <div class="col-sm-8">
-                            <?= $user['nim']; ?>
+                            <?= $user['mhs_nim']; ?>
                         </div>
                     </div>
 
                     <div class="form-group ">
                         <label for="content" class="col-sm-2 control-label">Nama</label>
                         <div class="col-sm-8">
-                            <?= $user['nama']; ?>
+                            <?= $user['mhs_nama']; ?>
                         </div>
                     </div>
 
                     <div class="form-group ">
                         <label for="content" class="col-sm-2 control-label">No HP</label>
                         <div class="col-sm-8">
-                            <?= $user['no_hp']; ?>
+                            <?= $user['mhs_nohp']; ?>
                         </div>
                     </div>
 
                     <div class="form-group ">
                         <label for="content" class="col-sm-2 control-label">Alamat</label>
                         <div class="col-sm-8">
-                            <?= $user['alamat']; ?>
+                            <?= $user['mhs_alamat']; ?>
                         </div>
                     </div>
                     <div class="form-group ">
                         <label for="content" class="col-sm-2 control-label">Email</label>
                         <div class="col-sm-8">
-                            <?= $user['email']; ?>
+                            <?= $user['mhs_email']; ?>
                         </div>
                     </div>
                     <div class="form-group ">
                         <label for="content" class="col-sm-2 control-label">Angkatan</label>
                         <div class="col-sm-8">
-                            <?= $user['angkatan']; ?>
+                            <?= $user['mhs_angkatan']; ?>
                         </div>
                     </div>
                     <div class="form-group ">
                         <label for="content" class="col-sm-2 control-label">Jurusan</label>
                         <div class="col-sm-8">
-                            <?= $user['id_jurusan']; ?>
+                            <?= $user['jrs_id']; ?>
                         </div>
                     </div>
 
@@ -93,7 +93,7 @@ $this->load->view('admin/template/sidebar');
 
                     <!-- Footer Content -->
                     <div class="box box-footer">
-                        <a href="<?= base_url('admin/mahasiswa/edit_mahasiswa/'.$user['nim']); ?>" class="btn btn-primary" ><i class="ion ion-ios-list-outline""></i> Update</a>
+                        <a href="<?= base_url('admin/mahasiswa/edit_mahasiswa/'.$user['mhs_nim']); ?>" class="btn btn-primary" ><i class="ion ion-ios-list-outline""></i> Update</a>
                         <a class="btn btn-primary" href="<?= base_url('admin/admin/list_mahasiswa'); ?>"><i class="fa fa-undo"" data-stype='back'></i> Back to List</a>
                     </div>
                 </div>

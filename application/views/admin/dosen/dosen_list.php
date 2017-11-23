@@ -98,18 +98,18 @@ $this->load->view('admin/template/sidebar');
                                     <tbody id="tbody_dosen">
                                     <?php if (!empty($dosen_data)) : ?>
                                     <?php foreach($dosen_data as $row): ?>
-                                        <td><?php echo $row->id_dosen; ?></td>
-                                        <td><?php echo $row->nip; ?></td>
-                                        <td><?php echo $row->nama; ?></td>
-                                        <td><?php echo $row->no_hp; ?></td>
-                                        <td><?php echo $row->alamat; ?></td>
-                                        <td><?php echo $row->email; ?></td>
+                                        <td><?php echo $row->dsn_id; ?></td>
+                                        <td><?php echo $row->dsn_nip; ?></td>
+                                        <td><?php echo $row->dsn_nama; ?></td>
+                                        <td><?php echo $row->dsn_nohp; ?></td>
+                                        <td><?php echo $row->dsn_alamat; ?></td>
+                                        <td><?php echo $row->dsn_email; ?></td>
                                         <td width="200">
-                                            <a href="<?= base_url('admin/dosen/view_dosen/'.$row->nip); ?>" class="label-default bg">
+                                            <a href="<?= base_url('admin/dosen/view_dosen/'.$row->dsn_nip); ?>" class="label-default bg">
                                                 <i class="fa fa-newspaper-o"></i> View</a>
-                                            <a href="<?= base_url('admin/dosen/edit_dosen/'.$row->nip); ?>" class="label-default">
+                                            <a href="<?= base_url('admin/dosen/edit_dosen/'.$row->dsn_nip); ?>" class="label-default">
                                                 <i class="fa fa-edit "></i> Update</a>
-                                            <a href="" data-href="<?= base_url('admin/dosen/delete_dosen/'.$row->nip); ?>" class="label-default remove-data">
+                                            <a href="" data-href="<?= base_url('admin/dosen/delete_dosen/'.$row->dsn_nip); ?>" class="label-default remove-data">
                                                 <i class="fa fa-close"></i> Remove</a>
                                         </td>
                                         </tr>

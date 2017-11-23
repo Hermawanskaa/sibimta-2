@@ -23,13 +23,13 @@ class AdminModel extends CI_Model
 
     public function get_admin_by_id($id)
     {
-        $query = $this->db->get_where('admin', array('nip' => $id));
+        $query = $this->db->get_where('admin', array('adm_nip' => $id));
         return $result = $query->row_array();
     }
 
     public function edit_admin($data, $id)
     {
-        $this->db->where('nip', $id);
+        $this->db->where('adm_nip', $id);
         $this->db->update('admin', $data);
         return true;
     }
@@ -48,13 +48,13 @@ class AdminModel extends CI_Model
     {
         if(!empty($_GET['keyword'])) {
             return $this->db->from('admin')
-                ->like('nip', $_GET['keyword'])
-                ->or_like('nama', $_GET['keyword'])
-                ->or_like('no_hp', $_GET['keyword'])
-                ->or_like('alamat', $_GET['keyword'])
-                ->or_like('email', $_GET['keyword'])
-                ->or_like('level', $_GET['keyword'])
-                ->order_by('nip', 'DESC')
+                ->like('adm_nip', $_GET['keyword'])
+                ->or_like('adm_nama', $_GET['keyword'])
+                ->or_like('adm_nohp', $_GET['keyword'])
+                ->or_like('adm_alamat', $_GET['keyword'])
+                ->or_like('adm_email', $_GET['keyword'])
+                ->or_like('adm_level', $_GET['keyword'])
+                ->order_by('adm_nip', 'DESC')
                 ->count_all_results();
         } else {
             return $this->db->from('admin')
@@ -67,19 +67,19 @@ class AdminModel extends CI_Model
         if(!empty($_GET['keyword'])) {
             return $this->db->select('*')
                 ->from('admin')
-                ->like('nip', $_GET['keyword'])
-                ->or_like('nama', $_GET['keyword'])
-                ->or_like('no_hp', $_GET['keyword'])
-                ->or_like('alamat', $_GET['keyword'])
-                ->or_like('email', $_GET['keyword'])
-                ->or_like('level', $_GET['keyword'])
-                ->order_by('nip', 'DESC')
+                ->like('adm_nip', $_GET['keyword'])
+                ->or_like('adm_nama', $_GET['keyword'])
+                ->or_like('adm_nohp', $_GET['keyword'])
+                ->or_like('adm_alamat', $_GET['keyword'])
+                ->or_like('adm_email', $_GET['keyword'])
+                ->or_like('adm_level', $_GET['keyword'])
+                ->order_by('adm_nip', 'DESC')
                 ->limit($limit, $start)
                 ->get()->result();
         } else {
             return $this->db->select('*')
                 ->from('admin')
-                ->order_by('nip', 'DESC')
+                ->order_by('adm_nip', 'DESC')
                 ->limit($limit, $start)
                 ->get()->result();
         }

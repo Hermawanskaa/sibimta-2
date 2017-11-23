@@ -55,13 +55,13 @@ class Mahasiswa extends CI_Controller {
                     $gambar = 'anonim.png';
                 }
                 $data = array(
-                    'nip' => $this->input->post('nip'),
-                    'nama' => $this->input->post('nama'),
-                    'password' => $this->input->post('password'),
-                    'no_hp' => $this->input->post('no_hp'),
-                    'alamat' => $this->input->post('alamat'),
-                    'email' => $this->input->post('email'),
-                    'foto' => $gambar,
+                    'mhs_nim' => $this->input->post('nip'),
+                    'mhs_nama' => $this->input->post('nama'),
+                    'mhs_password' => $this->input->post('password'),
+                    'mhs_nohp' => $this->input->post('no_hp'),
+                    'mhs_alamat' => $this->input->post('alamat'),
+                    'mhs_email' => $this->input->post('email'),
+                    'mhs_foto' => $gambar,
                 );
                 $data = $this->security->xss_clean($data);
                 $result = $this->MahasiswaModel->add_mahasiswa($data);
@@ -114,19 +114,19 @@ class Mahasiswa extends CI_Controller {
                 }
 
                 $data = array(
-                    'nama' => $this->input->post('nama'),
-                    'password' => $this->input->post('password'),
-                    'no_hp' => $this->input->post('no_hp'),
-                    'alamat' => $this->input->post('alamat'),
-                    'email' => $this->input->post('email'),
-                    'foto' => $gambar,
+                    'mhs_nama' => $this->input->post('nama'),
+                    'mhs_password' => $this->input->post('password'),
+                    'mhs_nohp' => $this->input->post('no_hp'),
+                    'mhs_alamat' => $this->input->post('alamat'),
+                    'mhs_email' => $this->input->post('email'),
+                    'mhs_foto' => $gambar,
                 );
 
                 $data = $this->security->xss_clean($data);
                 $result = $this->MahasiswaModel->edit_mahasiswa($data, $id);
                 if ($result) {
                     $this->session->set_flashdata('msg', 'Data Berhasil Diperbaharui !');
-                    redirect(base_url('admin/mahasiswa/edit_mahasiwa'));
+                    redirect(base_url('admin/mahasiswa/edit_mahasiswa'));
                 }
             }
         } else {
@@ -139,7 +139,7 @@ class Mahasiswa extends CI_Controller {
     public function delete_mahasiswa($id = 0)
     {
         $this->validation();
-        $this->db->delete('mahasiswa', array('nip' => $id));
+        $this->db->delete('mahasiswa', array('mhs_nim' => $id));
         $this->session->set_flashdata('msg', 'Data Berhasil Dihapus!');
         redirect(base_url('admin/mahasiswa/list_mahasiswa'));
     }

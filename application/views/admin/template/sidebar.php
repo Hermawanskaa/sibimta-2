@@ -47,11 +47,21 @@
 
              <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-dashboard"></i> <span>Jurusan</span> <i class="fa fa-angle-left pull-right"></i>
+                    <i class="fa fa-dashboard"></i> <span>Fakultas</span> <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="<?php echo site_url('dashboard1') ?>"><i class="fa fa-circle-o"></i>Daftar Jurusan</a></li>
-                    <li><a href="<?php echo site_url('dashboard2') ?>"><i class="fa fa-circle-o"></i> Input Jurusan</a></li>
+                    <li><a href="<?php echo site_url('admin/fakultas/list_fakultas') ?>"><i class="fa fa-circle-o"></i>Daftar Fakultas</a></li>
+                    <li><a href="<?php echo site_url('admin/fakultas/add_fakultas') ?>"><i class="fa fa-circle-o"></i> Input Fakultas</a></li>
+                </ul>
+            </li>
+
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-dashboard"></i> <span>Program Studi</span> <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="<?php echo site_url('admin/jurusan/list_jurusan') ?>"><i class="fa fa-circle-o"></i>Daftar Jurusan</a></li>
+                    <li><a href="<?php echo site_url('admin/jurusan/list_jurusan') ?>"><i class="fa fa-circle-o"></i> Input Jurusan</a></li>
                 </ul>
             </li>
 
@@ -60,17 +70,8 @@
                     <i class="fa fa-dashboard"></i> <span>Tugas Akhir</span> <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="<?php echo site_url('dashboard1') ?>"><i class="fa fa-circle-o"></i>Daftar Tugas Akhir</a></li>
-                    <li><a href="<?php echo site_url('dashboard2') ?>"><i class="fa fa-circle-o"></i> Input Tugas Akhir</a></li>
-                </ul>
-            </li>
-
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-dashboard"></i> <span>Log Bimbingan</span> <i class="fa fa-angle-left pull-right"></i>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="<?php echo site_url('dashboard1') ?>"><i class="fa fa-circle-o"></i>Daftar Log Bimbingan</a></li>
+                    <li><a href="<?php echo site_url('admin/skripsi/list_skripsi') ?>"><i class="fa fa-circle-o"></i>Daftar Tugas Akhir</a></li>
+                    <li><a href="<?php echo site_url('admin/skripsi/add_skripsi') ?>"><i class="fa fa-circle-o"></i>Input Tugas Akhir</a></li>
                 </ul>
             </li>
     </section>

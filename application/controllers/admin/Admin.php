@@ -62,14 +62,14 @@ class Admin extends CI_Controller
                     $gambar = 'anonim.png';
                 }
                 $data = array(
-                    'nip' => $this->input->post('nip'),
-                    'nama' => $this->input->post('nama'),
-                    'password' => $this->input->post('password'),
-                    'no_hp' => $this->input->post('no_hp'),
-                    'alamat' => $this->input->post('alamat'),
-                    'email' => $this->input->post('email'),
-                    'foto' => $gambar,
-                    'level' => $this->input->post('level'),
+                    'adm_nip' => $this->input->post('nip'),
+                    'adm_nama' => $this->input->post('nama'),
+                    'adm_password' => $this->input->post('password'),
+                    'adm_nohp' => $this->input->post('no_hp'),
+                    'adm_alamat' => $this->input->post('alamat'),
+                    'adm_email' => $this->input->post('email'),
+                    'adm_foto' => $gambar,
+                    'adm_level' => $this->input->post('level'),
                 );
                 $data = $this->security->xss_clean($data);
                 $result = $this->AdminModel->add_admin($data);
@@ -123,13 +123,13 @@ class Admin extends CI_Controller
                 }
 
                 $data = array(
-                    'nama' => $this->input->post('nama'),
-                    'password' => $this->input->post('password'),
-                    'no_hp' => $this->input->post('no_hp'),
-                    'alamat' => $this->input->post('alamat'),
-                    'email' => $this->input->post('email'),
-                    'foto' => $gambar,
-                    'level' => $this->input->post('level'),
+                    'adm_nama' => $this->input->post('nama'),
+                    'adm_password' => $this->input->post('password'),
+                    'adm_no_hp' => $this->input->post('no_hp'),
+                    'adm_alamat' => $this->input->post('alamat'),
+                    'adm_email' => $this->input->post('email'),
+                    'adm_foto' => $gambar,
+                    'adm_level' => $this->input->post('level'),
                 );
                 $data = $this->security->xss_clean($data);
                 $result = $this->AdminModel->edit_admin($data, $id);
@@ -148,7 +148,7 @@ class Admin extends CI_Controller
     public function delete_admin($id = 0)
     {
         $this->validation();
-        $this->db->delete('admin', array('nip' => $id));
+        $this->db->delete('admin', array('adm_nip' => $id));
         $this->session->set_flashdata('msg', 'Data Berhasil Dihapus!');
         redirect(base_url('admin/admin/list_admin'));
     }

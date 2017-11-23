@@ -3,14 +3,14 @@ $this->load->view('template/head');
 ?>
 
 <?php
-$this->load->view('template/topbar');
+$this->load->view('admin/template/topbar');
 $this->load->view('admin/template/sidebar');
 ?>
 
 <!-- Page Header -->
 <section class="content-header">
     <h1>
-        Admin      <small>Detail Admin</small>
+        Admin Dashboard      <small>Detail Admin</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -28,7 +28,7 @@ $this->load->view('admin/template/sidebar');
                     <div class="row">
                         <div class="widget-user-header">
                             <div class="col-sm-1">
-                                <img class="img-circle" src="assets/img/view.png" alt="User Avatar">
+                                <img class="img-circle" src="<?php echo base_url('/assets/img/view.png') ?>" alt="User Avatar">
                                 <div class="col-sm-1">
                                 </div>
                             </div>

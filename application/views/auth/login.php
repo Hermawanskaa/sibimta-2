@@ -37,9 +37,9 @@
                 </div>
                 <?php endif; ?>
 
-                  <?php echo form_open(base_url('auth/login'), 'class="login-form" '); ?>
+                  <?php echo form_open(base_url('auth/login/login'), 'class="login-form" '); ?>
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" placeholder="NIP atau NIM" name="id_member" id="id_member"/>
+                        <input type="text" class="form-control" placeholder="NIP atau NIM" name="username" id="username"/>
                         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                     </div>
                     <div class="form-group has-feedback">

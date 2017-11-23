@@ -3,7 +3,7 @@ $this->load->view('template/head');
 ?>
 
 <?php
-$this->load->view('template/topbar');
+$this->load->view('admin/template/topbar');
 $this->load->view('admin/template/sidebar');
 ?>
 

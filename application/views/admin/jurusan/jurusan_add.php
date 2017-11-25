@@ -77,9 +77,13 @@ $this->load->view('admin/template/sidebar');
                         <div class="form-group">
                             <label for="fak_id" class="col-sm-2 control-label">Fakultas</label>
                             <div class="col-sm-6">
-                                <input type="input" class="form-control" name="fak_id" id="fak_id" placeholder="Fakultas">
-                                <small class="info help-block">
-                                </small>
+                                <select name="fak_id" id="fak_id" class="form-control">
+                                    <option value=''>Please Select</option>
+                                    <?php foreach($fakultas->result() as $row):?>
+                                        <option value="<?php echo $row->fak_id;?>"><?php echo $row->fak_nama;?></option>
+                                        <?php echo $row->fak_id;?>
+                                    <?php endforeach;?>
+                                </select>
                             </div>
                         </div>
                     </div>

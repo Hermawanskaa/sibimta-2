@@ -76,6 +76,14 @@ class FakultasModel extends CI_Model {
         }
 
     }
+
+    public function get_fakultas(){
+        $this->db->select('*')
+            ->from('fakultas')
+            ->where('fak_id !=',0);
+        $query = $this->db->get();
+        return $query;
+    }
 }
 
 ?>

@@ -6,6 +6,7 @@ class Jurusan extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model('JurusanModel');
+        $this->load->model('FakultasModel');
     }
 
     public function validation(){
@@ -23,12 +24,12 @@ class Jurusan extends CI_Controller {
     public function add_jurusan()
     {
         $this->validation();
+        $data['fakultas'] = $this->FakultasModel->get_fakultas();
         if ($this->input->post('submit')) {
 
-            $this->form_validation->set_rules('jrs_nama', 'jrs_nama', 'trim|required|is_unique[jurusan.jrs_nama]');
-            $this->form_validation->set_rules('jrs_kode', 'jrs_kode', 'trim|required|xss_clean|min_length[2]');
-            $this->form_validation->set_rules('fak_id', 'fak_id', 'trim|required|xss_clean|min_length[1]');
-
+            $this->form_validation->set_rules('jrs_nama', 'jurusan', 'trim|required|is_unique[jurusan.jrs_nama]');
+            $this->form_validation->set_rules('jrs_kode', 'kode', 'trim|required|xss_clean|min_length[2]');
+            $this->form_validation->set_rules('fak_id', 'fakultas', 'trim|required');
 
             $this->form_validation->set_message('required', '%s tidak boleh kosong');
             $this->form_validation->set_message('min_length', '{field} minimal {param} karakter.');
@@ -60,12 +61,13 @@ class Jurusan extends CI_Controller {
     public function edit_jurusan($id = 0)
     {
         $this->validation();
+        $data['fakultas'] = $this->FakultasModel->get_fakultas();
         if ($this->input->post('submit')) {
             $this->validation();
             $this->form_validation->set_rules('jrs_id', 'jrs_id', 'trim');
             $this->form_validation->set_rules('jrs_nama', 'jrs_nama', 'trim|required');
             $this->form_validation->set_rules('jrs_kode', 'jrs_kode', 'trim|required|xss_clean|min_length[2]');
-            $this->form_validation->set_rules('fak_id', 'fak_id', 'trim|required|xss_clean|min_length[1]');
+            $this->form_validation->set_rules('fak_id', 'fakultas', 'trim|required');
 
             $this->form_validation->set_message('required', '%s tidak boleh kosong');
             $this->form_validation->set_message('min_length', '{field} minimal {param} karakter.');

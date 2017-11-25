@@ -60,7 +60,9 @@ class Pembimbing extends CI_Controller {
     public function edit_pembimbing($id = 0)
     {
         $this->validation();
+        $data['dosen'] = $this->DosenModel->get_dosen($id);
         $data['bagidosen'] = $this->PembimbingModel->get_bagidosen();
+
         if ($this->input->post('submit')) {
             $this->validation();
             $this->form_validation->set_rules('dsn_id', 'Dosen', 'trim|required|xss_clean');
@@ -78,6 +80,7 @@ class Pembimbing extends CI_Controller {
             } else {
 
                 $data = array(
+                    'dsn_id' => $this->input->post('dsn_id'),
                     'pembimbing1' => $this->input->post('pembimbing1'),
                     'pembimbing2' => $this->input->post('pembimbing2'),
                 );

@@ -81,7 +81,6 @@ class DosenModel extends CI_Model
                 ->limit($limit, $start)
                 ->get()->result();
         }
-
     }
 
     function get_dosen(){

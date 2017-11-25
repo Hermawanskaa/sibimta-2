@@ -43,24 +43,39 @@ $this->load->view('admin/template/sidebar');
                 <div class="form-horizontal" name="form_Admin" id="form_Admin" >
 
                     <div class="form-group ">
-                        <label for="content" class="col-sm-2 control-label">Nama</label>
+                        <label for="content" class="col-sm-2 control-label">ID</label>
                         <div class="col-sm-8">
-                            <?= $user['fak_nama']; ?>
+                            <?= $user['bagi_id']; ?>
                         </div>
                     </div>
 
                     <div class="form-group ">
-                        <label for="content" class="col-sm-2 control-label">Kode</label>
+                        <label for="content" class="col-sm-2 control-label">Nama</label>
                         <div class="col-sm-8">
-                            <?= $user['fak_kode']; ?>
+                            <?= $user['dsn_id']; ?>
                         </div>
                     </div>
+
+                    <div class="form-group ">
+                        <label for="content" class="col-sm-2 control-label">Pembimbing 2</label>
+                        <div class="col-sm-8">
+                            <?= $user['pembimbing1']; ?>
+                        </div>
+                    </div>
+
+                    <div class="form-group ">
+                        <label for="content" class="col-sm-2 control-label">Pembimbing 2</label>
+                        <div class="col-sm-8">
+                            <?= $user['pembimbing2']; ?>
+                        </div>
+                    </div>
+
                     <br>
                     <br>
 
                     <!-- Footer Content -->
                     <div class="box box-footer">
-                        <a href="<?= base_url('admin/pembimbing/edit_pembimbing/'.$user['fak_id']); ?>" class="btn btn-primary" ><i class="ion ion-ios-list-outline""></i> Update</a>
+                        <a href="<?= base_url('admin/pembimbing/edit_pembimbing/'.$user['bagi_id']); ?>" class="btn btn-primary" ><i class="ion ion-ios-list-outline""></i> Update</a>
                         <a class="btn btn-primary" href="<?= base_url('admin/pembimbing/list_pembimbing'); ?>"><i class="fa fa-undo"" data-stype='back'></i> Back to List</a>
                     </div>
                 </div>

@@ -86,23 +86,25 @@ $this->load->view('admin/template/sidebar');
                             <table id="list_dosen" class="table table-bordered table-striped dataTable">
                                 <thead>
                                 <th>No</th>
-                                <th>Nama</th>
-                                <th>Kode</th>
+                                <th>Dosen</th>
+                                <th>Dosen Pembimbing 1</th>
+                                <th>Dosen Pembimbing 2</th>
                                 <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody id="tbody_dosen">
                                 <?php if (!empty($pembimbing_data)): ?>
                                 <?php foreach($pembimbing_data as $row): ?>
-                                    <td><?php echo $row->fak_id; ?></td>
-                                    <td><?php echo $row->fak_nama; ?></td>
-                                    <td><?php echo $row->fak_kode; ?></td>
+                                    <td><?php echo $row->bagi_id; ?></td>
+                                    <td><?php echo $row->dsn_id; ?></td>
+                                    <td><?php echo $row->pembimbing1; ?></td>
+                                    <td><?php echo $row->pembimbing2; ?></td>
                                     <td width="200">
-                                        <a href="<?= base_url('admin/pembimbing/view_pembimbing/'.$row->fak_id); ?>" class="label-default bg">
+                                        <a href="<?= base_url('admin/pembimbing/view_pembimbing/'.$row->bagi_id); ?>" class="label-default bg">
                                             <i class="fa fa-newspaper-o"></i> View</a>
-                                        <a href="<?= base_url('admin/pembimbing/edit_pembimbing/'.$row->fak_id); ?>" class="label-default">
+                                        <a href="<?= base_url('admin/pembimbing/edit_pembimbing/'.$row->bagi_id); ?>" class="label-default">
                                             <i class="fa fa-edit "></i> Update</a>
-                                        <a href="<?= base_url('admin/pembimbing/delete_pembimbing/'.$row->fak_id); ?>" class="label-default remove-data">
+                                        <a href="<?= base_url('admin/pembimbing/delete_pembimbing/'.$row->bagi_id); ?>" class="label-default remove-data">
                                             <i class="fa fa-close"></i> Remove</a>
                                     </td>
                                     </tr>

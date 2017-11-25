@@ -73,7 +73,6 @@ $this->load->view('admin/template/sidebar');
                         <div class="form-group">
                             <label for="pembimbing1" class="col-sm-2 control-label">Pembimbing satu</label>
                             <div class="col-sm-6">
-                                <option value="mobile" <?php echo ($devicearray['type']=='mobile'?'selected="selected"':''); ?>>mobile</option>
                                 <label><input name="pembimbing1" type="radio" id="pembimbing1" value="Y"> YA</label>
                                 <label><input name="pembimbing1" type="radio" id="pembimbing1" value="T"> TIDAK</label>
                                 </small>

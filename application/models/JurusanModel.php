@@ -78,6 +78,14 @@ class JurusanModel extends CI_Model {
         }
 
     }
+
+    public function get_jurusan(){
+        $this->db->select('*')
+                 ->from('jurusan')
+                 ->where('jrs_id !=',0);
+        $query = $this->db->get();
+        return $query;
+    }
 }
 
 ?>

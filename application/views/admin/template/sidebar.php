@@ -21,7 +21,7 @@
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="<?php echo site_url('admin/admin/list_admin') ?>"><i class="fa fa-circle-o"></i>Daftar Admin</a></li>
-                    <li><a href="<?php echo site_url('admin/admin/add_admin') ?>"><i class="fa fa-circle-o"></i> Input Admin</a></li>
+                    <li><a href="<?php echo site_url('admin/admin/add_admin') ?>"><i class="fa fa-circle-o"></i>Input Admin</a></li>
                 </ul>
             </li>
            
@@ -31,7 +31,7 @@
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="<?php echo site_url('admin/dosen/list_dosen') ?>"><i class="fa fa-circle-o"></i>Daftar Dosen</a></li>
-                    <li><a href="<?php echo site_url('admin/dosen/add_dosen') ?>"><i class="fa fa-circle-o"></i> Input Dosen</a></li>
+                    <li><a href="<?php echo site_url('admin/dosen/add_dosen') ?>"><i class="fa fa-circle-o"></i>Input Dosen</a></li>
                 </ul>
             </li>
 
@@ -41,7 +41,7 @@
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="<?php echo site_url('admin/mahasiswa/list_mahasiswa') ?>"><i class="fa fa-circle-o"></i>Daftar Mahasiswa</a></li>
-                    <li><a href="<?php echo site_url('admin/mahasiswa/add_mahasiswa') ?>"><i class="fa fa-circle-o"></i> Input Mahasiswa</a></li>
+                    <li><a href="<?php echo site_url('admin/mahasiswa/add_mahasiswa') ?>"><i class="fa fa-circle-o"></i>Input Mahasiswa</a></li>
                 </ul>
             </li>
 
@@ -51,7 +51,7 @@
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="<?php echo site_url('admin/fakultas/list_fakultas') ?>"><i class="fa fa-circle-o"></i>Daftar Fakultas</a></li>
-                    <li><a href="<?php echo site_url('admin/fakultas/add_fakultas') ?>"><i class="fa fa-circle-o"></i> Input Fakultas</a></li>
+                    <li><a href="<?php echo site_url('admin/fakultas/add_fakultas') ?>"><i class="fa fa-circle-o"></i>Input Fakultas</a></li>
                 </ul>
             </li>
 
@@ -61,7 +61,25 @@
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="<?php echo site_url('admin/jurusan/list_jurusan') ?>"><i class="fa fa-circle-o"></i>Daftar Jurusan</a></li>
-                    <li><a href="<?php echo site_url('admin/jurusan/list_jurusan') ?>"><i class="fa fa-circle-o"></i> Input Jurusan</a></li>
+                    <li><a href="<?php echo site_url('admin/jurusan/add_jurusan') ?>"><i class="fa fa-circle-o"></i>Input Jurusan</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-dashboard"></i> <span>Dosen Pembimbing</span> <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="<?php echo site_url('admin/dosen/list_dosbing') ?>"><i class="fa fa-circle-o"></i>Daftar Dosbing</a></li>
+                    <li><a href="<?php echo site_url('admin/dosen/add_dosbing') ?>"><i class="fa fa-circle-o"></i>Input Dosbing</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-dashboard"></i> <span>Master Laporan</span> <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="<?php echo site_url('admin/katlap/list_katlap') ?>"><i class="fa fa-circle-o"></i>Kategori Laporan</a></li>
+                    <li><a href="<?php echo site_url('admin/katlap/add_katlap') ?>"><i class="fa fa-circle-o"></i>Input Kategori</a></li>
                 </ul>
             </li>
 

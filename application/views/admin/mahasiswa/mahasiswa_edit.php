@@ -96,15 +96,21 @@ $this->load->view('admin/template/sidebar');
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="level" class="col-sm-2 control-label">Angkatan</label>
+                        <label for="angkatan" class="col-sm-2 control-label">Angkatan</label>
                         <div class="col-sm-6">
-                            <input type="number" class="form-control" name="level" id="level" placeholder="Level Admin" value="<?= $user['mhs_angkatan']; ?>">
+                            <input type="number" class="form-control" name="angkatan" id="angkatan" placeholder="Angkatan" value="<?= $user['mhs_angkatan']; ?>">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="level" class="col-sm-2 control-label">Jurusan</label>
+                        <label for="jrs_id" class="col-sm-2 control-label">Jurusan</label>
                         <div class="col-sm-6">
-                            <input type="number" class="form-control" name="level" id="level" placeholder="Level Admin" value="<?= $user['jrs_id']; ?>">
+                            <select name="jrs_id" id="jrs_id" class="form-control">
+                                <option value=''>Please Select</option>
+                                <?php foreach($jurusan->result() as $row):?>
+                                    <option value="<?php echo $row->jrs_id;?>"><?php echo $row->jrs_nama;?></option>
+                                    <?php echo $row->jrs_id;?>
+                                <?php endforeach;?>
+                            </select>
                         </div>
                     </div>
                     <div class="form-group">
@@ -121,7 +127,7 @@ $this->load->view('admin/template/sidebar');
                     <button class="btn btn-primary" type="submit" name="submit" value="Add User" id="submit" data-stype='stay'>
                         <i class="fa fa-save" ></i> Save
                     </button>
-                    <a class="btn btn-primary" href="<?= base_url('admin/admin/list_admin'); ?>"><i class="fa fa-undo"" data-stype='back'></i> Back to List</a>
+                    <a class="btn btn-primary" href="<?= base_url('admin/mahasiswa/list_mahasiswa'); ?>"><i class="fa fa-undo"" data-stype='back'></i> Back to List</a>
                 </div>
                 <?php echo form_close( ); ?>
             </div>

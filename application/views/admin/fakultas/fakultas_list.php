@@ -102,7 +102,7 @@ $this->load->view('admin/template/sidebar');
                                             <i class="fa fa-newspaper-o"></i> View</a>
                                         <a href="<?= base_url('admin/fakultas/edit_fakultas/'.$row->fak_id); ?>" class="label-default">
                                             <i class="fa fa-edit "></i> Update</a>
-                                        <a href="" data-href="<?= base_url('admin/fakultas/delete_fakultas/'.$row->fak_id); ?>" class="label-default remove-data">
+                                        <a href="<?= base_url('admin/fakultas/delete_fakultas/'.$row->fak_id); ?>" class="label-default remove-data">
                                             <i class="fa fa-close"></i> Remove</a>
                                     </td>
                                     </tr>

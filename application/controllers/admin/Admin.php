@@ -29,7 +29,7 @@ class Admin extends CI_Controller
         $this->validation();
         if ($this->input->post('submit')) {
 
-            $this->form_validation->set_rules('nip', 'nip', 'trim|required|is_unique[admin.nip]');
+            $this->form_validation->set_rules('nip', 'nip', 'trim|required|is_unique[admin.adm_nip]');
             $this->form_validation->set_rules('nama', 'nama', 'trim|required|xss_clean|min_length[5]');
             $this->form_validation->set_rules('password', 'password', 'trim|required|xss_clean|min_length[5]');
             $this->form_validation->set_rules('no_hp', 'no_hp', 'trim|required|xss_clean|min_length[10]');
@@ -88,8 +88,6 @@ class Admin extends CI_Controller
     {
         $this->validation();
         if ($this->input->post('submit')) {
-            $this->validation();
-
             $this->form_validation->set_rules('nama', 'nama', 'trim|required|xss_clean|min_length[5]');
             $this->form_validation->set_rules('password', 'password', 'trim|required|xss_clean|min_length[5]');
             $this->form_validation->set_rules('no_hp', 'no_hp', 'trim|required|xss_clean|min_length[10]');
@@ -125,7 +123,7 @@ class Admin extends CI_Controller
                 $data = array(
                     'adm_nama' => $this->input->post('nama'),
                     'adm_password' => $this->input->post('password'),
-                    'adm_no_hp' => $this->input->post('no_hp'),
+                    'adm_nohp' => $this->input->post('no_hp'),
                     'adm_alamat' => $this->input->post('alamat'),
                     'adm_email' => $this->input->post('email'),
                     'adm_foto' => $gambar,

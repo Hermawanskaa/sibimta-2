@@ -6,6 +6,7 @@ class Mahasiswa extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model('MahasiswaModel');
+        $this->load->model('JurusanModel');
     }
 
     public function validation(){
@@ -22,14 +23,18 @@ class Mahasiswa extends CI_Controller {
     public function add_mahasiswa()
     {
         $this->validation();
+        $data['jurusan'] = $this->JurusanModel->get_jurusan();
+
         if ($this->input->post('submit')) {
 
-            $this->form_validation->set_rules('nim', 'nim', 'trim|required|is_unique[mahasiswa.nim]');
+            $this->form_validation->set_rules('nim', 'nim', 'trim|required|is_unique[mahasiswa.mhs_nim]');
             $this->form_validation->set_rules('nama', 'nama', 'trim|required|xss_clean|min_length[5]');
             $this->form_validation->set_rules('password', 'password', 'trim|required|xss_clean|min_length[5]');
             $this->form_validation->set_rules('no_hp', 'no_hp', 'trim|required|xss_clean|min_length[10]');
             $this->form_validation->set_rules('alamat', 'alamat', 'trim|required|xss_clean|min_length[5]');
             $this->form_validation->set_rules('email', 'email', 'trim|required|xss_clean|min_length[5]');
+            $this->form_validation->set_rules('angkatan', 'angkatan', 'trim|required|xss_clean|min_length[4]');
+            $this->form_validation->set_rules('jrs_id', 'jurusan', 'trim|required|xss_clean');
 
             $this->form_validation->set_message('required', '%s tidak boleh kosong');
             $this->form_validation->set_message('min_length', '{field} minimal {param} karakter.');
@@ -45,24 +50,28 @@ class Mahasiswa extends CI_Controller {
             $this->load->library('upload', $config);
 
             if ($this->form_validation->run() == FALSE || (!$this->upload->do_upload($upload) && !empty($_FILES['avatar']['name']))) {
+                $data['jurusan'] = $this->JurusanModel->get_jurusan();
                 $data['view'] = 'admin/mahasiswa/mahasiswa_add';
                 $this->load->view('admin/mahasiswa/mahasiswa_add', $data);
             } else {
 
-                if (!empty($foto)) {
+                if (!empty($foto)){
                     $gambar = $foto;
-                } else {
+                } else{
                     $gambar = 'anonim.png';
                 }
                 $data = array(
-                    'mhs_nim' => $this->input->post('nip'),
+                    'mhs_nim' => $this->input->post('nim'),
                     'mhs_nama' => $this->input->post('nama'),
                     'mhs_password' => $this->input->post('password'),
                     'mhs_nohp' => $this->input->post('no_hp'),
                     'mhs_alamat' => $this->input->post('alamat'),
                     'mhs_email' => $this->input->post('email'),
+                    'mhs_angkatan' => $this->input->post('angkatan'),
+                    'jrs_id' => $this->input->post('jrs_id'),
                     'mhs_foto' => $gambar,
                 );
+
                 $data = $this->security->xss_clean($data);
                 $result = $this->MahasiswaModel->add_mahasiswa($data);
                 if ($result) {
@@ -79,6 +88,7 @@ class Mahasiswa extends CI_Controller {
     public function edit_mahasiswa($id = 0)
     {
         $this->validation();
+        $data['jurusan'] = $this->JurusanModel->get_jurusan();
         if ($this->input->post('submit')) {
             $this->validation();
 
@@ -87,6 +97,7 @@ class Mahasiswa extends CI_Controller {
             $this->form_validation->set_rules('no_hp', 'no_hp', 'trim|required|xss_clean|min_length[10]');
             $this->form_validation->set_rules('alamat', 'alamat', 'trim|required|xss_clean|min_length[5]');
             $this->form_validation->set_rules('email', 'email', 'trim|required|xss_clean|min_length[5]');
+            $this->form_validation->set_rules('angkatan', 'angkatan', 'trim|required|xss_clean|min_length[4]');
 
             $this->form_validation->set_message('required', '%s tidak boleh kosong');
             $this->form_validation->set_message('min_length', '{field} minimal {param} karakter.');
@@ -119,6 +130,8 @@ class Mahasiswa extends CI_Controller {
                     'mhs_nohp' => $this->input->post('no_hp'),
                     'mhs_alamat' => $this->input->post('alamat'),
                     'mhs_email' => $this->input->post('email'),
+                    'mhs_angkatan' => $this->input->post('angkatan'),
+                    'jrs_id' => $this->input->post('jrs_id'),
                     'mhs_foto' => $gambar,
                 );
 

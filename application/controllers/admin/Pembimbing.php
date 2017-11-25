@@ -17,8 +17,10 @@ class Pembimbing extends CI_Controller {
 
     public function index(){
         $this->validation();
-        $this->load->view('admin/pembimbing/pembimbing_list');
+        $this->load->view('admin/dosen/dosbing_list');
     }
+
+
 }
 
 ?>

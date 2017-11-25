@@ -34,12 +34,12 @@ class AdminModel extends CI_Model
         return true;
     }
 
-    public function profil_admin()
+    public function profile_admin()
     {
 
     }
 
-    public function update_profil_admin()
+    public function update_profil()
     {
 
     }

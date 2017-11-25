@@ -40,7 +40,7 @@ $this->load->view('admin/template/sidebar');
                 </div>
 
                 <!-- Main Content -->
-                <div class="form-horizontal" name="form_Admin" id="form_Admin" >
+                <div class="form-horizontal" name="form_Mahasiswa" id="form_Mahasiswa" >
 
                     <div class="form-group ">
                         <label for="content" class="col-sm-2 control-label">NIM</label>
@@ -94,7 +94,7 @@ $this->load->view('admin/template/sidebar');
                     <!-- Footer Content -->
                     <div class="box box-footer">
                         <a href="<?= base_url('admin/mahasiswa/edit_mahasiswa/'.$user['mhs_nim']); ?>" class="btn btn-primary" ><i class="ion ion-ios-list-outline""></i> Update</a>
-                        <a class="btn btn-primary" href="<?= base_url('admin/admin/list_mahasiswa'); ?>"><i class="fa fa-undo"" data-stype='back'></i> Back to List</a>
+                        <a class="btn btn-primary" href="<?= base_url('admin/mahasiswa/list_mahasiswa'); ?>"><i class="fa fa-undo"" data-stype='back'></i> Back to List</a>
                     </div>
                 </div>
             </div>

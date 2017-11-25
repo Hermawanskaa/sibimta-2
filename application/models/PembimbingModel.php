@@ -6,7 +6,5 @@ class PembimbingModel extends CI_Model {
         parent::__construct();
     }
 
-
-
 }
 ?>

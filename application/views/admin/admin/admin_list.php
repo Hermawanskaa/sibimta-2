@@ -111,7 +111,7 @@ $this->load->view('admin/template/sidebar');
                                             <i class="fa fa-newspaper-o"></i> View</a>
                                         <a href="<?= base_url('admin/admin/edit_admin/'.$row->adm_nip); ?>" class="label-default">
                                             <i class="fa fa-edit "></i> Update</a>
-                                        <a href="javascript:void(0);" data-href="<?= base_url('admin/admin/delete_admin/'.$row->adm_nip); ?>" class="label-default remove-data">
+                                        <a href="<?= base_url('admin/admin/delete_admin/'.$row->adm_nip); ?>" class="label-default remove-data">
                                             <i class="fa fa-close"></i> Remove</a>
                                     </td>
                                     </tr>

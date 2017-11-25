@@ -56,28 +56,38 @@ $this->load->view('admin/template/sidebar');
                         </div>
                     <?php }?>
 
-                    <?php echo form_open_multipart(base_url('admin/pembimbing/edit_pembimbing/'.$user['fak_id']),  'class="form-horizontal"');  ?>
+                    <?php echo form_open_multipart(base_url('admin/pembimbing/edit_pembimbing/'.$user['bagi_id']),  'class="form-horizontal"');  ?>
                     <div class="box-body">
                         <div class="form-group">
-                            <label for="fak_id" class="col-sm-2 control-label">Nama</label>
+                            <label for="dsn_id" class="col-sm-2 control-label">Dosen</label>
                             <div class="col-sm-6">
-                                <input type="input" class="form-control" name="fak_id" id="fak_id" placeholder="ID pembimbing" value="<?= $user['fak_id']; ?>" disabled>
+                                <select name="dsn_id" id="dsn_id" class="form-control">
+                                    <option value=''>Please Select</option>
+                                    <?php foreach($dosen->result() as $row):?>
+                                        <option value="<?php echo $row->dsn_id;?>"><?php echo $row->dsn_nama;?></option>
+                                        <?php echo $row->dsn_id;?>
+                                    <?php endforeach;?>
+                                </select>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="fak_nama" class="col-sm-2 control-label">Nama</label>
+                            <label for="pembimbing1" class="col-sm-2 control-label">Pembimbing satu</label>
                             <div class="col-sm-6">
-                                <input type="input" class="form-control" name="fak_nama" id="fak_nama" placeholder="Nama pembimbing" value="<?= $user['fak_nama']; ?>">
+                                <option value="mobile" <?php echo ($devicearray['type']=='mobile'?'selected="selected"':''); ?>>mobile</option>
+                                <label><input name="pembimbing1" type="radio" id="pembimbing1" value="Y"> YA</label>
+                                <label><input name="pembimbing1" type="radio" id="pembimbing1" value="T"> TIDAK</label>
+                                </small>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="fak_kode" class="col-sm-2 control-label">Kode</label>
+                            <label for="pembimbing2" class="col-sm-2 control-label">Pembimbing dua</label>
                             <div class="col-sm-6">
-                                <input type="input" class="form-control" name="fak_kode" id="fak_kode" placeholder="Kode pembimbing" value="<?= $user['fak_kode']; ?>">
+                                <label><input name="pembimbing2" type="radio" id="pembimbing2" value="Y"> YA</label>
+                                <label><input name="pembimbing2" type="radio" id="pembimbing2" value="T"> TIDAK</label>
+                                </small>
                             </div>
                         </div>
                     </div>
-                </div>
 
                 <!-- Footer Content -->
                 <div class="box box-footer">

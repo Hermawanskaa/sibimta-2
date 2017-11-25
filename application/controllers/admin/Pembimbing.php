@@ -65,7 +65,7 @@ class Pembimbing extends CI_Controller {
             $this->validation();
             $this->form_validation->set_rules('dsn_id', 'Dosen', 'trim|required|xss_clean');
             $this->form_validation->set_rules('pembimbing1', 'Pilihan Dosen Pembimbing 1', 'trim|required|xss_clean');
-            $this->form_validation->set_rules('pembimbing1', 'Pilihan Dosen Pembimbing 2', 'trim|required|xss_clean');
+            $this->form_validation->set_rules('pembimbing2', 'Pilihan Dosen Pembimbing 2', 'trim|required|xss_clean');
 
             $this->form_validation->set_message('required', '%s tidak boleh kosong');
             $this->form_validation->set_message('min_length', '{field} minimal {param} karakter.');

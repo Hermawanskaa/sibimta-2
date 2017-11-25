@@ -74,6 +74,7 @@ class PembimbingModel extends CI_Model {
         $result = $this->db->get();
         return $result;
     }
+
 }
 
 ?>

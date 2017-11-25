@@ -69,8 +69,8 @@
                     <i class="fa fa-dashboard"></i> <span>Dosen Pembimbing</span> <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="<?php echo site_url('admin/dosen/list_dosbing') ?>"><i class="fa fa-circle-o"></i>Daftar Dosbing</a></li>
-                    <li><a href="<?php echo site_url('admin/dosen/add_dosbing') ?>"><i class="fa fa-circle-o"></i>Input Dosbing</a></li>
+                    <li><a href="<?php echo site_url('admin/pembimbing/list_pembimbing') ?>"><i class="fa fa-circle-o"></i>Daftar Dosbing</a></li>
+                    <li><a href="<?php echo site_url('admin/pembimbing/add_pembimbing') ?>"><i class="fa fa-circle-o"></i>Input Dosbing</a></li>
                 </ul>
             </li>
             <li class="treeview">

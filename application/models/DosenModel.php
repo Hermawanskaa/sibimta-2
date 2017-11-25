@@ -83,6 +83,14 @@ class DosenModel extends CI_Model
         }
 
     }
+
+    function get_dosen(){
+        $this->db->select('*');
+        $this->db->from('dosen');
+        $this->db->where('dsn_id !=',0);
+        $query = $this->db->get();
+        return $query;
+    }
 }
 
 ?>

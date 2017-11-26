@@ -93,7 +93,7 @@ $this->load->view('admin/template/sidebar');
       <div class="form-group">
         <label for="alamat" class="col-sm-2 control-label">Alamat</label>
         <div class="col-sm-6">
-          <input type="text" class="form-control" name="alamat" id="alamat" placeholder="Alamat">
+            <textarea type="input" rows="5" class="form-control" name="alamat" id="alamat" placeholder="Alamat"></textarea>
         </div>
       </div>
       <div class="form-group">

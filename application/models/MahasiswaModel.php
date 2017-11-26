@@ -82,9 +82,15 @@ class MahasiswaModel extends CI_Model {
                 ->order_by('mhs_nim', 'DESC')
                 ->limit($limit, $start)
                 ->get()->result();
-
         }
+    }
 
+    public function get_mahasiswa(){
+        $this->db->select('*')
+            ->from('mahasiswa')
+            ->where('mhs_id !=',0);
+        $query = $this->db->get();
+        return $query;
     }
 }
 

@@ -59,66 +59,92 @@ $this->load->view('admin/template/sidebar');
                     <?php echo form_open_multipart(base_url('admin/skripsi/add_skripsi'),  'class="form-horizontal"');  ?>
                     <div class="box-body">
                         <div class="form-group">
-                            <label for="nim" class="col-sm-2 control-label">NIP</label>
+                            <label for="mhs_id" class="col-sm-2 control-label">Mahasiswa</label>
                             <div class="col-sm-6">
-                                <input type="input" class="form-control" name="nim" id="nim" placeholder="NIP">
+                                <select name="mhs_id" id="mhs_id" class="form-control">
+                                    <option value=''>Please Select</option>
+                                    <?php foreach($mahasiswa->result() as $row):?>
+                                        <option value="<?php echo $row->mhs_id;?>"><?php echo $row->mhs_nama;?></option>
+                                        <?php echo $row->mhs_id;?>
+                                    <?php endforeach;?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="password_baru" class="col-sm-2 control-label">Password</label>
+                            <div class="col-sm-6">
+                                <input type="input" class="form-control" name="password_baru" id="password_baru" placeholder="Password">
                                 <small class="info help-block">
                                 </small>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="nama" class="col-sm-2 control-label">Nama</label>
+                            <label for="konfirmasi_password" class="col-sm-2 control-label">Konfirmasi Password</label>
                             <div class="col-sm-6">
-                                <input type="input" class="form-control" name="nama" id="nama" placeholder="Nama">
+                                <input type="input" class="form-control" name="konfirmasi_password" id="konfirmasi_password" placeholder="Konfirmasi Password">
                                 <small class="info help-block">
                                 </small>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="password" class="col-sm-2 control-label">Password</label>
+                            <label for="jdl_judul" class="col-sm-2 control-label">Judul Skripsi</label>
                             <div class="col-sm-6">
-                                <input type="input" class="form-control" name="password" id="password" placeholder="Password">
+                                <input type="input" class="form-control" name="jdl_judul" id="jdl_judul" placeholder="Judul Skripsi">
                                 <small class="info help-block">
                                 </small>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="no_hp" class="col-sm-2 control-label">Nomor Hp</label>
+                            <label for="jdl_deskripsi" class="col-sm-2 control-label">Deskripsi Judul</label>
                             <div class="col-sm-6">
-                                <input type="number" class="form-control" name="no_hp" id="no_hp" placeholder="Nomor HP">
+                                <textarea type="input" rows="5" class="form-control"  name="jdl_deskripsi" id="jdl_deskripsi" placeholder="Deskripsi Judul"></textarea>
                                 <small class="info help-block">
                                 </small>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="alamat" class="col-sm-2 control-label">Alamat</label>
+                            <label for="pembimbing1" class="col-sm-2 control-label">Pembimbing 1</label>
                             <div class="col-sm-6">
-                                <input type="text" class="form-control" name="alamat" id="alamat" placeholder="Alamat">
+                            <select name="pembimbing1" id="pembimbing1" class="form-control">
+                                <option value=''>Please Select</option>
+                                <?php foreach($bagidosen->result() as $row):?>
+                                    <option value="<?php echo $row->bagi_id;?>"><?php echo $row->dsn_id;?></option>
+                                    <?php echo $row->bagi_id;?>
+                                <?php endforeach;?>
+                            </select>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="email" class="col-sm-2 control-label">Email</label>
+                            <label for="pembimbing2" class="col-sm-2 control-label">Pembimbing 2 </label>
                             <div class="col-sm-6">
-                                <input type="email" class="form-control" name="email" id="email" placeholder="Email">
+                                <select name="pembimbing2" id="pembimbing2" class="form-control">
+                                    <option value=''>Please Select</option>
+                                    <?php foreach($bagidosen->result() as $row):?>
+                                        <option value="<?php echo $row->bagi_id;?>"><?php echo $row->dsn_id;?></option>
+                                        <?php echo $row->bagi_id;?>
+                                    <?php endforeach;?>
+                                </select>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="angkatan" class="col-sm-2 control-label">Angkatan</label>
-                        <div class="col-sm-6">
-                            <input type="number" class="form-control" name="angkatan" id="angkatan" placeholder="Angkatan">
+                        <div class="form-group">
+                            <label for="jdl_enjudul" class="col-sm-2 control-label">Judul (English)</label>
+                            <div class="col-sm-6">
+                                <input type="input" class="form-control" name="jdl_enjudul" id="jdl_enjudul" placeholder="Judul (English)">
+                                <small class="info help-block">
+                                </small>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="jurusan" class="col-sm-2 control-label">Jurusan</label>
-                        <div class="col-sm-6">
-                            <input type="text" class="form-control" name="jurusan" id="jurusan" placeholder="Jurusan">
+                        <div class="form-group">
+                            <label for="jdl_status" class="col-sm-2 control-label">Status Judul</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" name="jdl_status" id="jdl_status" placeholder="Status Judul">
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="avatar" class="col-sm-2 control-label">Avatar</label>
-                        <div class="col-sm-6">
-                            <input name="avatar" id="avatar" type="file" class="form-control" />
+                        <div class="form-group">
+                            <label for="jdl_tanggal" class="col-sm-2 control-label">Mulai Skripsi</label>
+                            <div class="col-sm-6">
+                                <input type="date" class="form-control" name="jdl_tanggal" id="jdl_tanggal" placeholder="Tanggal Mulai">
+                            </div>
                         </div>
                     </div>
                 </div>

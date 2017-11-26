@@ -72,7 +72,12 @@ class SkripsiModel extends CI_Model {
                 ->limit($limit, $start)
                 ->get()->result();
         }
+    }
 
+    public function add_mhs_pembimbing($data)
+    {
+        $this->db->insert('pembimbing', $data);
+        return true;
     }
 }
 

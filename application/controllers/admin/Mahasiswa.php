@@ -89,9 +89,9 @@ class Mahasiswa extends CI_Controller {
     {
         $this->validation();
         $data['jurusan'] = $this->JurusanModel->get_jurusan();
+
         if ($this->input->post('submit')) {
             $this->validation();
-
             $this->form_validation->set_rules('nama', 'nama', 'trim|required|xss_clean|min_length[5]');
             $this->form_validation->set_rules('password', 'password', 'trim|required|xss_clean|min_length[5]');
             $this->form_validation->set_rules('no_hp', 'no_hp', 'trim|required|xss_clean|min_length[10]');

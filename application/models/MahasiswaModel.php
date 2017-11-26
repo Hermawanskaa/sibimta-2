@@ -46,6 +46,7 @@ class MahasiswaModel extends CI_Model {
     {
         if(!empty($_GET['keyword'])) {
             return $this->db->from('mahasiswa')
+                ->join('jurusan','jurusan.jrs_id = mahasiswa.jrs_id')
                 ->like('mhs_nim', $_GET['keyword'])
                 ->or_like('mhs_nama', $_GET['keyword'])
                 ->or_like('mhs_nohp', $_GET['keyword'])
@@ -57,6 +58,7 @@ class MahasiswaModel extends CI_Model {
                 ->count_all_results();
         } else {
             return $this->db->from('mahasiswa')
+                ->join('jurusan','jurusan.jrs_id = mahasiswa.jrs_id')
                 ->count_all_results();
         }
     }
@@ -66,6 +68,7 @@ class MahasiswaModel extends CI_Model {
         if(!empty($_GET['keyword'])) {
             return $this->db->select('*')
                 ->from('mahasiswa')
+                ->join('jurusan','jurusan.jrs_id = mahasiswa.jrs_id')
                 ->like('mhs_nim', $_GET['keyword'])
                 ->or_like('mhs_nama', $_GET['keyword'])
                 ->or_like('mhs_nohp', $_GET['keyword'])
@@ -79,6 +82,7 @@ class MahasiswaModel extends CI_Model {
         } else {
             return $this->db->select('*')
                 ->from('mahasiswa')
+                ->join('jurusan','jurusan.jrs_id = mahasiswa.jrs_id')
                 ->order_by('mhs_nim', 'DESC')
                 ->limit($limit, $start)
                 ->get()->result();

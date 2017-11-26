@@ -96,7 +96,7 @@ $this->load->view('admin/template/sidebar');
                                 <?php if (!empty($pembimbing_data)): ?>
                                 <?php foreach($pembimbing_data as $row): ?>
                                     <td><?php echo $row->bagi_id; ?></td>
-                                    <td><?php echo $row->dsn_id; ?></td>
+                                    <td><?php echo $row->dsn_nama; ?></td>
                                     <td><?php echo $row->pembimbing1; ?></td>
                                     <td><?php echo $row->pembimbing2; ?></td>
                                     <td width="200">

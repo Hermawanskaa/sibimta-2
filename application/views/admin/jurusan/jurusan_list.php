@@ -98,7 +98,7 @@ $this->load->view('admin/template/sidebar');
                                     <td><?php echo $row->jrs_id; ?></td>
                                     <td><?php echo $row->jrs_nama; ?></td>
                                     <td><?php echo $row->jrs_kode; ?></td>
-                                    <td><?php echo $row->fak_id; ?></td>
+                                    <td><?php echo $row->fak_nama; ?></td>
                                     <td width="200">
                                         <a href="<?= base_url('admin/jurusan/view_jurusan/'.$row->jrs_id); ?>" class="label-default bg">
                                             <i class="fa fa-newspaper-o"></i> View</a>

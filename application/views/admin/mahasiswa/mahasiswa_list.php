@@ -107,7 +107,7 @@ $this->load->view('admin/template/sidebar');
                                     <td><?php echo $row->mhs_alamat; ?></td>
                                     <td><?php echo $row->mhs_email; ?></td>
                                     <td><?php echo $row->mhs_angkatan; ?></td>
-                                    <td><?php echo $row->jrs_id; ?></td>
+                                    <td><?php echo $row->jrs_nama; ?></td>
 
 
                                     <td width="200">

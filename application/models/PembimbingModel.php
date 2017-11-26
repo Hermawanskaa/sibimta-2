@@ -51,6 +51,7 @@ class PembimbingModel extends CI_Model {
         if(!empty($_GET['keyword'])) {
             return $this->db->select('*')
                 ->from('bagidosen')
+                ->join('dosen','dosen.dsn_id = bagidosen.dsn_id')
                 ->like('bagi_id', $_GET['keyword'])
                 ->or_like('dsn_id', $_GET['keyword'])
                 ->or_like('pembimbing1', $_GET['keyword'])
@@ -61,6 +62,7 @@ class PembimbingModel extends CI_Model {
         } else {
             return $this->db->select('*')
                 ->from('bagidosen')
+                ->join('dosen','dosen.dsn_id = bagidosen.dsn_id')
                 ->order_by('bagi_id', 'DESC')
                 ->limit($limit, $start)
                 ->get()->result();

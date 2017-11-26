@@ -69,10 +69,20 @@ class PembimbingModel extends CI_Model {
         }
     }
 
-    function get_bagidosen(){
+    function get_bagidosen1(){
         $this->db->select('*');
         $this->db->from('bagidosen');
         $this->db->join('dosen','bagidosen.dsn_id = dosen.dsn_id');
+        $this->db->where('pembimbing1','Y');
+        $result = $this->db->get();
+        return $result;
+    }
+
+    function get_bagidosen2(){
+        $this->db->select('*');
+        $this->db->from('bagidosen');
+        $this->db->join('dosen','bagidosen.dsn_id = dosen.dsn_id');
+        $this->db->where('pembimbing2','Y');
         $result = $this->db->get();
         return $result;
     }

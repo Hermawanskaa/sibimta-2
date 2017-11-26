@@ -107,8 +107,8 @@ $this->load->view('admin/template/sidebar');
                             <div class="col-sm-6">
                             <select name="pembimbing1" id="pembimbing1" class="form-control">
                                 <option value=''>Please Select</option>
-                                <?php foreach($bagidosen->result() as $row):?>
-                                    <option value="<?php echo $row->bagi_id;?>"><?php echo $row->dsn_id;?></option>
+                                <?php foreach($bagidosen1->result() as $row):?>
+                                    <option value="<?php echo $row->bagi_id;?>"><?php echo $row->dsn_nama;?></option>
                                     <?php echo $row->bagi_id;?>
                                 <?php endforeach;?>
                             </select>
@@ -119,8 +119,8 @@ $this->load->view('admin/template/sidebar');
                             <div class="col-sm-6">
                                 <select name="pembimbing2" id="pembimbing2" class="form-control">
                                     <option value=''>Please Select</option>
-                                    <?php foreach($bagidosen->result() as $row):?>
-                                        <option value="<?php echo $row->bagi_id;?>"><?php echo $row->dsn_id;?></option>
+                                    <?php foreach($bagidosen2->result() as $row):?>
+                                        <option value="<?php echo $row->bagi_id;?>"><?php echo $row->dsn_nama;?></option>
                                         <?php echo $row->bagi_id;?>
                                     <?php endforeach;?>
                                 </select>

@@ -88,12 +88,20 @@ class MahasiswaModel extends CI_Model {
                 ->get()->result();
         }
     }
-
+    //drop down form input judul
     public function get_mahasiswa(){
         $this->db->select('*')
             ->from('mahasiswa')
             ->where('mhs_id !=',0);
         $query = $this->db->get();
+        return $query;
+    }
+
+    //update password
+    public function update_password($id, $data)
+    {
+        $query = $this->db->where('mhs_id', $id);
+        $this->db->update('mahasiswa', $data);
         return $query;
     }
 }

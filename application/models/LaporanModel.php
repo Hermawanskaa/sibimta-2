@@ -1,7 +1,12 @@
 <?php
-/**
- * Created by IntelliJ IDEA.
- * User: Bambang
- * Date: 11/23/2017
- * Time: 12:11 PM
- */
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class LaporanModel extends CI_Model {
+    public function __construct(){
+        parent::__construct();
+    }
+
+
+
+}
+?>

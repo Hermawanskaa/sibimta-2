@@ -2,7 +2,7 @@
 <project version="4">
   <component name="PhpProjectServersManager">
     <servers>
-      <server host="localhost" id="0ab18fe9-4e2d-49e1-831d-7722a9603eb9" name="XAMPP">
+      <server host="localhost" id="0ab18fe9-4e2d-49e1-831d-7722a9603eb9" name="XAMPP" use_path_mappings="true">
         <path_mappings>
           <mapping local-root="$PROJECT_DIR$" remote-root="C:/xampp/htdocs/sibimta" />
         </path_mappings>

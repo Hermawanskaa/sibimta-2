@@ -10,12 +10,12 @@ $this->load->view('admin/template/sidebar');
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        Admin Dashboard        <small>List All Fakultas</small>
+        Admin Dashboard        <small>List All Pembimbing</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class=""><a  href="">Fakultas</a></li>
-        <li class="active">List All Fakultas</li>
+        <li class=""><a  href="">Pembimbing</a></li>
+        <li class="active">List All Pembimbing</li>
     </ol>
 </section>
 
@@ -28,7 +28,7 @@ $this->load->view('admin/template/sidebar');
                     <div class="row">
                         <div class="widget-user-header">
                             <div class="row col-md-4 pull-right">
-                                <a class="btn btn-primary" id="btn_add_new" href="<?= base_url('admin/fakultas/add_fakultas'); ?>"><i class="fa fa-plus-square-o" ></i> Add Data</a>
+                                <a class="btn btn-primary" id="btn_add_new" href="<?= base_url('admin/pembimbing/add_pembimbing'); ?>"><i class="fa fa-plus-square-o" ></i> Add Data</a>
                                 <a class="btn btn-primary" href=""><i class="fa fa-file-excel-o" ></i> Export XLS</a>
                                 <a class="btn btn-primary" href=""><i class="fa fa-file-pdf-o" ></i> Export PDF</a>
                             </div>
@@ -37,8 +37,8 @@ $this->load->view('admin/template/sidebar');
                                 <div class="col-sm-1">
                                 </div>
                             </div>
-                            <h3 class="widget-user-username">Fakultas</h3>
-                            <h5 class="widget-user-desc">List All Fakultas <i href="" class="label bg-yellow">items</i></h5>
+                            <h3 class="widget-user-username">Pembimbing</h3>
+                            <h5 class="widget-user-desc">List All Pembimbing <i href="" class="label bg-yellow">items</i></h5>
                             <hr>
                         </div>
                     </div>
@@ -65,13 +65,13 @@ $this->load->view('admin/template/sidebar');
                         <div class="row">
                             <div class="col-md-8">
                                 <div class="btn-group small" role="group" aria-label="...">
-                                    <a href="<?php echo site_url('admin/fakultas/list_fakultas'); ?>" id="import" class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-import"></i> Syncron</a>
+                                    <a href="<?php echo site_url('admin/pembimbing/list_pembimbing'); ?>" id="import" class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-import"></i> Syncron</a>
 
-                                    <?php echo anchor('admin/fakultas/list_fakultas', '<i class="glyphicon glyphicon-refresh"></i> Refresh', array('class' => 'btn btn-info btn-sm')); ?>
+                                    <?php echo anchor('admin/pembimbing/list_pembimbing', '<i class="glyphicon glyphicon-refresh"></i> Refresh', array('class' => 'btn btn-info btn-sm')); ?>
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <form action="<?php echo site_url('admin/fakultas/list_fakultas'); ?>" method="get">
+                                <form action="<?php echo site_url('admin/pembimbing/list_pembimbing'); ?>" method="get">
                                     <div class="input-group">
                                         <input type="text" class="form-control input-sm" name="keyword" value="<?php echo (!empty($_GET['keyword'])) ? $_GET['keyword'] : ''; ?>" placeholder="Search for...">
                                         <span class="input-group-btn">
@@ -86,23 +86,25 @@ $this->load->view('admin/template/sidebar');
                             <table id="list_dosen" class="table table-bordered table-striped dataTable">
                                 <thead>
                                 <th>No</th>
-                                <th>Nama</th>
-                                <th>Kode</th>
+                                <th>Dosen</th>
+                                <th>Dosen Pembimbing 1</th>
+                                <th>Dosen Pembimbing 2</th>
                                 <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody id="tbody_dosen">
-                                <?php if (!empty($fakultas_data)): ?>
-                                <?php foreach($fakultas_data as $row): ?>
-                                    <td><?php echo $row->fak_id; ?></td>
-                                    <td><?php echo $row->fak_nama; ?></td>
-                                    <td><?php echo $row->fak_kode; ?></td>
+                                <?php if (!empty($pembimbing_data)): ?>
+                                <?php foreach($pembimbing_data as $row): ?>
+                                    <td><?php echo $row->bagi_id; ?></td>
+                                    <td><?php echo $row->dsn_nama; ?></td>
+                                    <td><?php echo $row->pembimbing1; ?></td>
+                                    <td><?php echo $row->pembimbing2; ?></td>
                                     <td width="200">
-                                        <a href="<?= base_url('admin/fakultas/view_fakultas/'.$row->fak_id); ?>" class="label-default bg">
+                                        <a href="<?= base_url('admin/pembimbing/view_pembimbing/'.$row->bagi_id); ?>" class="label-default bg">
                                             <i class="fa fa-newspaper-o"></i> View</a>
-                                        <a href="<?= base_url('admin/fakultas/edit_fakultas/'.$row->fak_id); ?>" class="label-default">
+                                        <a href="<?= base_url('admin/pembimbing/edit_pembimbing/'.$row->bagi_id); ?>" class="label-default">
                                             <i class="fa fa-edit "></i> Update</a>
-                                        <a href="<?= base_url('admin/fakultas/delete_fakultas/'.$row->fak_id); ?>" class="label-default remove-data">
+                                        <a href="<?= base_url('admin/pembimbing/delete_pembimbing/'.$row->bagi_id); ?>" class="label-default remove-data">
                                             <i class="fa fa-close"></i> Remove</a>
                                     </td>
                                     </tr>

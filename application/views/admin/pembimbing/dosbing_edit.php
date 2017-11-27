@@ -9,12 +9,12 @@ $this->load->view('admin/template/sidebar');
 <!-- Page Header -->
 <section class="content-header">
     <h1>
-        Admin Dashboard    <small>Edit Dosen</small>
+        Admin Dashboard    <small>Edit Pembimbing</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
         <li class=""><a  href="">Admin</a></li>
-        <li class="active">Edit Dosen</li>
+        <li class="active">Edit Pembimbing</li>
     </ol>
 </section>
 
@@ -31,8 +31,8 @@ $this->load->view('admin/template/sidebar');
                                 <div class="col-sm-1">
                                 </div>
                             </div>
-                            <h3 class="widget-user-username">Dosen</h3>
-                            <h5 class="widget-user-desc">Edit Dosen</h5>
+                            <h3 class="widget-user-username">Pembimbing</h3>
+                            <h5 class="widget-user-desc">Edit Pembimbing</h5>
                             <hr>
                         </div>
                     </div>
@@ -56,60 +56,44 @@ $this->load->view('admin/template/sidebar');
                         </div>
                     <?php }?>
 
-                    <?php echo form_open_multipart(base_url('admin/dosen/edit_dosen/'.$user['dsn_nip']),  'class="form-horizontal"');  ?>
+                    <?php echo form_open_multipart(base_url('admin/pembimbing/edit_pembimbing/'.$user['bagi_id']),  'class="form-horizontal"');  ?>
                     <div class="box-body">
                         <div class="form-group">
-                            <label for="nip" class="col-sm-2 control-label">NIP</label>
+                            <label for="dsn_id" class="col-sm-2 control-label">Dosen</label>
                             <div class="col-sm-6">
-                                <input type="input" class="form-control" name="nip" id="nip" placeholder="NIP" value="<?= $user['dsn_nip']; ?>" disabled>
+                                <select name="dsn_id" id="dsn_id" class="form-control">
+                                    <option value=''>Please Select</option>
+                                    <?php foreach($dosen->result() as $row):?>
+                                        <option value="<?php echo $row->dsn_id;?>"><?php echo $row->dsn_nama;?></option>
+                                        <?php echo $row->dsn_id;?>
+                                    <?php endforeach;?>
+                                </select>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="nama" class="col-sm-2 control-label">Nama</label>
+                            <label for="pembimbing1" class="col-sm-2 control-label">Pembimbing satu</label>
                             <div class="col-sm-6">
-                                <input type="input" class="form-control" name="nama" id="nama" placeholder="Nama" value="<?= $user['dsn_nama']; ?>">
+                                <label><input name="pembimbing1" type="radio" id="pembimbing1" value="Y"> YA</label>
+                                <label><input name="pembimbing1" type="radio" id="pembimbing1" value="T"> TIDAK</label>
+                                </small>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="password" class="col-sm-2 control-label">Password</label>
+                            <label for="pembimbing2" class="col-sm-2 control-label">Pembimbing dua</label>
                             <div class="col-sm-6">
-                                <input type="input" class="form-control" name="password" id="password" placeholder="Password" value="<?= $user['dsn_password']; ?>">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="no_hp" class="col-sm-2 control-label">Nomor Hp</label>
-                            <div class="col-sm-6">
-                                <input type="number" class="form-control" name="no_hp" id="no_hp" placeholder="Nomor HP" value="<?= $user['dsn_nohp']; ?>">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="alamat" class="col-sm-2 control-label">Alamat</label>
-                            <div class="col-sm-6">
-                                <input type="text" class="form-control" name="alamat" id="alamat" placeholder="Alamat" value="<?= $user['dsn_alamat']; ?>">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="email" class="col-sm-2 control-label">Email</label>
-                            <div class="col-sm-6">
-                                <input type="email" class="form-control" name="email" id="email" placeholder="Email" value="<?= $user['dsn_email']; ?>">
+                                <label><input name="pembimbing2" type="radio" id="pembimbing2" value="Y"> YA</label>
+                                <label><input name="pembimbing2" type="radio" id="pembimbing2" value="T"> TIDAK</label>
+                                </small>
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="foto" class="col-sm-2 control-label">Avatar</label>
-                        <div class="col-sm-6">
-                            <input name="avatar" id="avatar" type="file" class="form-control" />
-                        </div>
-                    </div>
-
-                </div>
 
                 <!-- Footer Content -->
                 <div class="box box-footer">
                     <button class="btn btn-primary" type="submit" name="submit" value="Add User" id="submit" data-stype='stay'>
                         <i class="fa fa-save" ></i> Save
                     </button>
-                    <a class="btn btn-primary" href="<?= base_url('admin/dosen/list_dosen'); ?>"><i class="fa fa-undo"" data-stype='back'></i> Back to List</a>
+                    <a class="btn btn-primary" href="<?= base_url('admin/pembimbing/list_pembimbing'); ?>"><i class="fa fa-undo"" data-stype='back'></i> Back to List</a>
                 </div>
                 <?php echo form_close( ); ?>
             </div>

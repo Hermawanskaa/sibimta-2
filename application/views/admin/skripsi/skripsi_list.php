@@ -28,7 +28,7 @@ $this->load->view('admin/template/sidebar');
                    <div class="row">
          <div class="widget-user-header">
             <div class="row col-md-4 pull-right">
-                        <a class="btn btn-primary" id="btn_add_new" href=""><i class="fa fa-plus-square-o" ></i> Add Skripsi</a>
+                        <a class="btn btn-primary" id="btn_add_new" href=""><i class="fa fa-plus-square-o" ></i> Add Data</a>
                         <a class="btn btn-primary" href=""><i class="fa fa-file-excel-o" ></i> Export XLS</a>
                         <a class="btn btn-primary" href=""><i class="fa fa-file-pdf-o" ></i> Export PDF</a>
                      </div>

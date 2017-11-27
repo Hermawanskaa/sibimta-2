@@ -21,13 +21,13 @@ class MahasiswaModel extends CI_Model {
 
     public function get_mahasiswa_by_id($id)
     {
-        $query = $this->db->get_where('mahasiswa', array('nim' => $id));
+        $query = $this->db->get_where('mahasiswa', array('mhs_nim' => $id));
         return $result = $query->row_array();
     }
 
     public function edit_mahasiswa($data, $id)
     {
-        $this->db->where('nim', $id);
+        $this->db->where('mhs_nim', $id);
         $this->db->update('mahasiswa', $data);
         return true;
     }
@@ -46,17 +46,19 @@ class MahasiswaModel extends CI_Model {
     {
         if(!empty($_GET['keyword'])) {
             return $this->db->from('mahasiswa')
-                ->like('nim', $_GET['keyword'])
-                ->or_like('nama', $_GET['keyword'])
-                ->or_like('no_hp', $_GET['keyword'])
-                ->or_like('alamat', $_GET['keyword'])
-                ->or_like('email', $_GET['keyword'])
-                ->or_like('angkatan', $_GET['keyword'])
-                ->or_like('id_jurusan', $_GET['keyword'])
-                ->order_by('nim', 'DESC')
+                ->join('jurusan','jurusan.jrs_id = mahasiswa.jrs_id')
+                ->like('mhs_nim', $_GET['keyword'])
+                ->or_like('mhs_nama', $_GET['keyword'])
+                ->or_like('mhs_nohp', $_GET['keyword'])
+                ->or_like('mhs_alamat', $_GET['keyword'])
+                ->or_like('mhs_email', $_GET['keyword'])
+                ->or_like('mhs_angkatan', $_GET['keyword'])
+                ->or_like('jrs_id', $_GET['keyword'])
+                ->order_by('mhs_nim', 'DESC')
                 ->count_all_results();
         } else {
             return $this->db->from('mahasiswa')
+                ->join('jurusan','jurusan.jrs_id = mahasiswa.jrs_id')
                 ->count_all_results();
         }
     }
@@ -66,27 +68,46 @@ class MahasiswaModel extends CI_Model {
         if(!empty($_GET['keyword'])) {
             return $this->db->select('*')
                 ->from('mahasiswa')
-                ->like('nim', $_GET['keyword'])
-                ->or_like('nama', $_GET['keyword'])
-                ->or_like('no_hp', $_GET['keyword'])
-                ->or_like('alamat', $_GET['keyword'])
-                ->or_like('email', $_GET['keyword'])
-                ->or_like('angkatan', $_GET['keyword'])
-                ->or_like('id_jurusan', $_GET['keyword'])
-                ->order_by('nim', 'DESC')
+                ->join('jurusan','jurusan.jrs_id = mahasiswa.jrs_id')
+                ->like('mhs_nim', $_GET['keyword'])
+                ->or_like('mhs_nama', $_GET['keyword'])
+                ->or_like('mhs_nohp', $_GET['keyword'])
+                ->or_like('mhs_alamat', $_GET['keyword'])
+                ->or_like('mhs_email', $_GET['keyword'])
+                ->or_like('mhs_angkatan', $_GET['keyword'])
+                ->or_like('jrs_id', $_GET['keyword'])
+                ->order_by('mhs_nim', 'DESC')
                 ->limit($limit, $start)
                 ->get()->result();
         } else {
             return $this->db->select('*')
                 ->from('mahasiswa')
-                ->join('jurusan', 'jurusan.id_jurusan = mahasiswa.id_jurusan')
-                ->order_by('nim', 'DESC')
+                ->join('jurusan','jurusan.jrs_id = mahasiswa.jrs_id')
+                ->order_by('mhs_nim', 'DESC')
                 ->limit($limit, $start)
                 ->get()->result();
-
         }
-
     }
+    //drop down form input judul
+    public function get_mahasiswa(){
+        $this->db->select('*')
+            ->from('mahasiswa')
+            ->where('mhs_id !=',0);
+        $query = $this->db->get();
+        return $query;
+    }
+
+    //update password
+    public function update_password($id, $data)
+    {
+        $query = $this->db->where('mhs_id', $id);
+        $this->db->update('mahasiswa', $data);
+        return $query;
+    }
+
+
+
+
 }
 
 ?>

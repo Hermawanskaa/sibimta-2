@@ -10,12 +10,12 @@ $this->load->view('admin/template/sidebar');
 <!-- Page Header -->
 <section class="content-header">
     <h1>
-        Admin Dashboard      <small>Detail Admin</small>
+        Admin Dashboard     <small>Detail Pembimbing</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
         <li class=""><a  href="">Admin</a></li>
-        <li class="active">Detail Dosen</li>
+        <li class="active">Detail Pembimbing</li>
     </ol>
 </section>
 
@@ -32,61 +32,51 @@ $this->load->view('admin/template/sidebar');
                                 <div class="col-sm-1">
                                 </div>
                             </div>
-                            <h3 class="widget-user-username">Dosen</h3>
-                            <h5 class="widget-user-desc">Detail Dosen</h5>
+                            <h3 class="widget-user-username">Pembimbing</h3>
+                            <h5 class="widget-user-desc">Detail Pembimbing</h5>
                             <hr>
                         </div>
                     </div>
                 </div>
 
+                <!-- Main Content -->
                 <div class="form-horizontal" name="form_Admin" id="form_Admin" >
 
                     <div class="form-group ">
-                        <label for="content" class="col-sm-2 control-label">NIP</label>
+                        <label for="content" class="col-sm-2 control-label">ID</label>
                         <div class="col-sm-8">
-                            <?= $user['nip']; ?>
+                            <?= $user['bagi_id']; ?>
                         </div>
                     </div>
 
                     <div class="form-group ">
                         <label for="content" class="col-sm-2 control-label">Nama</label>
                         <div class="col-sm-8">
-                            <?= $user['nama']; ?>
+                            <?= $user['dsn_id']; ?>
                         </div>
                     </div>
 
                     <div class="form-group ">
-                        <label for="content" class="col-sm-2 control-label">No HP</label>
+                        <label for="content" class="col-sm-2 control-label">Pembimbing 2</label>
                         <div class="col-sm-8">
-                            <?= $user['no_hp']; ?>
+                            <?= $user['pembimbing1']; ?>
                         </div>
                     </div>
 
                     <div class="form-group ">
-                        <label for="content" class="col-sm-2 control-label">Alamat</label>
+                        <label for="content" class="col-sm-2 control-label">Pembimbing 2</label>
                         <div class="col-sm-8">
-                            <?= $user['alamat']; ?>
+                            <?= $user['pembimbing2']; ?>
                         </div>
                     </div>
-                    <div class="form-group ">
-                        <label for="content" class="col-sm-2 control-label">Email</label>
-                        <div class="col-sm-8">
-                            <?= $user['email']; ?>
-                        </div>
-                    </div>
-                    <div class="form-group ">
-                        <label for="content" class="col-sm-2 control-label">Level</label>
-                        <div class="col-sm-8">
-                            <?= $user['level']; ?>
-                        </div>
-                    </div>
+
                     <br>
                     <br>
 
                     <!-- Footer Content -->
                     <div class="box box-footer">
-                        <a href="<?= base_url('admin/admin/edit_admin/'.$user['nip']); ?>" class="btn btn-primary" ><i class="ion ion-ios-list-outline""></i> Update</a>
-                        <a class="btn btn-primary" href="<?= base_url('admin/admin/list_admin'); ?>"><i class="fa fa-undo"" data-stype='back'></i> Back to List</a>
+                        <a href="<?= base_url('admin/pembimbing/edit_pembimbing/'.$user['bagi_id']); ?>" class="btn btn-primary" ><i class="ion ion-ios-list-outline""></i> Update</a>
+                        <a class="btn btn-primary" href="<?= base_url('admin/pembimbing/list_pembimbing'); ?>"><i class="fa fa-undo"" data-stype='back'></i> Back to List</a>
                     </div>
                 </div>
             </div>

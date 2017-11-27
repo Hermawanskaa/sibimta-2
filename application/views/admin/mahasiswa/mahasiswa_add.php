@@ -59,9 +59,9 @@ $this->load->view('admin/template/sidebar');
                     <?php echo form_open_multipart(base_url('admin/mahasiswa/add_mahasiswa'),  'class="form-horizontal"');  ?>
                     <div class="box-body">
                         <div class="form-group">
-                            <label for="nim" class="col-sm-2 control-label">NIP</label>
+                            <label for="nim" class="col-sm-2 control-label">NIM</label>
                             <div class="col-sm-6">
-                                <input type="input" class="form-control" name="nim" id="nim" placeholder="NIP">
+                                <input type="input" class="form-control" name="nim" id="nim" placeholder="NIM">
                                 <small class="info help-block">
                                 </small>
                             </div>
@@ -93,7 +93,7 @@ $this->load->view('admin/template/sidebar');
                         <div class="form-group">
                             <label for="alamat" class="col-sm-2 control-label">Alamat</label>
                             <div class="col-sm-6">
-                                <input type="text" class="form-control" name="alamat" id="alamat" placeholder="Alamat">
+                                <textarea type="input" rows="5" class="form-control" name="alamat" id="alamat" placeholder="Alamat"></textarea>
                             </div>
                         </div>
                         <div class="form-group">
@@ -110,9 +110,15 @@ $this->load->view('admin/template/sidebar');
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="jurusan" class="col-sm-2 control-label">Jurusan</label>
+                        <label for="jrs_id" class="col-sm-2 control-label">Jurusan</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" name="jurusan" id="jurusan" placeholder="Jurusan">
+                            <select name="jrs_id" id="jrs_id" class="form-control">
+                            <option value=''>Please Select</option>
+                            <?php foreach($jurusan->result() as $row):?>
+                                <option value="<?php echo $row->jrs_id;?>"><?php echo $row->jrs_nama;?></option>
+                                <?php echo $row->jrs_id;?>
+                            <?php endforeach;?>
+                            </select>
                         </div>
                     </div>
                     <div class="form-group">

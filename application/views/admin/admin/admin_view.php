@@ -45,40 +45,40 @@ $this->load->view('admin/template/sidebar');
                     <div class="form-group ">
                         <label for="content" class="col-sm-2 control-label">NIP</label>
                         <div class="col-sm-8">
-                            <?= $user['nip']; ?>
+                            <?= $user['adm_nip']; ?>
                         </div>
                     </div>
                                          
                     <div class="form-group ">
                         <label for="content" class="col-sm-2 control-label">Nama</label>
                         <div class="col-sm-8">
-                            <?= $user['nama']; ?>
+                            <?= $user['adm_nama']; ?>
                         </div>
                     </div>
 
                     <div class="form-group ">
                         <label for="content" class="col-sm-2 control-label">No HP</label>
                         <div class="col-sm-8">
-                            <?= $user['no_hp']; ?>
+                            <?= $user['adm_nohp']; ?>
                         </div>
                     </div>
                                          
                     <div class="form-group ">
                         <label for="content" class="col-sm-2 control-label">Alamat</label>
                         <div class="col-sm-8">
-                           <?= $user['alamat']; ?>
+                           <?= $user['adm_alamat']; ?>
                         </div>
                     </div>
                     <div class="form-group ">
                         <label for="content" class="col-sm-2 control-label">Email</label>
                         <div class="col-sm-8">
-                            <?= $user['email']; ?>
+                            <?= $user['adm_email']; ?>
                         </div>
                     </div>
                       <div class="form-group ">
                           <label for="content" class="col-sm-2 control-label">Level</label>
                           <div class="col-sm-8">
-                              <?= $user['level']; ?>
+                              <?= $user['adm_level']; ?>
                           </div>
                       </div>
                     <br>
@@ -86,7 +86,7 @@ $this->load->view('admin/template/sidebar');
 
 <!-- Footer Content -->
                     <div class="box box-footer">
-                        <a href="<?= base_url('admin/admin/edit_admin/'.$user['nip']); ?>" class="btn btn-primary" ><i class="ion ion-ios-list-outline""></i> Update</a>
+                        <a href="<?= base_url('admin/admin/edit_admin/'.$user['adm_nip']); ?>" class="btn btn-primary" ><i class="ion ion-ios-list-outline""></i> Update</a>
                         <a class="btn btn-primary" href="<?= base_url('admin/admin/list_admin'); ?>"><i class="fa fa-undo"" data-stype='back'></i> Back to List</a>
                         </div>
                   </div>

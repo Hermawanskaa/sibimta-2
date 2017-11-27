@@ -99,19 +99,19 @@ $this->load->view('admin/template/sidebar');
                                 <tbody id="tbody_admin">
                                 <?php if (!empty($admin_data)) : ?>
                                 <?php foreach($admin_data as $row): ?>
-                                    <td><?php echo $row->id_admin; ?></td>
-                                    <td><?php echo $row->nip; ?></td>
-                                    <td><?php echo $row->nama; ?></td>
-                                    <td><?php echo $row->no_hp; ?></td>
-                                    <td><?php echo $row->alamat; ?></td>
-                                    <td><?php echo $row->email; ?></td>
-                                    <td><?php echo $row->level; ?></td>
+                                    <td><?php echo $row->adm_id; ?></td>
+                                    <td><?php echo $row->adm_nip; ?></td>
+                                    <td><?php echo $row->adm_nama; ?></td>
+                                    <td><?php echo $row->adm_nohp; ?></td>
+                                    <td><?php echo $row->adm_alamat; ?></td>
+                                    <td><?php echo $row->adm_email; ?></td>
+                                    <td><?php echo $row->adm_level; ?></td>
                                     <td width="200">
-                                        <a href="<?= base_url('admin/admin/view_admin/'.$row->nip); ?>" class="label-default bg">
+                                        <a href="<?= base_url('admin/admin/view_admin/'.$row->adm_nip); ?>" class="label-default bg">
                                             <i class="fa fa-newspaper-o"></i> View</a>
-                                        <a href="<?= base_url('admin/admin/edit_admin/'.$row->nip); ?>" class="label-default">
+                                        <a href="<?= base_url('admin/admin/edit_admin/'.$row->adm_nip); ?>" class="label-default">
                                             <i class="fa fa-edit "></i> Update</a>
-                                        <a href="javascript:void(0);" data-href="<?= base_url('admin/admin/delete_admin/'.$row->nip); ?>" class="label-default remove-data">
+                                        <a href="<?= base_url('admin/admin/delete_admin/'.$row->adm_nip); ?>" class="label-default remove-data">
                                             <i class="fa fa-close"></i> Remove</a>
                                     </td>
                                     </tr>

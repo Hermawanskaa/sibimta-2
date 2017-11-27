@@ -32,7 +32,7 @@ class Dosen extends CI_Controller {
         $this->validation();
         if ($this->input->post('submit')) {
 
-            $this->form_validation->set_rules('nip', 'nip', 'trim|required|is_unique[dosen.nip]');
+            $this->form_validation->set_rules('nip', 'nip', 'trim|required|is_unique[dosen.dsn_nip]');
             $this->form_validation->set_rules('nama', 'nama', 'trim|required|xss_clean|min_length[5]');
             $this->form_validation->set_rules('password', 'password', 'trim|required|xss_clean|min_length[5]');
             $this->form_validation->set_rules('no_hp', 'no_hp', 'trim|required|xss_clean|min_length[10]');
@@ -63,13 +63,13 @@ class Dosen extends CI_Controller {
                     $gambar = 'anonim.png';
                 }
                 $data = array(
-                    'nip' => $this->input->post('nip'),
-                    'nama' => $this->input->post('nama'),
-                    'password' => $this->input->post('password'),
-                    'no_hp' => $this->input->post('no_hp'),
-                    'alamat' => $this->input->post('alamat'),
-                    'email' => $this->input->post('email'),
-                    'foto' => $gambar,
+                    'dsn_nip' => $this->input->post('nip'),
+                    'dsn_nama' => $this->input->post('nama'),
+                    'dsn_password' => $this->input->post('password'),
+                    'dsn_nohp' => $this->input->post('no_hp'),
+                    'dsn_alamat' => $this->input->post('alamat'),
+                    'dsn_email' => $this->input->post('email'),
+                    'dsn_foto' => $gambar,
                 );
                 $data = $this->security->xss_clean($data);
                 $result = $this->DosenModel->add_dosen($data);
@@ -122,12 +122,12 @@ class Dosen extends CI_Controller {
                 }
 
                 $data = array(
-                    'nama' => $this->input->post('nama'),
-                    'password' => $this->input->post('password'),
-                    'no_hp' => $this->input->post('no_hp'),
-                    'alamat' => $this->input->post('alamat'),
-                    'email' => $this->input->post('email'),
-                    'foto' => $gambar,
+                    'dsn_nama' => $this->input->post('nama'),
+                    'dsn_password' => $this->input->post('password'),
+                    'dsn_nohp' => $this->input->post('no_hp'),
+                    'dsn_alamat' => $this->input->post('alamat'),
+                    'dsn_email' => $this->input->post('email'),
+                    'dsn_foto' => $gambar,
                 );
 
                 $data = $this->security->xss_clean($data);
@@ -147,7 +147,7 @@ class Dosen extends CI_Controller {
     public function delete_dosen($id = 0)
     {
         $this->validation();
-        $this->db->delete('dosen', array('nip' => $id));
+        $this->db->delete('dosen', array('dsn_nip' => $id));
         $this->session->set_flashdata('msg', 'Data Berhasil Dihapus!');
         redirect(base_url('admin/dosen/list_dosen'));
     }

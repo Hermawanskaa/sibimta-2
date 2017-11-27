@@ -64,6 +64,21 @@ class Skripsi extends CI_Controller {
                 $data2 = array(
                     'mhs_password' => $this->input->post('konfirmasi_password')
                 );
+
+                $data3 = array(
+                    'mhs_id' => $this->input->post('mhs_id'),
+                    'dsn_id' => $this->input->post('pembimbing1'),
+                    'pembimbing1'=> '1',
+                    'pembimbing2'=> '0',
+                );
+
+                $data4 = array(
+                    'mhs_id'=> $this->input->post('mhs_id'),
+                    'dsn_id'=> $this->input->post('pembimbing2'),
+                    'pembimbing1'=> '0',
+                    'pembimbing2'=> '1',
+                );
+
                 //insert data Skripsi
                 $data = $this->security->xss_clean($data);
                 $result = $this->SkripsiModel->add_skripsi($data);
@@ -73,18 +88,18 @@ class Skripsi extends CI_Controller {
                 $data2 = $this->security->xss_clean($data2);
                 $result2 = $this->MahasiswaModel->update_password($userId, $data2);
 
-                //add pembimbing mahasiswa
-                $id = $this->input->post('mhs_id');
-                $result3 = $this->SkripsiModel->check_status($id);
+                $data3 = $this->security->xss_clean($data3);
+                $result3 = $this->SkripsiModel->add_dospem1($data3);
 
-                $this->SkripsiModel->add_dospem($result3);
+                $data4 = $this->security->xss_clean($data4);
+                $result4 = $this->SkripsiModel->add_dospem2($data4);
 
-                if ($result || $result2 || $result2) {
+                if ($result || $result2 || $result2 || $result3 || $result4) {
                     $this->session->set_flashdata('msg', 'Data Berhasil Ditambahkan!');
                     redirect(base_url('admin/skripsi/add_skripsi'));
                 }
             }
-        } else{
+        }else{
             $data['view'] = 'admin/skripsi/skripsi_add';
             $this->load->view('admin/skripsi/skripsi_add', $data);
         }

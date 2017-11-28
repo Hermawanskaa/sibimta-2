@@ -25,8 +25,8 @@ class Fakultas extends CI_Controller {
         $this->validation();
         if ($this->input->post('submit')) {
 
-            $this->form_validation->set_rules('fak_nama', 'fak_nama', 'trim|required|is_unique[fakultas.fak_nama]');
-            $this->form_validation->set_rules('fak_kode', 'fak_kode', 'trim|required|xss_clean|min_length[2]');
+            $this->form_validation->set_rules('fak_nama', 'NAMA FAKULTAS', 'trim|required|is_unique[fakultas.fak_nama]');
+            $this->form_validation->set_rules('fak_kode', 'KODE FAKULTAS', 'trim|required|xss_clean|min_length[2]');
 
             $this->form_validation->set_message('required', '%s tidak boleh kosong');
             $this->form_validation->set_message('min_length', '{field} minimal {param} karakter.');
@@ -60,8 +60,8 @@ class Fakultas extends CI_Controller {
         if ($this->input->post('submit')) {
             $this->validation();
             $this->form_validation->set_rules('fak_id', 'fak_id', 'trim');
-            $this->form_validation->set_rules('fak_nama', 'fak_nama', 'trim|required');
-            $this->form_validation->set_rules('fak_kode', 'fak_kode', 'trim|required|xss_clean|min_length[2]');
+            $this->form_validation->set_rules('fak_nama', 'NAMA FAKULTAS', 'trim|required');
+            $this->form_validation->set_rules('fak_kode', 'KODE FAKULTAS', 'trim|required|xss_clean|min_length[2]');
 
             $this->form_validation->set_message('required', '%s tidak boleh kosong');
             $this->form_validation->set_message('min_length', '{field} minimal {param} karakter.');

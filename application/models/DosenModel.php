@@ -83,12 +83,19 @@ class DosenModel extends CI_Model
         }
     }
 
+    //list drop down dosen
     function get_dosen(){
         $this->db->select('*');
         $this->db->from('dosen');
         $this->db->where('dsn_id !=',0);
         $query = $this->db->get();
         return $query;
+    }
+
+    //pesan ke dosen
+    function add_pesan($data){
+        $this->db->insert('pesan_mahasiswa', $data);
+        return true;
     }
 }
 

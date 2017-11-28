@@ -27,9 +27,9 @@ class Jurusan extends CI_Controller {
         $data['fakultas'] = $this->FakultasModel->get_fakultas();
         if ($this->input->post('submit')) {
 
-            $this->form_validation->set_rules('jrs_nama', 'jurusan', 'trim|required|is_unique[jurusan.jrs_nama]');
-            $this->form_validation->set_rules('jrs_kode', 'kode', 'trim|required|xss_clean|min_length[2]');
-            $this->form_validation->set_rules('fak_id', 'fakultas', 'trim|required');
+            $this->form_validation->set_rules('jrs_nama', 'NAMA JURUSAN', 'trim|required|is_unique[jurusan.jrs_nama]');
+            $this->form_validation->set_rules('jrs_kode', 'KODE JURUSAN', 'trim|required|xss_clean|min_length[2]');
+            $this->form_validation->set_rules('fak_id', 'FAKULTAS', 'trim|required');
 
             $this->form_validation->set_message('required', '%s tidak boleh kosong');
             $this->form_validation->set_message('min_length', '{field} minimal {param} karakter.');
@@ -65,8 +65,8 @@ class Jurusan extends CI_Controller {
         if ($this->input->post('submit')) {
             $this->validation();
             $this->form_validation->set_rules('jrs_id', 'jrs_id', 'trim');
-            $this->form_validation->set_rules('jrs_nama', 'jrs_nama', 'trim|required');
-            $this->form_validation->set_rules('jrs_kode', 'jrs_kode', 'trim|required|xss_clean|min_length[2]');
+            $this->form_validation->set_rules('jrs_nama', 'NAMA JURUSAN', 'trim|required');
+            $this->form_validation->set_rules('jrs_kode', 'KODE JURUSAN', 'trim|required|xss_clean|min_length[2]');
             $this->form_validation->set_rules('fak_id', 'fakultas', 'trim|required');
 
             $this->form_validation->set_message('required', '%s tidak boleh kosong');

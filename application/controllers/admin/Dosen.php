@@ -32,12 +32,13 @@ class Dosen extends CI_Controller {
         $this->validation();
         if ($this->input->post('submit')) {
 
-            $this->form_validation->set_rules('nip', 'nip', 'trim|required|is_unique[dosen.dsn_nip]');
-            $this->form_validation->set_rules('nama', 'nama', 'trim|required|xss_clean|min_length[5]');
-            $this->form_validation->set_rules('password', 'password', 'trim|required|xss_clean|min_length[5]');
-            $this->form_validation->set_rules('no_hp', 'no_hp', 'trim|required|xss_clean|min_length[10]');
-            $this->form_validation->set_rules('alamat', 'alamat', 'trim|required|xss_clean|min_length[5]');
-            $this->form_validation->set_rules('email', 'email', 'trim|required|xss_clean|min_length[5]');
+            $this->form_validation->set_rules('nip', 'NIP', 'trim|required|is_unique[dosen.dsn_nip]');
+            $this->form_validation->set_rules('nama', 'NAMA', 'trim|required|xss_clean|min_length[5]');
+            $this->form_validation->set_rules('password', 'PASSWORD', 'trim|required|xss_clean|min_length[5]');
+            $this->form_validation->set_rules('no_hp', 'NOMOR HP', 'trim|required|xss_clean|min_length[10]');
+            $this->form_validation->set_rules('alamat', 'ALAMAT', 'trim|required|xss_clean|min_length[5]');
+            $this->form_validation->set_rules('email', 'EMAIL', 'trim|required|xss_clean|min_length[5]');
+
 
             $this->form_validation->set_message('required', '%s tidak boleh kosong');
             $this->form_validation->set_message('min_length', '{field} minimal {param} karakter.');
@@ -90,11 +91,11 @@ class Dosen extends CI_Controller {
         if ($this->input->post('submit')) {
             $this->validation();
 
-            $this->form_validation->set_rules('nama', 'nama', 'trim|required|xss_clean|min_length[5]');
-            $this->form_validation->set_rules('password', 'password', 'trim|required|xss_clean|min_length[5]');
-            $this->form_validation->set_rules('no_hp', 'no_hp', 'trim|required|xss_clean|min_length[10]');
-            $this->form_validation->set_rules('alamat', 'alamat', 'trim|required|xss_clean|min_length[5]');
-            $this->form_validation->set_rules('email', 'email', 'trim|required|xss_clean|min_length[5]');
+            $this->form_validation->set_rules('nama', 'NAMA', 'trim|required|xss_clean|min_length[5]');
+            $this->form_validation->set_rules('password', 'PASSWORD', 'trim|required|xss_clean|min_length[5]');
+            $this->form_validation->set_rules('no_hp', 'NOMOR HP', 'trim|required|xss_clean|min_length[10]');
+            $this->form_validation->set_rules('alamat', 'ALAMAT', 'trim|required|xss_clean|min_length[5]');
+            $this->form_validation->set_rules('email', 'EMAIL', 'trim|required|xss_clean|min_length[5]');
 
             $this->form_validation->set_message('required', '%s tidak boleh kosong');
             $this->form_validation->set_message('min_length', '{field} minimal {param} karakter.');

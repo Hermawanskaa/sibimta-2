@@ -37,6 +37,7 @@ class SkripsiModel extends CI_Model
     {
         if (!empty($_GET['keyword'])) {
             return $this->db->from('judul')
+                ->join('mahasiswa', 'mahasiswa.mhs_id = judul.mhs_id')
                 ->like('mhs_id', $_GET['keyword'])
                 ->or_like('jdl_id', $_GET['keyword'])
                 ->or_like('jdl_judul', $_GET['keyword'])
@@ -48,6 +49,7 @@ class SkripsiModel extends CI_Model
                 ->count_all_results();
         } else {
             return $this->db->from('judul')
+                ->join('mahasiswa', 'mahasiswa.mhs_id = judul.mhs_id')
                 ->count_all_results();
         }
     }
@@ -57,6 +59,7 @@ class SkripsiModel extends CI_Model
         if (!empty($_GET['keyword'])) {
             return $this->db->select('*')
                 ->from('judul')
+                ->join('mahasiswa', 'mahasiswa.mhs_id = judul.mhs_id')
                 ->like('mhs_id', $_GET['keyword'])
                 ->or_like('jdl_id', $_GET['keyword'])
                 ->or_like('jdl_judul', $_GET['keyword'])
@@ -70,6 +73,7 @@ class SkripsiModel extends CI_Model
         } else {
             return $this->db->select('*')
                 ->from('judul')
+                ->join('mahasiswa', 'mahasiswa.mhs_id = judul.mhs_id')
                 ->order_by('jdl_id', 'DESC')
                 ->limit($limit, $start)
                 ->get()->result();

@@ -69,7 +69,7 @@ class PembimbingModel extends CI_Model {
         }
     }
 
-    function get_bagidosen1(){
+    public function get_bagidosen1(){
         $this->db->select('*');
         $this->db->from('bagidosen');
         $this->db->join('dosen','bagidosen.dsn_id = dosen.dsn_id');
@@ -78,7 +78,7 @@ class PembimbingModel extends CI_Model {
         return $result;
     }
 
-    function get_bagidosen2(){
+    public function get_bagidosen2(){
         $this->db->select('*');
         $this->db->from('bagidosen');
         $this->db->join('dosen','bagidosen.dsn_id = dosen.dsn_id');
@@ -86,6 +86,34 @@ class PembimbingModel extends CI_Model {
         $result = $this->db->get();
         return $result;
     }
+
+    public function check_pembimbing($data, $id){
+        $this->db->select('mhs_id');
+        $this->db->from('pembimbing');
+        $this->db->where('mhs_id',$data);
+        $this->db->where('pemb_id',$id);
+        $query = $this->db->get();
+
+        if($query->num_rows() > 1) {
+            $this->db->where('mhs_id', $data);
+            $this->db->where('pemb_id',$id);
+            $this->db->update('bagidosen', $data, $id);
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    public function add_mhs_pembimbing($data)
+    {
+        $this->db->insert('pembimbing', $data);
+        return true;
+    }
+
+
+
+
 
 }
 

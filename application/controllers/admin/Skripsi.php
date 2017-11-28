@@ -51,6 +51,7 @@ class Skripsi extends CI_Controller {
                 $data['view'] = 'admin/skripsi/skripsi_add';
                 $this->load->view('admin/skripsi/skripsi_add', $data);
             } else {
+
                 $data = array(
                     'mhs_id' => $this->input->post('mhs_id'),
                     'jdl_judul' => $this->input->post('jdl_judul'),
@@ -60,44 +61,54 @@ class Skripsi extends CI_Controller {
                     'jdl_tanggal' => $this->input->post('jdl_tanggal'),
                 );
 
-                //set nilai password baru di tabel mahasiswa untuk login
+                $data = $this->security->xss_clean($data);
+                $result = $this->SkripsiModel->add_skripsi($data);
+
                 $data2 = array(
                     'mhs_password' => $this->input->post('konfirmasi_password')
                 );
 
-                $data3 = array(
-                    'mhs_id' => $this->input->post('mhs_id'),
-                    'dsn_id' => $this->input->post('pembimbing1'),
-                    'pembimbing1'=> '1',
-                    'pembimbing2'=> '0',
-                );
-
-                $data4 = array(
-                    'mhs_id'=> $this->input->post('mhs_id'),
-                    'dsn_id'=> $this->input->post('pembimbing2'),
-                    'pembimbing1'=> '0',
-                    'pembimbing2'=> '1',
-                );
-
-                //insert data Skripsi
-                $data = $this->security->xss_clean($data);
-                $result = $this->SkripsiModel->add_skripsi($data);
-
-                //update password
                 $userId = $this->input->post('mhs_id');
                 $data2 = $this->security->xss_clean($data2);
                 $result2 = $this->MahasiswaModel->update_password($userId, $data2);
 
-                $data3 = $this->security->xss_clean($data3);
-                $result3 = $this->SkripsiModel->add_dospem1($data3);
 
-                $data4 = $this->security->xss_clean($data4);
-                $result4 = $this->SkripsiModel->add_dospem2($data4);
+                $mhs_id = $this->input->post('mhs_id');
+                $check_dospem = $this->input->post('pembimbing1');
 
-                if ($result || $result2 || $result2 || $result3 || $result4) {
+                $result3 = $this->PembimbingModel->check_pembimbing($mhs_id, $check_dospem);
+                if($result3 == FALSE){
+
+                    $data3 = array(
+                        'mhs_id' => $this->input->post('mhs_id'),
+                        'dsn_id' => $this->input->post('pembimbing1'),
+                        'pembimbing1'=> '1',
+                        'pembimbing2'=> '0',
+                    );
+
+                    $data4 = array(
+                        'mhs_id'=> $this->input->post('mhs_id'),
+                        'dsn_id'=> $this->input->post('pembimbing2'),
+                        'pembimbing1'=> '0',
+                        'pembimbing2'=> '1',
+                    );
+
+                    $data3 = $this->security->xss_clean($data3);
+                    $this->PembimbingModel->add_mhs_pembimbing($data3);
+
+                    $data4 = $this->security->xss_clean($data4);
+                    $this->PembimbingModel->add_mhs_pembimbing($data4);
+                }
+                if ($result || $result2 || $result3 ) {
                     $this->session->set_flashdata('msg', 'Data Berhasil Ditambahkan!');
                     redirect(base_url('admin/skripsi/add_skripsi'));
                 }
+                else{
+                    $data['view'] = 'admin/skripsi/skripsi_add';
+                    $this->load->view('admin/skripsi/skripsi_add', $data);
+                }
+
+
             }
         }else{
             $data['view'] = 'admin/skripsi/skripsi_add';

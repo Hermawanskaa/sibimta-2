@@ -30,7 +30,7 @@ $this->load->view('mahasiswa/template/sidebar');
                 <h3 class="box-title">Dosen Pembimbing  : </h3>
                 <strong>
             <?php foreach($dosen[$row['dsn_id']] as $dos) {
-            echo"$dos,"; } } ?></strong>
+            echo"&nbsp;$dos,"; } } ?></strong>
             </div>
             <?php }else{ } ?>
         </div>

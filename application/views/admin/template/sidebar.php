@@ -9,6 +9,7 @@
             </div>
             <div class="pull-left info">
                 <p><?= ucwords($this->session->userdata('nama')); ?></p>
+                <p><?= ucwords($this->session->userdata('nip')); ?></p>
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
         </div>

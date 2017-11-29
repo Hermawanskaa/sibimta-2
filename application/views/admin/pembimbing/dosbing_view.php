@@ -52,7 +52,7 @@ $this->load->view('admin/template/sidebar');
                     <div class="form-group ">
                         <label for="content" class="col-sm-2 control-label">Nama</label>
                         <div class="col-sm-8">
-                            <?= $user['dsn_id']; ?>
+                            <?= $user['dsn_nama']; ?>
                         </div>
                     </div>
 

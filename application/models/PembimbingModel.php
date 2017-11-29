@@ -19,7 +19,8 @@ class PembimbingModel extends CI_Model {
 
     public function get_pembimbing_by_id($id)
     {
-        $query = $this->db->get_where('bagidosen', array('bagi_id' => $id));
+        $query = $this->db->join('dosen', 'dosen.dsn_id = bagidosen.dsn_id')
+                          ->get_where('bagidosen', array('bagi_id' => $id));
         return $result = $query->row_array();
     }
 
@@ -67,6 +68,14 @@ class PembimbingModel extends CI_Model {
                 ->limit($limit, $start)
                 ->get()->result();
         }
+    }
+
+    function get_bagidosen(){
+        $this->db->select('*');
+        $this->db->from('bagidosen');
+        $this->db->where('dsn_id !=',0);
+        $query = $this->db->get();
+        return $query;
     }
 
     public function get_bagidosen1(){

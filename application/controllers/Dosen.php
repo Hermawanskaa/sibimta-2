@@ -21,4 +21,6 @@ class Dosen extends CI_Controller {
         $this->validation();
         $this->load->view('dosen/dashboard');
     }
+
+
 }

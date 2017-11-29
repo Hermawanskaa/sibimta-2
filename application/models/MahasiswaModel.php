@@ -21,7 +21,9 @@ class MahasiswaModel extends CI_Model {
 
     public function get_mahasiswa_by_id($id)
     {
-        $query = $this->db->get_where('mahasiswa', array('mhs_nim' => $id));
+        $query = $this->db->join('jurusan', 'jurusan.jrs_id = mahasiswa.jrs_id')
+                          ->get_where('mahasiswa', array('mhs_nim' => $id));
+
         return $result = $query->row_array();
     }
 
@@ -104,6 +106,45 @@ class MahasiswaModel extends CI_Model {
         $this->db->update('mahasiswa', $data);
         return $query;
     }
+
+    //dashboard mahasiswa
+    public function dashboard_mahasiswa($id){
+        $this->db->select('*');
+        $this->db->from('dashboard');
+        $this->db->join('mahasiswa','mahasiswa.mhs_id = dashboard.mhs_id');
+        $this->db->where('mahasiswa.mhs_id',$id);
+        $query= $this->db->get();
+        return $query;
+    }
+
+    //pesan dari dosen
+    function all_pesan($id){
+        $this->db->select('*');
+        $this->db->from('pesan_dosen');
+        $this->db->join('dosen','pesan_dosen.dsn_id = dosen.dsn_id');
+        $this->db->join('kategori_laporan','pesan_dosen.katlap_id = kategori_laporan.katlap_id');
+        $this->db->where('mhs_id',$id);
+        $this->db->where('pesan_dosen.katlap_id !=',3);
+        $this->db->order_by('pesdos_id','desc');
+        $query= $this->db->get();
+
+        return $query->result();
+    }
+
+    function dospem_dashboard($id){
+            $this->db->select('a.*, b.*, c.*, d.*, GROUP_CONCAT(c.dsn_nama ORDER BY a.pemb_id) as dosen');
+            $this->db->from('pembimbing a');
+            $this->db->join('mahasiswa b', 'a.mhs_id = b.mhs_id');
+            $this->db->join('dosen c', 'a.dsn_id = c.dsn_id');
+            $this->db->join('judul d', 'd.mhs_id = b.mhs_id');
+            $this->db->where('b.mhs_id', $id);
+            $this->db->where('d.jdl_status', 'AKTIF');
+            $this->db->group_by('d.jdl_judul');
+            $this->db->order_by('d.jdl_id','desc');
+            $this->db->limit('1');
+            $query = $this->db->get();
+            return $query->result_array();
+        }
 
 
 

@@ -12,10 +12,10 @@ class login extends CI_Controller {
             redirect('admin/dashboard');
         }else{
             if($this->session->has_userdata('is_dosen_login')){
-                redirect('dosen');
+                redirect('dosen/dashboard');
             }else{
                 if ($this->session->has_userdata('is_mahasiswa_login')){
-                    redirect('mahasiswa');
+                    redirect('mahasiswa/dashboard');
                 }else{
                      $this->load->view('auth/login');
                     }
@@ -44,6 +44,7 @@ class login extends CI_Controller {
                 if ($rows > 0) {
                     $result = $result->row_array();
                     $data_session = array(
+                        'id' => $result['adm_id'],
                         'nama' => $result['adm_nama'],
                         'nip' => $result['adm_nip'],
                         'foto' => $result['adm_foto'],
@@ -63,6 +64,7 @@ class login extends CI_Controller {
                     if ($rows > 0) {
                         $result = $result->row_array();
                         $data_session = array(
+                            'id' => $result['dsn_id'],
                             'nama' => $result['dsn_nama'],
                             'nip' => $result['dsn_nip'],
                             'foto' => $result['dsn_foto'],
@@ -83,6 +85,7 @@ class login extends CI_Controller {
                         if ($rows > 0) {
                             $result = $result->row_array();
                             $data_session = array(
+                                'id' => $result['mhs_id'],
                                 'nama' => $result['mhs_nama'],
                                 'nim' => $result['mhs_nim'],
                                 'foto' => $result['mhs_foto'],
@@ -92,7 +95,7 @@ class login extends CI_Controller {
                             redirect(base_url('mahasiswa'),'refresh');
                         }else{
                             $data['msg'] = '<br>Username atau Password yang anda masukkan salah.';
-                            $this->load->view('admin/auth/login', $data);
+                            $this->load->view('auth/login', $data);
                         }
                     }
                 }

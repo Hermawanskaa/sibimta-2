@@ -80,8 +80,8 @@ $this->load->view('admin/template/sidebar');
                             <label for="fak_id" class="col-sm-2 control-label">Fakultas</label>
                             <div class="col-sm-6">
                                 <select name="fak_id" id="fak_id" class="form-control">
-                                    <option value=''>Please Select</option>
                                     <?php foreach($fakultas->result() as $row):?>
+                                    <option value=''>Please Select</option>
                                         <option value="<?php echo $row->fak_id;?>"><?php echo $row->fak_nama;?></option>
                                         <?php echo $row->fak_id;?>
                                     <?php endforeach;?>

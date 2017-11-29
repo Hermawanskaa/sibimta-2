@@ -3,12 +3,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Dosen extends CI_Controller {
 
-    public $data = array(
-        'view' => 'dosen_list',
-        'title' => 'List Dosen',
-        'link' => 'admin/dosen/dosen_list'
-    );
-
     public function __construct() {
         parent::__construct();
         $this->load->model('DosenModel');
@@ -18,7 +12,6 @@ class Dosen extends CI_Controller {
     public function validation(){
         if(!$this->session->userdata('is_admin_login')){
             redirect('login','refresh');
-
         }
     }
 
@@ -27,17 +20,16 @@ class Dosen extends CI_Controller {
         $this->load->view('admin/dosen/dosen_list');
     }
 
-    public function add_dosen()
-    {
+    public function add_dosen(){
         $this->validation();
         if ($this->input->post('submit')) {
 
-            $this->form_validation->set_rules('nip', 'nip', 'trim|required|is_unique[dosen.dsn_nip]');
-            $this->form_validation->set_rules('nama', 'nama', 'trim|required|xss_clean|min_length[5]');
-            $this->form_validation->set_rules('password', 'password', 'trim|required|xss_clean|min_length[5]');
-            $this->form_validation->set_rules('no_hp', 'no_hp', 'trim|required|xss_clean|min_length[10]');
-            $this->form_validation->set_rules('alamat', 'alamat', 'trim|required|xss_clean|min_length[5]');
-            $this->form_validation->set_rules('email', 'email', 'trim|required|xss_clean|min_length[5]');
+            $this->form_validation->set_rules('nip', 'NIP', 'trim|required|is_unique[dosen.dsn_nip]');
+            $this->form_validation->set_rules('nama', 'NAMA', 'trim|required|xss_clean|min_length[5]');
+            $this->form_validation->set_rules('password', 'PASSWORD', 'trim|required|xss_clean|min_length[5]');
+            $this->form_validation->set_rules('no_hp', 'NOMOR HP', 'trim|required|xss_clean|min_length[10]');
+            $this->form_validation->set_rules('alamat', 'ALAMAT', 'trim|required|xss_clean|min_length[5]');
+            $this->form_validation->set_rules('email', 'EMAIL', 'trim|required|xss_clean|min_length[5]');
 
             $this->form_validation->set_message('required', '%s tidak boleh kosong');
             $this->form_validation->set_message('min_length', '{field} minimal {param} karakter.');
@@ -56,7 +48,6 @@ class Dosen extends CI_Controller {
                 $data['view'] = 'admin/dosen/dosen_add';
                 $this->load->view('admin/dosen/dosen_add', $data);
             } else {
-
                 if (!empty($foto)) {
                     $gambar = $foto;
                 } else {
@@ -84,17 +75,15 @@ class Dosen extends CI_Controller {
         }
     }
 
-    public function edit_dosen($id = 0)
-    {
+    public function edit_dosen($id = 0){
         $this->validation();
         if ($this->input->post('submit')) {
-            $this->validation();
 
-            $this->form_validation->set_rules('nama', 'nama', 'trim|required|xss_clean|min_length[5]');
-            $this->form_validation->set_rules('password', 'password', 'trim|required|xss_clean|min_length[5]');
-            $this->form_validation->set_rules('no_hp', 'no_hp', 'trim|required|xss_clean|min_length[10]');
-            $this->form_validation->set_rules('alamat', 'alamat', 'trim|required|xss_clean|min_length[5]');
-            $this->form_validation->set_rules('email', 'email', 'trim|required|xss_clean|min_length[5]');
+            $this->form_validation->set_rules('nama', 'NAMA', 'trim|required|xss_clean|min_length[5]');
+            $this->form_validation->set_rules('password', 'PASSWORD', 'trim|required|xss_clean|min_length[5]');
+            $this->form_validation->set_rules('no_hp', 'NOMOR HP', 'trim|required|xss_clean|min_length[10]');
+            $this->form_validation->set_rules('alamat', 'ALAMAT', 'trim|required|xss_clean|min_length[5]');
+            $this->form_validation->set_rules('email', 'EMAIL', 'trim|required|xss_clean|min_length[5]');
 
             $this->form_validation->set_message('required', '%s tidak boleh kosong');
             $this->form_validation->set_message('min_length', '{field} minimal {param} karakter.');
@@ -108,7 +97,6 @@ class Dosen extends CI_Controller {
             $config['file_name'] = $foto;
             $config['overwrite'] = false;
             $this->load->library('upload', $config);
-
 
             if ($this->form_validation->run() == FALSE || (!$this->upload->do_upload($upload) && !empty($_FILES['avatar']['name']))) {
                 $data['user'] = $this->DosenModel->get_dosen_by_id($id);
@@ -144,24 +132,21 @@ class Dosen extends CI_Controller {
         }
     }
 
-    public function delete_dosen($id = 0)
-    {
+    public function delete_dosen($id = 0){
         $this->validation();
         $this->db->delete('dosen', array('dsn_nip' => $id));
         $this->session->set_flashdata('msg', 'Data Berhasil Dihapus!');
         redirect(base_url('admin/dosen/list_dosen'));
     }
 
-    public function view_dosen($id = 0)
-    {
+    public function view_dosen($id = 0){
         $this->validation();
         $data['user'] = $this->DosenModel->get_dosen_by_id($id);
         $data['view'] = 'admin/dosen/dosen_view';
         $this->load->view('admin/dosen/dosen_view', $data);
     }
 
-    public function list_dosen()
-    {
+    public function list_dosen(){
         $this->validation();
         $config['base_url'] = site_url('admin/dosen/list_dosen/');
         $config['total_rows'] = $this->DosenModel->total_rows();
@@ -185,8 +170,5 @@ class Dosen extends CI_Controller {
             $this->load->view('admin/dosen/dosen_list', $this->data);
         }
     }
-
 }
-
-
 ?>

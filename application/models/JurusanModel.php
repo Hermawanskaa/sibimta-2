@@ -6,43 +6,29 @@ class JurusanModel extends CI_Model {
         parent::__construct();
     }
 
-    public function add_jurusan($data)
-    {
+    public function add_jurusan($data){
         $this->db->insert('jurusan', $data);
         return true;
     }
 
-    public function get_all_jurusan()
-    {
+    public function get_all_jurusan(){
         $query = $this->db->get('jurusan');
         return $result = $query->result_array();
     }
 
-    public function get_jurusan_by_id($id)
-    {
-        $query = $this->db->get_where('jurusan', array('jrs_id' => $id));
+    public function get_jurusan_by_id($id){
+        $query = $this->db->join('fakultas', 'fakultas.fak_id = jurusan.jrs_id')
+                          ->get_where('jurusan', array('jrs_id' => $id));
         return $result = $query->row_array();
     }
 
-    public function edit_jurusan($data, $id)
-    {
+    public function edit_jurusan($data, $id){
         $this->db->where('jrs_id', $id);
         $this->db->update('jurusan', $data);
         return true;
     }
 
-    public function profil_jurusan()
-    {
-
-    }
-
-    public function update_profil_jurusan()
-    {
-
-    }
-
-    public function total_rows()
-    {
+    public function total_rows(){
         if(!empty($_GET['keyword'])) {
             return $this->db->from('jurusan')
                 ->join('fakultas','fakultas.fak_id = jurusan.fak_id')
@@ -59,8 +45,7 @@ class JurusanModel extends CI_Model {
         }
     }
 
-    public function index_limit($limit, $start = 0)
-    {
+    public function index_limit($limit, $start = 0){
         if(!empty($_GET['keyword'])) {
             return $this->db->select('*')
                 ->from('jurusan')
@@ -80,7 +65,6 @@ class JurusanModel extends CI_Model {
                 ->limit($limit, $start)
                 ->get()->result();
         }
-
     }
 
     public function get_jurusan(){

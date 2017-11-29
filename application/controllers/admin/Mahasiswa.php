@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Mahasiswa extends CI_Controller {
 
-    public function __construct() {
+    public function __construct(){
         parent::__construct();
         $this->load->model('MahasiswaModel');
         $this->load->model('JurusanModel');
@@ -20,13 +20,11 @@ class Mahasiswa extends CI_Controller {
         $this->load->view('admin/mahasiswa/mahasiswa_list');
     }
 
-    public function add_mahasiswa()
-    {
+    public function add_mahasiswa(){
         $this->validation();
         $data['jurusan'] = $this->JurusanModel->get_jurusan();
 
         if ($this->input->post('submit')) {
-
             $this->form_validation->set_rules('nim', 'NIM', 'trim|required|is_unique[mahasiswa.mhs_nim]');
             $this->form_validation->set_rules('nama', 'NAMA', 'trim|required|xss_clean|min_length[5]');
             $this->form_validation->set_rules('password', 'PASSWORD', 'trim|required|xss_clean|min_length[5]');
@@ -54,7 +52,6 @@ class Mahasiswa extends CI_Controller {
                 $data['view'] = 'admin/mahasiswa/mahasiswa_add';
                 $this->load->view('admin/mahasiswa/mahasiswa_add', $data);
             } else {
-
                 if (!empty($foto)){
                     $gambar = $foto;
                 } else{
@@ -71,7 +68,6 @@ class Mahasiswa extends CI_Controller {
                     'jrs_id' => $this->input->post('jrs_id'),
                     'mhs_foto' => $gambar,
                 );
-
                 $data = $this->security->xss_clean($data);
                 $result = $this->MahasiswaModel->add_mahasiswa($data);
                 if ($result) {
@@ -85,8 +81,7 @@ class Mahasiswa extends CI_Controller {
         }
     }
 
-    public function edit_mahasiswa($id = 0)
-    {
+    public function edit_mahasiswa($id = 0){
         $this->validation();
         $data['jurusan'] = $this->JurusanModel->get_jurusan();
 
@@ -112,7 +107,6 @@ class Mahasiswa extends CI_Controller {
             $config['overwrite'] = false;
             $this->load->library('upload', $config);
 
-
             if ($this->form_validation->run() == FALSE || (!$this->upload->do_upload($upload) && !empty($_FILES['avatar']['name']))) {
                 $data['user'] = $this->MahasiswaModel->get_mahasiswa_by_id($id);
                 $data['view'] = 'admin/mahasiswa/mahasiswa_edit';
@@ -123,7 +117,6 @@ class Mahasiswa extends CI_Controller {
                 } else {
                     $gambar = 'anonim.png';
                 }
-
                 $data = array(
                     'mhs_nama' => $this->input->post('nama'),
                     'mhs_password' => $this->input->post('password'),
@@ -134,7 +127,6 @@ class Mahasiswa extends CI_Controller {
                     'jrs_id' => $this->input->post('jrs_id'),
                     'mhs_foto' => $gambar,
                 );
-
                 $data = $this->security->xss_clean($data);
                 $result = $this->MahasiswaModel->edit_mahasiswa($data, $id);
                 if ($result) {
@@ -149,24 +141,21 @@ class Mahasiswa extends CI_Controller {
         }
     }
 
-    public function delete_mahasiswa($id = 0)
-    {
+    public function delete_mahasiswa($id = 0){
         $this->validation();
         $this->db->delete('mahasiswa', array('mhs_nim' => $id));
         $this->session->set_flashdata('msg', 'Data Berhasil Dihapus!');
         redirect(base_url('admin/mahasiswa/list_mahasiswa'));
     }
 
-    public function view_mahasiswa($id = 0)
-    {
+    public function view_mahasiswa($id = 0){
         $this->validation();
         $data['user'] = $this->MahasiswaModel->get_mahasiswa_by_id($id);
         $data['view'] = 'admin/mahasiswa/mahasiswa_view';
         $this->load->view('admin/mahasiswa/mahasiswa_view', $data);
     }
 
-    public function list_mahasiswa()
-    {
+    public function list_mahasiswa(){
         $this->validation();
         $config['base_url'] = site_url('admin/mahasiswa/list_mahasiswa/');
         $config['total_rows'] = $this->MahasiswaModel->total_rows();
@@ -190,7 +179,6 @@ class Mahasiswa extends CI_Controller {
             $this->load->view('admin/mahasiswa/mahasiswa_list', $this->data);
         }
     }
-
 }
 
 

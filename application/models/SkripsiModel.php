@@ -3,38 +3,32 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class SkripsiModel extends CI_Model
 {
-    public function __construct()
-    {
+    public function __construct(){
         parent::__construct();
     }
 
-    public function add_skripsi($data)
-    {
+    public function add_skripsi($data){
         $this->db->insert('judul', $data);
         return true;
     }
 
-    public function get_all_skripsi()
-    {
+    public function get_all_skripsi(){
         $query = $this->db->get('judul');
         return $result = $query->result_array();
     }
 
-    public function get_judul_by_id($id)
-    {
+    public function get_judul_by_id($id){
         $query = $this->db->get_where('judul', array('jdl_id' => $id));
         return $result = $query->row_array();
     }
 
-    public function edit_judul($data, $id)
-    {
+    public function edit_judul($data, $id){
         $this->db->where('jdl_id', $id);
         $this->db->update('jdl_id', $data);
         return true;
     }
 
-    public function total_rows()
-    {
+    public function total_rows(){
         if (!empty($_GET['keyword'])) {
             return $this->db->from('judul')
                 ->join('mahasiswa', 'mahasiswa.mhs_id = judul.mhs_id')
@@ -54,8 +48,7 @@ class SkripsiModel extends CI_Model
         }
     }
 
-    public function index_limit($limit, $start = 0)
-    {
+    public function index_limit($limit, $start = 0){
         if (!empty($_GET['keyword'])) {
             return $this->db->select('*')
                 ->from('judul')
@@ -80,17 +73,15 @@ class SkripsiModel extends CI_Model
         }
     }
 
-
-    public function add_dospem1($data)
-    {
+    public function add_dospem1($data){
         $this->db->insert('pembimbing', $data);
         return true;
     }
 
-    public function add_dospem2($data)
-    {
+    public function add_dospem2($data){
         $this->db->insert('pembimbing', $data);
         return true;
     }
+
 }
 ?>

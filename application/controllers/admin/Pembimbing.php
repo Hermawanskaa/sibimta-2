@@ -20,10 +20,10 @@ class Pembimbing extends CI_Controller {
         $this->load->view('admin/pembimbing/dosbing_list');
     }
 
-    public function add_pembimbing()
-    {
+    public function add_pembimbing(){
         $this->validation();
         $data['dosen'] = $this->DosenModel->get_dosen();
+
         if ($this->input->post('submit')) {
             $this->form_validation->set_rules('dsn_id', 'Dosen', 'trim|xss_clean|is_unique[bagidosen.dsn_id]');
             $this->form_validation->set_rules('pembimbing1', 'Pilihan Dosen Pembimbing 1', 'trim|required|xss_clean');
@@ -57,8 +57,7 @@ class Pembimbing extends CI_Controller {
         }
     }
 
-    public function edit_pembimbing($id = 0)
-    {
+    public function edit_pembimbing($id = 0){
         $this->validation();
         $data['dosen'] = $this->DosenModel->get_dosen($id);
         $data['bagidosen'] = $this->PembimbingModel->get_bagidosen();
@@ -98,24 +97,21 @@ class Pembimbing extends CI_Controller {
         }
     }
 
-    public function delete_pembimbing($id = 0)
-    {
+    public function delete_pembimbing($id = 0){
         $this->validation();
         $this->db->delete('pembimbing', array('bagi_id' => $id));
         $this->session->set_flashdata('msg', 'Data Berhasil Dihapus!');
         redirect(base_url('admin/pembimbing/list_pembimbing'));
     }
 
-    public function view_pembimbing($id = 0)
-    {
+    public function view_pembimbing($id = 0){
         $this->validation();
         $data['user'] = $this->PembimbingModel->get_pembimbing_by_id($id);
         $data['view'] = 'admin/pembimbing/dosbing_view';
         $this->load->view('admin/pembimbing/dosbing_view', $data);
     }
 
-    public function list_pembimbing()
-    {
+    public function list_pembimbing(){
         $this->validation();
         $config['base_url'] = site_url('admin/pembimbing/list_pembimbing/');
         $config['total_rows'] = $this->PembimbingModel->total_rows();
@@ -139,7 +135,6 @@ class Pembimbing extends CI_Controller {
             $this->load->view('admin/pembimbing/dosbing_list', $this->data);
         }
     }
-
 }
 
 ?>

@@ -20,6 +20,12 @@ class Mahasiswa extends CI_Controller {
     public function index()
     {
         $this->validation();
+        $this->dashboard();
+
+    }
+
+    public function dashboard(){
+        $this->validation();
         $id = $this->session->userdata('id');
         $result = $this->MahasiswaModel->dospem_dashboard($id);
         if($result){
@@ -34,10 +40,13 @@ class Mahasiswa extends CI_Controller {
     }
 
     public function pesan(){
+        $this->validation();
         $id = $this->session->userdata('id');
         $data['pesan'] = $this->MahasiswaModel->all_pesan($id);
         $this->load->view('mahasiswa/pesan',$data);
     }
+
+
 }
 
 ?>

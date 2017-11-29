@@ -4,28 +4,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Admin extends CI_Controller
 {
 
-    public function __construct()
-    {
+    public function __construct(){
         parent::__construct();
         $this->load->model('AdminModel');
         $this->load->library(array('pagination', 'form_validation', 'upload'));
     }
 
-    public function validation()
-    {
+    public function validation(){
         if (!$this->session->userdata('is_admin_login')) {
             redirect('login', 'refresh');
         }
     }
 
-    public function index()
-    {
+    public function index(){
         $this->validation();
         $this->load->view('admin/admin/admin_list');
     }
 
-    public function add_admin()
-    {
+    public function add_admin(){
         $this->validation();
         if ($this->input->post('submit')) {
 
@@ -84,8 +80,7 @@ class Admin extends CI_Controller
         }
     }
 
-    public function edit_admin($id = 0)
-    {
+    public function edit_admin($id = 0){
         $this->validation();
         if ($this->input->post('submit')) {
             $this->form_validation->set_rules('nama', 'NAMA', 'trim|required|xss_clean|min_length[5]');
@@ -93,7 +88,6 @@ class Admin extends CI_Controller
             $this->form_validation->set_rules('no_hp', 'NOMOR HP', 'trim|required|xss_clean|min_length[10]');
             $this->form_validation->set_rules('alamat', 'ALAMAT', 'trim|required|xss_clean|min_length[5]');
             $this->form_validation->set_rules('email', 'EMAIL', 'trim|required|xss_clean|min_length[5]');
-
 
             $this->form_validation->set_rules('level', 'level', 'trim|required|xss_clean');
             $this->form_validation->set_message('required', '%s tidak boleh kosong');
@@ -108,7 +102,6 @@ class Admin extends CI_Controller
             $config['file_name'] = $foto;
             $config['overwrite'] = false;
             $this->load->library('upload', $config);
-
 
             if ($this->form_validation->run() == FALSE || (!$this->upload->do_upload($upload) && !empty($_FILES['avatar']['name']))) {
                 $data['user'] = $this->AdminModel->get_admin_by_id($id);
@@ -144,24 +137,21 @@ class Admin extends CI_Controller
         }
     }
 
-    public function delete_admin($id = 0)
-    {
+    public function delete_admin($id = 0){
         $this->validation();
         $this->db->delete('admin', array('adm_nip' => $id));
         $this->session->set_flashdata('msg', 'Data Berhasil Dihapus!');
         redirect(base_url('admin/admin/list_admin'));
     }
 
-    public function view_admin($id = 0)
-    {
+    public function view_admin($id = 0){
         $this->validation();
         $data['user'] = $this->AdminModel->get_admin_by_id($id);
         $data['view'] = 'admin/admin/admin_view';
         $this->load->view('admin/admin/admin_view', $data);
     }
 
-    public function list_admin()
-    {
+    public function list_admin(){
         $this->validation();
         $config['base_url'] = site_url('admin/admin/list_admin/');
         $config['total_rows'] = $this->AdminModel->total_rows();

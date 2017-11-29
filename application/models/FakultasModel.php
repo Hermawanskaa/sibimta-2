@@ -6,43 +6,28 @@ class FakultasModel extends CI_Model {
         parent::__construct();
     }
 
-    public function add_fakultas($data)
-    {
+    public function add_fakultas($data){
         $this->db->insert('fakultas', $data);
         return true;
     }
 
-    public function get_all_fakultas()
-    {
+    public function get_all_fakultas(){
         $query = $this->db->get('fakultas');
         return $result = $query->result_array();
     }
 
-    public function get_fakultas_by_id($id)
-    {
+    public function get_fakultas_by_id($id){
         $query = $this->db->get_where('fakultas', array('fak_id' => $id));
         return $result = $query->row_array();
     }
 
-    public function edit_fakultas($data, $id)
-    {
+    public function edit_fakultas($data, $id){
         $this->db->where('fak_id', $id);
         $this->db->update('fakultas', $data);
         return true;
     }
 
-    public function profil_fakultas()
-    {
-
-    }
-
-    public function update_profil_fakultas()
-    {
-
-    }
-
-    public function total_rows()
-    {
+    public function total_rows(){
         if(!empty($_GET['keyword'])) {
             return $this->db->from('fakultas')
                 ->like('fak_id', $_GET['keyword'])
@@ -56,8 +41,7 @@ class FakultasModel extends CI_Model {
         }
     }
 
-    public function index_limit($limit, $start = 0)
-    {
+    public function index_limit($limit, $start = 0){
         if(!empty($_GET['keyword'])) {
             return $this->db->select('*')
                 ->from('fakultas')
@@ -74,7 +58,6 @@ class FakultasModel extends CI_Model {
                 ->limit($limit, $start)
                 ->get()->result();
         }
-
     }
 
     public function get_fakultas(){

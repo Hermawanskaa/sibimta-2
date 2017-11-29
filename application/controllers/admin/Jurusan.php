@@ -21,12 +21,11 @@ class Jurusan extends CI_Controller {
         $this->load->view('admin/jurusan/jurusan_list');
     }
 
-    public function add_jurusan()
-    {
+    public function add_jurusan(){
         $this->validation();
         $data['fakultas'] = $this->FakultasModel->get_fakultas();
-        if ($this->input->post('submit')) {
 
+        if ($this->input->post('submit')) {
             $this->form_validation->set_rules('jrs_nama', 'NAMA JURUSAN', 'trim|required|is_unique[jurusan.jrs_nama]');
             $this->form_validation->set_rules('jrs_kode', 'KODE JURUSAN', 'trim|required|xss_clean|min_length[2]');
             $this->form_validation->set_rules('fak_id', 'FAKULTAS', 'trim|required');
@@ -39,7 +38,6 @@ class Jurusan extends CI_Controller {
                 $data['view'] = 'admin/jurusan/jurusan_add';
                 $this->load->view('admin/jurusan/jurusan_add', $data);
             } else {
-
                 $data = array(
                     'jrs_nama' => $this->input->post('jrs_nama'),
                     'jrs_kode' => $this->input->post('jrs_kode'),
@@ -58,10 +56,10 @@ class Jurusan extends CI_Controller {
         }
     }
 
-    public function edit_jurusan($id = 0)
-    {
+    public function edit_jurusan($id = 0){
         $this->validation();
         $data['fakultas'] = $this->FakultasModel->get_fakultas();
+
         if ($this->input->post('submit')) {
             $this->validation();
             $this->form_validation->set_rules('jrs_id', 'jrs_id', 'trim');
@@ -98,24 +96,21 @@ class Jurusan extends CI_Controller {
         }
     }
 
-    public function delete_jurusan($id = 0)
-    {
+    public function delete_jurusan($id = 0){
         $this->validation();
         $this->db->delete('jurusan', array('jrs_id' => $id));
         $this->session->set_flashdata('msg', 'Data Berhasil Dihapus!');
         redirect(base_url('admin/jurusan/list_jurusan'));
     }
 
-    public function view_jurusan($id = 0)
-    {
+    public function view_jurusan($id = 0){
         $this->validation();
         $data['user'] = $this->JurusanModel->get_jurusan_by_id($id);
         $data['view'] = 'admin/jurusan/jurusan_view';
         $this->load->view('admin/jurusan/jurusan_view', $data);
     }
 
-    public function list_jurusan()
-    {
+    public function list_jurusan(){
         $this->validation();
         $config['base_url'] = site_url('admin/jurusan/list_jurusan/');
         $config['total_rows'] = $this->JurusanModel->total_rows();
@@ -139,7 +134,6 @@ class Jurusan extends CI_Controller {
             $this->load->view('admin/jurusan/jurusan_list', $this->data);
         }
     }
-
 }
 
 ?>

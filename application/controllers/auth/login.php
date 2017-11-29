@@ -12,10 +12,10 @@ class login extends CI_Controller {
             redirect('admin/dashboard');
         }else{
             if($this->session->has_userdata('is_dosen_login')){
-                redirect('dosen');
+                redirect('dosen/dashboard');
             }else{
                 if ($this->session->has_userdata('is_mahasiswa_login')){
-                    redirect('mahasiswa');
+                    redirect('mahasiswa/dashboard');
                 }else{
                      $this->load->view('auth/login');
                     }

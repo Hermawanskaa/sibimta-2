@@ -20,17 +20,17 @@ $this->load->view('mahasiswa/template/sidebar');
 
     <section class="content">
         <?php if(!empty($result) || $result !=''){ ?>
-        <?php foreach($result as $key=>$_res) { ?>
+        <?php foreach($result as $row) { ?>
         <div class="box">
             <div class="box-header with-border">
                 <h3 class="box-title">Judul Skripsi : </h3>
-                <strong><?php echo strtoupper($_res['jdl_judul']);?></strong>
+                <strong><?php echo strtoupper($row['jdl_judul']);?></strong>
             </div>
             <div class="box-header with-border">
                 <h3 class="box-title">Dosen Pembimbing  : </h3>
                 <strong>
-            <?php foreach($dosen[$_res['dsn_id']] as $_dos) {
-            echo"&nbsp;&nbsp;$_dos,"; } } ?></strong>
+            <?php foreach($dosen[$row['dsn_id']] as $dos) {
+            echo"$dos,"; } } ?></strong>
             </div>
             <?php }else{ } ?>
         </div>

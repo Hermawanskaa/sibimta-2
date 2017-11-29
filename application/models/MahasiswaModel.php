@@ -2,50 +2,34 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class MahasiswaModel extends CI_Model {
-    public function __construct()
-    {
+    public function __construct(){
         parent::__construct();
     }
 
-    public function add_mahasiswa($data)
-    {
+    public function add_mahasiswa($data){
         $this->db->insert('mahasiswa', $data);
         return true;
     }
 
-    public function get_all_mahasiswa()
-    {
+    public function get_all_mahasiswa(){
         $query = $this->db->get('mahasiswa');
         return $result = $query->result_array();
     }
 
-    public function get_mahasiswa_by_id($id)
-    {
+    public function get_mahasiswa_by_id($id){
         $query = $this->db->join('jurusan', 'jurusan.jrs_id = mahasiswa.jrs_id')
                           ->get_where('mahasiswa', array('mhs_nim' => $id));
 
         return $result = $query->row_array();
     }
 
-    public function edit_mahasiswa($data, $id)
-    {
+    public function edit_mahasiswa($data, $id){
         $this->db->where('mhs_nim', $id);
         $this->db->update('mahasiswa', $data);
         return true;
     }
 
-    public function profil_mahasiswa()
-    {
-
-    }
-
-    public function update_profil_mahasiswa()
-    {
-
-    }
-
-    public function total_rows()
-    {
+    public function total_rows(){
         if(!empty($_GET['keyword'])) {
             return $this->db->from('mahasiswa')
                 ->join('jurusan','jurusan.jrs_id = mahasiswa.jrs_id')
@@ -65,8 +49,7 @@ class MahasiswaModel extends CI_Model {
         }
     }
 
-    public function index_limit($limit, $start = 0)
-    {
+    public function index_limit($limit, $start = 0){
         if(!empty($_GET['keyword'])) {
             return $this->db->select('*')
                 ->from('mahasiswa')
@@ -100,8 +83,7 @@ class MahasiswaModel extends CI_Model {
     }
 
     //update password
-    public function update_password($id, $data)
-    {
+    public function update_password($id, $data){
         $query = $this->db->where('mhs_id', $id);
         $this->db->update('mahasiswa', $data);
         return $query;
@@ -127,7 +109,6 @@ class MahasiswaModel extends CI_Model {
         $this->db->where('pesan_dosen.katlap_id !=',3);
         $this->db->order_by('pesdos_id','desc');
         $query= $this->db->get();
-
         return $query->result();
     }
 
@@ -145,10 +126,6 @@ class MahasiswaModel extends CI_Model {
             $query = $this->db->get();
             return $query->result_array();
         }
-
-
-
-
 }
 
 ?>

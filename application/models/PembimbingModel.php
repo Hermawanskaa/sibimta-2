@@ -5,34 +5,29 @@ class PembimbingModel extends CI_Model {
     public function __construct(){
         parent::__construct();
     }
-    public function add_pembimbing($data)
-    {
+    public function add_pembimbing($data){
         $this->db->insert('bagidosen', $data);
         return true;
     }
 
-    public function get_all_pembimbing()
-    {
+    public function get_all_pembimbing(){
         $query = $this->db->get('bagidosen');
         return $result = $query->result_array();
     }
 
-    public function get_pembimbing_by_id($id)
-    {
+    public function get_pembimbing_by_id($id){
         $query = $this->db->join('dosen', 'dosen.dsn_id = bagidosen.dsn_id')
                           ->get_where('bagidosen', array('bagi_id' => $id));
         return $result = $query->row_array();
     }
 
-    public function edit_pembimbing($data, $id)
-    {
+    public function edit_pembimbing($data, $id){
         $this->db->where('bagi_id', $id);
         $this->db->update('bagidosen', $data);
         return true;
     }
 
-    public function total_rows()
-    {
+    public function total_rows(){
         if(!empty($_GET['keyword'])) {
             return $this->db->from('bagidosen')
                 ->like('bagi_id', $_GET['keyword'])
@@ -47,8 +42,7 @@ class PembimbingModel extends CI_Model {
         }
     }
 
-    public function index_limit($limit, $start = 0)
-    {
+    public function index_limit($limit, $start = 0){
         if(!empty($_GET['keyword'])) {
             return $this->db->select('*')
                 ->from('bagidosen')
@@ -114,15 +108,10 @@ class PembimbingModel extends CI_Model {
         }
     }
 
-    public function add_mhs_pembimbing($data)
-    {
+    public function add_mhs_pembimbing($data){
         $this->db->insert('pembimbing', $data);
         return true;
     }
-
-
-
-
 
 }
 

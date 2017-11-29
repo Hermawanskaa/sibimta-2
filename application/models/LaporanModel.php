@@ -6,33 +6,28 @@ class LaporanModel extends CI_Model {
         parent::__construct();
     }
 
-    public function add_laporan($data)
-    {
+    public function add_laporan($data){
         $this->db->insert('laporan', $data);
         return true;
     }
 
-    public function get_all_laporan()
-    {
+    public function get_all_laporan(){
         $query = $this->db->get('laporan');
         return $result = $query->result_array();
     }
 
-    public function get_laporan_by_id($id)
-    {
+    public function get_laporan_by_id($id){
         $query = $this->db->get_where('laporan', array('katlap_id' => $id));
         return $result = $query->row_array();
     }
 
-    public function edit_laporan($data, $id)
-    {
+    public function edit_laporan($data, $id){
         $this->db->where('katlap_id', $id);
         $this->db->update('laporan', $data);
         return true;
     }
 
-    public function total_rows()
-    {
+    public function total_rows(){
         if(!empty($_GET['keyword'])) {
             return $this->db->from('laporan')
                 ->like('katlap_id', $_GET['keyword'])
@@ -45,8 +40,7 @@ class LaporanModel extends CI_Model {
         }
     }
 
-    public function index_limit($limit, $start = 0)
-    {
+    public function index_limit($limit, $start = 0){
         if(!empty($_GET['keyword'])) {
             return $this->db->select('*')
                 ->from('laporan')
@@ -62,7 +56,6 @@ class LaporanModel extends CI_Model {
                 ->limit($limit, $start)
                 ->get()->result();
         }
-
     }
 
     public function get_laporan(){

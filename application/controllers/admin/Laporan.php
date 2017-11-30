@@ -105,6 +105,16 @@ class Laporan extends CI_Controller {
             $this->load->view('admin/laporan/laporan_list', $this->data);
         }
     }
+
+
+    function kat(){
+        $id = $this->session->userdata('id');
+        $no = $this->uri->segment(3);
+
+        $data['bab'] = $this->LaporanModel->get_bab($no);
+        $data['cek'] = $this->m_paper->get_last_bimbingankategori($id, $no);
+        $this->load->view('mahasiswa/laporan',$data);
+    }
 }
 
 ?>

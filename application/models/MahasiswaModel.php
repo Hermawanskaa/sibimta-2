@@ -29,6 +29,13 @@ class MahasiswaModel extends CI_Model {
         return true;
     }
 
+    public function cek_password($password, $id){
+        $this->db->where('mhs_id', $id);
+        $this->db->where('mhs_password', $password);
+        $query = $this->db->get('mahasiswa');
+        return $query->num_rows();
+    }
+
     public function total_rows(){
         if(!empty($_GET['keyword'])) {
             return $this->db->from('mahasiswa')
@@ -49,6 +56,7 @@ class MahasiswaModel extends CI_Model {
         }
     }
 
+    //paginasi mahasiswa
     public function index_limit($limit, $start = 0){
         if(!empty($_GET['keyword'])) {
             return $this->db->select('*')
@@ -73,6 +81,7 @@ class MahasiswaModel extends CI_Model {
                 ->get()->result();
         }
     }
+
     //drop down form input judul
     public function get_mahasiswa(){
         $this->db->select('*')
@@ -103,8 +112,8 @@ class MahasiswaModel extends CI_Model {
     function all_pesan($id){
         $this->db->select('*');
         $this->db->from('pesan_dosen');
-        $this->db->join('dosen','pesan_dosen.dsn_id = dosen.dsn_id');
-        $this->db->join('kategori_laporan','pesan_dosen.katlap_id = kategori_laporan.katlap_id');
+        $this->db->join('dosen','dosen.dsn_id = pesan_dosen.dsn_id');
+        $this->db->join('kategori_laporan','kategori_laporan.katlap_id = pesan_dosen.katlap_id');
         $this->db->where('mhs_id',$id);
         $this->db->where('pesan_dosen.katlap_id !=',3);
         $this->db->order_by('pesdos_id','desc');
@@ -112,6 +121,17 @@ class MahasiswaModel extends CI_Model {
         return $query->result();
     }
 
+    //detail pesan dosen
+    public function detail_pesan($id, $katid){
+        $query = $this->db->select('*');
+        $this->db->from('pesan_dosen');
+        $this->db->where('pesdos_id',$id);
+        $this->db->set('pesdos_status',$katid);
+        $this->db->update('pesan_dosen');
+        return $query;
+    }
+
+    //dashboard mahasiswa
     function dospem_dashboard($id){
             $this->db->select('a.*, b.*, c.*, d.*, GROUP_CONCAT(c.dsn_nama ORDER BY a.pemb_id) as dosen');
             $this->db->from('pembimbing a');
@@ -126,6 +146,8 @@ class MahasiswaModel extends CI_Model {
             $query = $this->db->get();
             return $query->result_array();
         }
+
+
 }
 
 ?>

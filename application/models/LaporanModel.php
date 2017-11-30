@@ -65,6 +65,51 @@ class LaporanModel extends CI_Model {
         $query = $this->db->get();
         return $query;
     }
+
+    //get bab
+    function get_bab($no){
+        $this->db->select('*');
+        $this->db->from('kategori_laporan');
+        $this->db->where('katlap_id', $no);
+        $query = $this->db->get();
+        return $query;
+    }
+
+    function get_last_bimbingan($mhs){
+        $this->db->select('*');
+        $this->db->from('bimbingan');
+        $this->db->join('laporan','bimbingan.lap_id = laporan.lap_id');
+        $this->db->where('laporan.mhs_id', $mhs);
+        $this->db->order_by('bimb_id','desc');
+        $this->db->limit('1');
+        $query= $this->db->get();
+        return $query;
+    }
+
+    function get_last_bimbingankategori($mhs, $no){
+        $this->db->select('*');
+        $this->db->from('bimbingan');
+        $this->db->join('laporan','bimbingan.lap_id = laporan.lap_id');
+        $this->db->where('laporan.mhs_id', $mhs);
+        $this->db->where('laporan.katlap_id', $no);
+        $this->db->order_by('bimb_id','desc');
+        $this->db->limit('1');
+        $query= $this->db->get();
+        return $query;
+    }
+
+    /*PROPOSAL USER*/
+    function get_all_proposal($id, $no){
+        $this->db->select('*');
+        $this->db->from('bimbingan a');
+        $this->db->join('laporan b', 'a.lap_id = b.lap_id');
+        $this->db->join('kategori_laporan c', 'b.katlap_id = c.katlap_id');
+        $this->db->where('b.mhs_id', $id);
+        $this->db->where('b.katlap_id', $no);
+        $this->db->order_by('a.bimb_id','desc');
+        $query = $this->db->get();
+        return $query;
+    }
 }
 
 ?>

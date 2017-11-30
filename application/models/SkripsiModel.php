@@ -83,5 +83,10 @@ class SkripsiModel extends CI_Model
         return true;
     }
 
+    public function add_dashboard($data){
+        $this->db->insert('dashboard', $data);
+        return true;
+    }
+
 }
 ?>

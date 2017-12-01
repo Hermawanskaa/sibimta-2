@@ -1,13 +1,10 @@
 <header>
     <body class="skin-blue">
-    <!-- Site wrapper -->
     <div class="wrapper">
 
         <header class="main-header">
             <a href="<?php echo base_url('mahasiswa') ;?>" class="logo"><b>SIBIMTA</b>UMY</a>
-            <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top" role="navigation">
-                <!-- Sidebar toggle button-->
                 <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
@@ -16,24 +13,56 @@
                 </a>
                 <div class="navbar-custom-menu">
                     <ul class="nav navbar-nav">
+                        <?php
+                        $id = $this->session->userdata('id');
+                        $this->db->select('COUNT(*) as jumlah');
+                        $this->db->from(' pesan_dosen');
+                        $this->db->where('mhs_id',$id);
+                        $this->db->where('pesdos_status',0);
+                        $this->db->where('pesan_dosen.katlap_id !=',3);
+                        $query= $this->db->get();
+
+                        if($query->num_rows() <> 0){
+                            $data = $query->row();
+                            $kode = intval($data->jumlah);
+                        }else{ $kode = 0; } ?>
+
                         <li class="dropdown messages-menu">
+                            <?php
+                            $this->db->select('*');
+                            $this->db->from('pesan_dosen');
+                            $this->db->join('dosen','pesan_dosen.dsn_id = dosen.dsn_id');
+                            $this->db->join('kategori_laporan','pesan_dosen.katlap_id = kategori_laporan.katlap_id');
+                            $this->db->where('mhs_id',$id);
+                            $this->db->where('pesdos_status',0);
+                            $this->db->where('pesan_dosen.katlap_id !=',3);
+                            $this->db->order_by('pesdos_id','desc');
+                            $query= $this->db->get();
+                            foreach($query->result() as $key=>$p){ ?>
+
                             <a href="" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-envelope-o"></i>
-                                <span class="label label-success">4</span>
+                                <span class="label label-success"><?php echo $kode; ?></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li class="header">You have 4 messages</li>
+                                <li class="header" id="load_row">Kamu memiliki <?php echo $kode; ?> pesan</li>
                                 <li>
                                     <ul class="menu">
                                         <li>
-                                            <a href="#">
+                                            <a href="<?php echo site_url('mahasiswa/detail_pesan/'.$p->katlap_id.'/'.$p->pesdos_id);?>">
                                                 <div class="pull-left">
-                                                    <img src="<?php echo base_url().'uploads/foto/mahasiswa/'.$this->session->userdata('foto');;?>" class="img-circle" alt="User Image"/>
+                                                    <img src="<?php echo base_url().'uploads/foto/dosen/'.$p->dsn_foto;?>" class="img-circle" alt="User Image"/>
                                                 </div>
+                                                <h4>
+                                                    <?php echo $p->dsn_nama; ?>
+                                                    <small><i class="fa fa-clock-o"></i> <?php echo $p->pesdos_tanggal; ?></small>
+                                                </h4>
+                                                <p>Menjawab <i>'Pengajuan <?php echo "<b>".$p->katlap_kategori."</b>'</i>&nbsp;&nbsp;&nbsp;Anda</font> "; ?></p>
                                             </a>
-                                        </li>
+                                        </li><!-- end message -->
                                     </ul>
                                 </li>
+                                <?php } ?>
                                 <li class="footer"><a href="<?php echo base_url('mahasiswa/pesan/') ;?>">See All Messages</a></li>
                             </ul>
                         </li>
@@ -49,7 +78,6 @@
                                     <p><?= ucwords($this->session->userdata('nama')); ?>
                                     </p>
                                 </li>
-
                                 <li class="user-footer">
                                     <div class="pull-left">
                                         <a href="<?php echo base_url('profil') ?>" class="btn btn-default btn-flat">Profile</a>

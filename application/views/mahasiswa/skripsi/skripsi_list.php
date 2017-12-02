@@ -3,19 +3,19 @@ $this->load->view('template/head');
 ?>
 
 <?php
-$this->load->view('admin/template/topbar');
-$this->load->view('admin/template/sidebar');
+$this->load->view('mahasiswa/template/topbar');
+$this->load->view('mahasiswa/template/sidebar');
 ?>
 
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        Admin Dashboard        <small>List All Skripsi</small>
+        Mahasiswa Dashboard        <small>Status Skripsi</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class=""><a  href="">Admin</a></li>
-        <li class="active">List All Skripsi</li>
+        <li class=""><a  href="">Mahasiswa</a></li>
+        <li class="active">Status Skripsi</li>
     </ol>
 </section>
 
@@ -29,6 +29,8 @@ $this->load->view('admin/template/sidebar');
                         <div class="widget-user-header">
                             <div class="row col-md-4 pull-right">
                                 <a class="btn btn-primary" id="btn_add_new" href="<?= base_url('admin/skripsi/add_skripsi'); ?>"><i class="fa fa-plus-square-o" ></i> Add Data</a>
+                                <a class="btn btn-primary" href=""><i class="fa fa-file-excel-o" ></i> Export XLS</a>
+                                <a class="btn btn-primary" href=""><i class="fa fa-file-pdf-o" ></i> Export PDF</a>
                             </div>
                             <div class="col-sm-1">
                                 <img class="img-circle" src="<?php echo base_url('/assets/img/list.png') ?>" alt="User Avatar">
@@ -36,7 +38,7 @@ $this->load->view('admin/template/sidebar');
                                 </div>
                             </div>
                             <h3 class="widget-user-username">Skripsi</h3>
-                            <h5 class="widget-user-desc">List All Skripsi <i href="" class="label bg-yellow">items</i></h5>
+                            <h5 class="widget-user-desc">Status Skripsi <i href="" class="label bg-yellow">items</i></h5>
                             <hr>
                         </div>
                     </div>
@@ -85,35 +87,31 @@ $this->load->view('admin/template/sidebar');
                             <table id="list_skripsi" class="table table-bordered table-striped dataTable">
                                 <thead>
                                 <th>No</th>
-                                <th>Mahasiswa</th>
                                 <th>Judul</th>
-                                <th>Deskripsi</th>
-                                <th>Judul (English)</th>
-                                <th>Status</th>
                                 <th>Tanggal</th>
-                                <th>Action</th>
+                                <th>Status</th>
+                                <th>Detail</th>
+                                <th>ACTION</th>
                                 </tr>
                                 </thead>
                                 <tbody id="tbody_skripsi">
-                                <?php if (!empty($skripsi_data)) : ?>
-                                <?php foreach($skripsi_data as $row): ?>
-                                    <td><?php echo $row->jdl_id; ?></td>
-                                    <td><?php echo $row->mhs_nama; ?></td>
-                                    <td><?php echo $row->jdl_judul; ?></td>
-                                    <td><?php echo $row->jdl_deskripsi; ?></td>
-                                    <td><?php echo $row->jdl_enjudul; ?></td>
-                                    <td><?php echo $row->jdl_status; ?></td>
-                                    <td><?php echo $row->jdl_tanggal; ?></td>
-                                    <td width="200">
-                                        <a href="<?= base_url('admin/skripsi/view_skripsi/'.$row->jdl_id); ?>" class="label-default bg">
-                                            <i class="fa fa-newspaper-o"></i> View</a>
-                                        <a href="<?= base_url('admin/skripsi/edit_skripsi/'.$row->jdl_id); ?>" class="label-default">
-                                            <i class="fa fa-edit "></i> Update</a>
-                                        <a href="<?= base_url('admin/skripsi/delete_skripsi/'.$row->jdl_id); ?>" class="label-default remove-data">
-                                            <i class="fa fa-close"></i> Remove</a>
-                                    </td>
-                                    </tr>
-                                <?php endforeach; ?>
+                                <?php $no=1; foreach($skripsi->result() as $row){
+                                $tahun_jdl = substr($row->jdl_tanggal,0,4);
+                                $bulan_jdl = substr($row->jdl_tanggal,5,2);
+                                $tanggal_jdl = substr($row->jdl_tanggal,8,2);
+                                ?>
+                                <td><?php echo $no++;?> </td>
+                                <td><?php echo $row->jdl_judul; ?></td>
+                                <td><?= $tanggal_jdl.'-'.$bulan_jdl.'-'.$tahun_jdl;?></td>
+                                <td><?php echo $row->jdl_status; ?></td>
+                                <td><a href="<?php echo site_url('skripsi/detail_skripsi/'.$row->jdl_id);?>" />
+                                    <button class="btn btn-xs btn-flat btn-info btnbrg-edit" type="submit" name="detail" value="Detail">
+                                        Detail
+                                    </button>
+                                    </a>
+                                </td>
+                                <?php } ?>
+                                </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -123,11 +121,9 @@ $this->load->view('admin/template/sidebar');
                     <div class="row">
                         <div class="col-md-12">
                             <div class="text-right" >
-                                <?= $pagination; ?>
                             </div>
                         </div>
                     </div>
-                    <?php endif; ?>
                 </div>
             </div>
         </div>

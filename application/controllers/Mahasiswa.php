@@ -61,7 +61,7 @@ class Mahasiswa extends CI_Controller {
                 $result = $this->MahasiswaModel->update_password($userId, $data);
 
         if($result){
-            $this->session->set_flashdata('msg', 'Password Berhasil terupdate !<br> silahkan logout dan login dengan password yang baru');
+            $this->session->set_flashdata('msg', 'Password Berhasil terupdate!<br>silahkan logout dan login dengan password yang baru!');
             redirect(base_url('mahasiswa/update_password'));
                  }
             }
@@ -94,7 +94,7 @@ class Mahasiswa extends CI_Controller {
         $this->validation();
         $id = $this->uri->segment(4);
         $katid = $this->uri->segment(3);
-        $this->MahasiswaModel->detail_pesan($id, $katid);
+        $this->MahasiswaModel->detail_pesan($id);
 
         if($katid == 4 || $katid == 5 || $katid == 6 || $katid == 7 || $katid == 8 || $katid == 9){
             redirect('laporan/kategori/'.$katid);

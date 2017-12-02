@@ -88,5 +88,25 @@ class SkripsiModel extends CI_Model
         return true;
     }
 
+    //untuk mahasiswa
+    public function detail_skripsi($id){
+        $this->db->select('*');
+        $this->db->from('judul');
+        $this->db->join('mahasiswa','mahasiswa.mhs_id = judul.mhs_id');
+        $this->db->where('judul.mhs_id',$id);
+        $query = $this->db->get();
+        return $query;
+    }
+
+    public function get_skripsi($id){
+        $this->db->select('*');
+        $this->db->from('judul');
+        $this->db->join('mahasiswa','mahasiswa.mhs_id = judul.mhs_id');
+        $this->db->where('judul.mhs_id',$id);
+        $this->db->order_by('jdl_id','asc');
+        $query = $this->db->get();
+        return $query;
+    }
+
 }
 ?>

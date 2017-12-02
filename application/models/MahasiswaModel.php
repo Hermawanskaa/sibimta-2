@@ -122,11 +122,11 @@ class MahasiswaModel extends CI_Model {
     }
 
     //detail pesan dosen
-    public function detail_pesan($id, $katid){
+    public function detail_pesan($id){
         $query = $this->db->select('*');
         $this->db->from('pesan_dosen');
         $this->db->where('pesdos_id',$id);
-        $this->db->set('pesdos_status',$katid);
+        $this->db->set('pesdos_status',1);
         $this->db->update('pesan_dosen');
         return $query;
     }

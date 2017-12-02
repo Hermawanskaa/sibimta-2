@@ -41,49 +41,47 @@ $this->load->view('mahasiswa/template/sidebar');
 
                 <!-- Main Content -->
                 <div class="form-horizontal" name="form_Admin" id="form_Admin" >
-
+                <?php foreach ($user as $row) ;?>
                     <div class="form-group ">
                         <label for="content" class="col-sm-2 control-label">Mahasiswa</label>
                         <div class="col-sm-8">
-                            <?= $user['mhs_id']; ?>
+                            <?php echo $row->mhs_id; ?>
                         </div>
                     </div>
 
                     <div class="form-group ">
                         <label for="content" class="col-sm-2 control-label">Judul</label>
                         <div class="col-sm-8">
-                            <?= $user['jdl_judul']; ?>
+                            <?php echo $row->jdl_judul; ?>
                         </div>
                     </div>
 
                     <div class="form-group ">
                         <label for="content" class="col-sm-2 control-label">Deskripsi</label>
                         <div class="col-sm-8">
-                            <?= $user['jdl_deskripsi']; ?>
+                            <?php echo $row->jdl_deskripsi; ?>
                         </div>
                     </div>
                     <div class="form-group ">
                         <label for="content" class="col-sm-2 control-label">Judul (English)</label>
                         <div class="col-sm-8">
-                            <?= $user['jdl_enjudul']; ?>
+                            <?php echo $row->jdl_enjudul; ?>
                         </div>
                     </div>
                     <div class="form-group ">
                         <label for="content" class="col-sm-2 control-label">Status</label>
                         <div class="col-sm-8">
-                            <?= $user['jdl_status']; ?>
+                            <?php echo $row->jdl_status; ?>
                         </div>
                     </div>
                     <div class="form-group ">
                         <label for="content" class="col-sm-2 control-label">Tanggal Mulai</label>
                         <div class="col-sm-8">
-                            <?= $user['jdl_tanggal']; ?>
+                            <?php echo $row->jdl_tanggal; ?>
                         </div>
                     </div>
                     <br>
                     <br>
-
-                    <!-- Footer Content -->
                     <div class="box box-footer">
                         <a class="btn btn-primary" href="<?= base_url('mahasiswa'); ?>"><i class="fa fa-undo"" data-stype='back'></i> Back</a>
                     </div>

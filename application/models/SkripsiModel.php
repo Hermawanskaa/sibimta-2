@@ -95,15 +95,13 @@ class SkripsiModel extends CI_Model
         $this->db->join('mahasiswa','mahasiswa.mhs_id = judul.mhs_id');
         $this->db->where('judul.mhs_id',$id);
         $query = $this->db->get();
-        return $query;
+        return $query->result();
     }
 
-    public function get_skripsi($id){
+    function get_bab($no){
         $this->db->select('*');
-        $this->db->from('judul');
-        $this->db->join('mahasiswa','mahasiswa.mhs_id = judul.mhs_id');
-        $this->db->where('judul.mhs_id',$id);
-        $this->db->order_by('jdl_id','asc');
+        $this->db->from('kategori_laporan');
+        $this->db->where('katlap_id', $no);
         $query = $this->db->get();
         return $query;
     }

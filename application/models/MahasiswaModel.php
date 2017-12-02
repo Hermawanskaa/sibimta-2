@@ -121,7 +121,7 @@ class MahasiswaModel extends CI_Model {
         return $query->result();
     }
 
-    //detail pesan dosen
+    //detail pesan dari dosen
     public function detail_pesan($id){
         $query = $this->db->select('*');
         $this->db->from('pesan_dosen');

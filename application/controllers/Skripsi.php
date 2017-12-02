@@ -27,16 +27,15 @@ class Skripsi extends CI_Controller
                 redirect('mahasiswa');
             }
         }
-        $data['error']		='';
         $id 				= $this->session->userdata('id');
-        $data['skripsi']	= $this->SkripsiModel->get_skripsi($id);
+        $data['skripsi']	= $this->SkripsiModel->detail_skripsi($id);
         $this->load->view('mahasiswa/skripsi/skripsi_list', $data);
     }
 
     function detail_skripsi(){
         $id = $this->session->userdata('id');
         $data['user'] = $this->SkripsiModel->detail_skripsi($id);
-        $this->load->view('mahasiswa/skripsi_view',$data);
+        $this->load->view('mahasiswa/skripsi/skripsi_view',$data);
     }
 
 

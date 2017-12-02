@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class LaporanModel extends CI_Model {
+class BimbinganModel extends CI_Model {
     public function __construct(){
         parent::__construct();
     }
@@ -98,8 +98,8 @@ class LaporanModel extends CI_Model {
         return $query;
     }
 
-    /*PROPOSAL USER*/
-    function get_all_proposal($id, $no){
+
+    function get_all_bimbingan($id, $no){
         $this->db->select('*');
         $this->db->from('bimbingan a');
         $this->db->join('laporan b', 'a.lap_id = b.lap_id');

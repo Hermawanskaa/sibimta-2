@@ -97,7 +97,7 @@ class Mahasiswa extends CI_Controller {
         $this->MahasiswaModel->detail_pesan($id);
 
         if($katid == 4 || $katid == 5 || $katid == 6 || $katid == 7 || $katid == 8 || $katid == 9){
-            redirect('laporan/kategori/'.$katid);
+            redirect('bimbingan/kategori/'.$katid);
         }else{
             redirect('skripsi');
         }

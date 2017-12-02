@@ -100,12 +100,15 @@ class Skripsi extends CI_Controller {
                         'pembimbing1'=> '0',
                         'pembimbing2'=> '1',
                     );
+
                     //tambah dosen pembimbing pertama
                     $data3 = $this->security->xss_clean($data3);
                     $this->PembimbingModel->add_mhs_pembimbing($data3);
+
                     //tambah dosen pembimbing kedua
                     $data4 = $this->security->xss_clean($data4);
                     $this->PembimbingModel->add_mhs_pembimbing($data4);
+
                     //kirim pesan ke dosen pembimbing pertama
                     $katlap_id = 0;
                     $data5 = array(

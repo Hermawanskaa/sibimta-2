@@ -21,12 +21,6 @@ class BimbinganModel extends CI_Model {
         return $result = $query->row_array();
     }
 
-    public function edit_laporan($data, $id){
-        $this->db->where('katlap_id', $id);
-        $this->db->update('laporan', $data);
-        return true;
-    }
-
     public function total_rows(){
         if(!empty($_GET['keyword'])) {
             return $this->db->from('laporan')
@@ -66,7 +60,7 @@ class BimbinganModel extends CI_Model {
         return $query;
     }
 
-    //get bab
+    //mengambil katlap_id dari tabel kategori laporan
     function get_bab($no){
         $this->db->select('*');
         $this->db->from('kategori_laporan');
@@ -97,8 +91,7 @@ class BimbinganModel extends CI_Model {
         $query= $this->db->get();
         return $query;
     }
-
-
+    //mengambil semua data bimbingan mahasiswa
     function get_all_bimbingan($id, $no){
         $this->db->select('*');
         $this->db->from('bimbingan a');
@@ -108,6 +101,42 @@ class BimbinganModel extends CI_Model {
         $this->db->where('b.katlap_id', $no);
         $this->db->order_by('a.bimb_id','desc');
         $query = $this->db->get();
+        return $query;
+    }
+
+    function edit_laporan($id, $isi){
+        $nama_file = preg_replace("/^(.+?);.*$/", "\\1", $isi);
+        $data = array(
+            'lap_file'=>$isi,
+            'lap_tanggal'=>date('Y-m-d'),
+            'lap_waktu'=>date('H:i:s')
+        );
+        $this->db->where('lap_id',$id);
+        $this->db->update('laporan',$data);
+    }
+
+    function add_proposal($kat_id, $isi){
+        $data = array(
+            'lap_id'=>null,
+            'mhs_id'=>$this->session->userdata('id'),
+            'katlap_id'=>$kat_id,
+            'lap_file'=>$isi,
+            'lap_tanggal'=>date('Y-m-d'),
+            'lap_waktu'=>date('H:i:s'),
+        );
+        $this->db->insert('laporan',$data);
+    }
+
+    function get_last(){
+        $id	= $this->session->userdata('id');
+        $this->db->select('lap_id, laporan.mhs_id');
+        $this->db->from('laporan');
+        $this->db->join('mahasiswa','laporan.mhs_id=mahasiswa.mhs_id');
+        $this->db->where('laporan.mhs_id', $id);
+        $this->db->order_by('lap_id','desc');
+        $this->db->limit('1');
+        $query= $this->db->get();
+
         return $query;
     }
 }

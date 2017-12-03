@@ -61,7 +61,7 @@ $this->load->view('mahasiswa/template/sidebar');
                 </div>
                 <?php elseif($nama[$i]!='judul'):?>
                 <div class='box box-primary'>
-                    <a href='<?php echo site_url($link[$i].'/kategori/'.$doc[$i]);?>'>
+                    <a href='<?php echo site_url($link[$i].'/kategori_bimbingan/'.$doc[$i]);?>'>
                         <div class=' text-center'>
                             <h4><img src='<?=base_url();?>assets/img/journal.png' width='5%'>&nbsp;&nbsp;<?php echo strtoupper($nama[$i]);?></h4>
                         </div>

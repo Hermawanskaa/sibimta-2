@@ -80,6 +80,25 @@ class DosenModel extends CI_Model
         $this->db->insert('pesan_mahasiswa', $data);
         return true;
     }
+
+    function pesantodospem($mhsid, $kat_lap_id){
+        $this->db->select('dsn_id');
+        $this->db->where('mhs_id',$mhsid);
+        $query = $this->db->get('pembimbing');
+
+        foreach($query->result() as $p){
+            $data = array(
+                'mhs_id'=>$mhsid,
+                'dsn_id'=>$p->dsn_id,
+                'katlap_id'=>$kat_lap_id,
+                'pesmas_pesan'=>null,
+                'pesmas_status'=>0,
+                'pesmas_tanggal'=>date('Y-m-d'),
+                'waktu'=>date('H:i:s')
+            );
+            $this->db->insert('pesan_mahasiswa',$data);
+        }
+    }
 }
 
 ?>

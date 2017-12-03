@@ -34,8 +34,6 @@ $this->load->view('mahasiswa/template/sidebar');
             <?php endif; ?>
         </div>
 
-        <div class="box">
-            <div class="box-header with-border">
         <?php
         $stat		= 'AKTIF';
         $nama		= array('judul','BAB 1', 'BAB 2', 'BAB 3', 'BAB 4', 'BAB 5', 'BAB 6');
@@ -51,16 +49,16 @@ $this->load->view('mahasiswa/template/sidebar');
         $bab5		= $row->bab5;
         $bab6		= $row->bab6;
         $data		= array($judul, $bab1, $bab2, $bab3, $bab4, $bab5, $bab6);
-        echo "<div class='col-sm-4'>"; ?>
+        echo "<div class='col-md-4'>"; ?>
 
-            <?php if($data[$i] != $stat): ?>
-                <div class='box box-primary' style='background-color:#E0E0ED'>
+        <?php if($data[$i] != $stat): ?>
+                <div class='box' style='background-color:#E0E0ED'>
                     <div class=' text-center'>
                         <h4> <img src='<?=base_url();?>assets/img/lock.png' width='5%'>&nbsp;&nbsp;<?php echo strtoupper($nama[$i]);?></h4>
                     </div>
                 </div>
                 <?php elseif($nama[$i]!='judul'):?>
-                <div class='box box-primary'>
+                <div class='box'>
                     <a href='<?php echo site_url($link[$i].'/kategori_bimbingan/'.$doc[$i]);?>'>
                         <div class=' text-center'>
                             <h4><img src='<?=base_url();?>assets/img/journal.png' width='5%'>&nbsp;&nbsp;<?php echo strtoupper($nama[$i]);?></h4>
@@ -68,7 +66,7 @@ $this->load->view('mahasiswa/template/sidebar');
                     </a>
                 </div>
                 <?php else:?>
-                <div class='box box-primary'>
+                <div class='box'>
                     <a href='<?php echo site_url($link[$i]);?>'>
                         <div class=' text-center'>
                             <h4><img src='<?=base_url();?>assets/img/journal.png' width='5%'>&nbsp;&nbsp;<?php echo strtoupper($nama[$i]);?></h4>

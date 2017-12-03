@@ -57,6 +57,40 @@ class Bimbingan extends CI_Controller
         }
     }
 
+    function edit_bimbingan(){
+        $no = $this->uri->segment(3);
+        if(empty($no) || $no==11 || $no==12 || $no==13 || $no==14 || $no==15 || $no==16){
+            $data['bab']=$this->m_paper->get_bab($no);
+            $data['file']='';
+            $id = $this->uri->segment(4);
+            //mengambil data proposal berdasarkan lap_id
+            $data['bimbingan'] = $this->BimbinganModel->get_lap($id);
+            $this->load->view('mahasiswa/bimbingan/bimbingan_add',$data);
+
+        }else{
+            redirect('mahasiswa');
+        }
+    }
+
+    function get_file_laporan(){
+        $no = $this->uri->segment(3);
+        if(empty($no) || $no==4 || $no==5 || $no==6 || $no==7 || $no==8 || $no==9){
+            $this->BimbinganModel->download_laporan();
+        }else{
+            redirect('mahasiswa');
+        }
+    }
+
+    function get_file_revisi(){
+        $no = $this->uri->segment(3);
+        if(empty($no) || $no==4 || $no==5 || $no==6 || $no==7 || $no==8 || $no==9){
+            $this->BimbinganModel->download_revisi();
+        }else{
+            redirect('mahasiswa');
+        }
+    }
+
+
     function submit(){
         $no = $this->uri->segment(3);
         $data['bab'] = $this->SkripsiModel->get_bab($no);
@@ -72,7 +106,6 @@ class Bimbingan extends CI_Controller
                 $kat_id = $link[$i];
             }
         }
-
         if (empty($_FILES['userfile']['name'])){
             $data['file'] = '';
             $data['pfile'] = 'Tidak ada File yang dipilih';
@@ -105,30 +138,29 @@ class Bimbingan extends CI_Controller
                 if ($id!=0){
                     $this->BimbinganModel->edit_laporan($id,$isi);
                 }else{
-                    $this->BimbinganModel->add_proposal($kat_id,  $isi);
-                    $this->add_bimb();
+                    $this->BimbinganModel->add_laporan($kat_id,  $isi);
+                    $this->add_bimbingan_data();
                 }
                 $kat_lap_id = $kat_id;
                 $mhsid = $this->session->userdata('id');
                 $this->DosenModel->pesantodospem($mhsid, $kat_lap_id);
-                redirect('bimbingan/kategori/'.$no);
+                redirect('bimbingan/kategori_bimbingan/'.$no);
             }
         }
     }
 
-    function add_bimb(){
+    function add_bimbingan_data(){
         $nim = $this->BimbinganModel->get_last();
         foreach($nim->result() as $key){
-            $lapid		= $key->lap_id;
+            $data['id'] = $key->lap_id;
             $mhsid		= $key->mhs_id;
         }
-
+        //cek last status
         $cek = $this->BimbinganModel->get_last_bimbingan($mhsid);
         if($cek->num_rows <>0){
             foreach($cek->result() as $row){
                 $data['status'] = $row->bimb_status;
             }
-
             if($data['status'] == 'REVISI - P1'){
                 $default_b = 'Menunggu Diperiksa Dosen P1';
             }else{
@@ -140,21 +172,24 @@ class Bimbingan extends CI_Controller
         $default_f = 'Tak ada File Revisi';
         $default_k = 'Tak ada Komentar';
 
-        $tdata = array(
-            'bimb_id'=>null,
-            //'lap_id'=>$data['id'],
-            'lap_id'=>$lapid,
-            'dsn_id'=>5,
-            'bimb_file'=>$default_f,
-            'bimb_catatan'=>$default_k,
-            'bimb_tgl'=>date('Y-m-d'),
-            'bimb_wkt'=>date('H:i:s'),
-            'bimb_status'=>$default_b,
-            'dosbing1'=>1,
-            'dosbing2'=>0
-        );
-        $this->db->insert('bimbingan',$tdata);
-
+        $id = $this->session->userdata('id');
+        $p1 = '1';
+        $result = $this->BimbinganModel->check_pembimbing($id, $p1);
+        foreach ($result->result() as $dsn){
+            $tdata = array(
+                'bimb_id'=>null,
+                'lap_id'=>$data['id'],
+                'dsn_id'=>$dsn->dsn_id,
+                'bimb_file'=>$default_f,
+                'bimb_catatan'=>$default_k,
+                'bimb_tgl'=>date('Y-m-d'),
+                'bimb_wkt'=>date('H:i:s'),
+                'bimb_status'=>$default_b,
+                'dosbing1'=>1,
+                'dosbing2'=>0,
+            );
+            $this->db->insert('bimbingan',$tdata);
+        }
 
     }
 }

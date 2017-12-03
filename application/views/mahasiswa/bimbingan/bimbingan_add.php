@@ -47,27 +47,28 @@ foreach($bab->result() as $row){}
                     </div>
                 </div>
 
-                <?php
-                if($this->uri->segment(2)=="add"){
+                <?php if($this->uri->segment(2)=="add_bimbingan"){
                     $files = $file;
-                    $act = "add";
+                    $act = "add_bimbingan";
                     $lap_id = "";
-                }elseif($this->uri->segment(2)=="edit"){
-                    foreach($proposal->result() as $key){
+                }
+                elseif($this->uri->segment(2)=="edit_bimbingan"){
+                    foreach($bimbingan->result() as $key){
                         $files = $key->lap_file;
                     }
-                    $act = "edit";
+                    $act = "edit_bimbingan";
                     $lap_id = $this->uri->segment(3);
-                }elseif($this->uri->segment(2)=="submit"){
+                }
+                elseif($this->uri->segment(2)=="submit"){
                     $files = $file;
                     $act = $link;
                     $lap_id = $id;
-                }
-                ?>
+                } ?>
+
                 <form role="form" class="form-horizontal" enctype="multipart/form-data" action="<?=site_url('bimbingan/submit/'.$this->uri->segment(3));?>" method="POST" >
-                    <input type="hidden" id="lap_id" name="lap_id" value="<?php echo $lap_id; ?>" />
-                    <input type="hidden" id="act" name="act" value="<?php echo $act; ?>" />
                     <div class="form-group">
+                        <input type="hidden" id="lap_id" name="lap_id" value="<?php echo $lap_id; ?>" />
+                        <input type="hidden" id="act" name="act" value="<?php echo $act; ?>" />
                         <label class="col-sm-2 control-label">File</label>
                         <div class="col-sm-8">
                             <input name="userfile" id="fileInput" class="form-control" type="file" />
@@ -82,7 +83,7 @@ foreach($bab->result() as $row){}
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-8">
                             <button class="btn btn-primary btn-square">Simpan</button>
-                            <a href="<?=site_url('bimbingan/kategori/'.$this->uri->segment(3));?>" class="btn btn-warning btn-square">Kembali</a>
+                            <a href="<?=site_url('bimbingan/kategori_bimbingan/'.$this->uri->segment(3));?>" class="btn btn-warning btn-square">Kembali</a>
                         </div>
                     </div>
                 </form>

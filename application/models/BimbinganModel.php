@@ -6,11 +6,6 @@ class BimbinganModel extends CI_Model {
         parent::__construct();
     }
 
-    public function add_laporan($data){
-        $this->db->insert('laporan', $data);
-        return true;
-    }
-
     public function get_all_laporan(){
         $query = $this->db->get('laporan');
         return $result = $query->result_array();
@@ -91,6 +86,7 @@ class BimbinganModel extends CI_Model {
         $query= $this->db->get();
         return $query;
     }
+
     //mengambil semua data bimbingan mahasiswa
     function get_all_bimbingan($id, $no){
         $this->db->select('*');
@@ -115,7 +111,7 @@ class BimbinganModel extends CI_Model {
         $this->db->update('laporan',$data);
     }
 
-    function add_proposal($kat_id, $isi){
+    function add_laporan($kat_id, $isi){
         $data = array(
             'lap_id'=>null,
             'mhs_id'=>$this->session->userdata('id'),
@@ -139,6 +135,81 @@ class BimbinganModel extends CI_Model {
 
         return $query;
     }
+
+    //sebelum insert pembimbing
+    public function check_pembimbing($id, $p1){
+        $this->db->select('*');
+        $this->db->from('pembimbing');
+        $this->db->where('mhs_id',$id);
+        $this->db->where('pembimbing1',$p1);
+        $query = $this->db->get();
+        return $query;
+    }
+
+    //mengambil data proposal
+    function get_lap($id){
+        $this->db->where('lap_id',$id);
+        $q=$this->db->get('laporan');
+        return $q;
+    }
+
+    //download file laporan bimbingan
+    function download_laporan() {
+        $ur = $this->uri->segment(1);
+        if($ur =="dosen"){
+            $requested_file = $this->uri->segment(5);
+        }else if($ur=="bimbingan"){
+            $requested_file = $this->uri->segment(4);
+        }else{
+            $requested_file = $this->uri->segment(3);
+        }
+        $this->load->helper('download');
+        $this->db->select('*');
+        $this->db->where('lap_file',$requested_file);
+        $query =  $this->db->get('laporan');
+        foreach ($query->result() as $row)
+        {
+            if($ur=='admin'){
+                if($this->uri->segment(4)=='2'){
+                    $file_data = file_get_contents(base_url()."assets/upload/proposal/".$row->lap_file);
+                }else{
+                    $file_data = file_get_contents(base_url()."assets/upload/laporan/".$row->lap_file);
+                }
+            }else if($ur=="bimbingan"){
+                $file_data = file_get_contents(base_url()."assets/upload/laporan/".$row->lap_file);
+            }else{
+                $file_data = file_get_contents(base_url()."assets/upload/proposal/".$row->lap_file);
+            }
+            $file_name = $row->lap_file;
+        }
+        force_download($file_name, $file_data);
+    }
+
+    //download file laporan
+    function download_revisi() {
+        $ur = $this->uri->segment(1);
+        if($ur =="admin"){
+            $requested_file = $this->uri->segment(5);
+        }else if($ur=="laporan"){
+            $requested_file = $this->uri->segment(4);
+        }else{
+            $requested_file = $this->uri->segment(3);
+        }
+
+        $this->load->helper('download');
+        $this->db->select('*');
+        $this->db->where('bimb_file',$requested_file);
+        $query =  $this->db->get('bimbingan');
+        foreach ($query->result() as $row)
+        {
+            $file_data = file_get_contents(base_url()."assets/upload/bimbingan/".$row->bimb_file);
+            $file_name = $row->bimb_file;
+        }
+        force_download($file_name, $file_data);
+    }
+
+
+
 }
 
 ?>

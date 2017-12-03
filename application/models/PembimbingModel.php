@@ -109,9 +109,11 @@ class PembimbingModel extends CI_Model {
     }
 
     public function add_mhs_pembimbing($data){
-        $this->db->insert('pembimbing', $data);
-        return true;
-    }
+    $this->db->insert('pembimbing', $data);
+    return true;
+}
+
+
 
 }
 

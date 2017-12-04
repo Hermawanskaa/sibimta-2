@@ -29,8 +29,6 @@ $this->load->view('admin/template/sidebar');
                         <div class="widget-user-header">
                             <div class="row col-md-4 pull-right">
                                 <a class="btn btn-primary" id="btn_add_new" href="<?= base_url('admin/skripsi/add_skripsi'); ?>"><i class="fa fa-plus-square-o" ></i> Add Data</a>
-                                <a class="btn btn-primary" href=""><i class="fa fa-file-excel-o" ></i> Export XLS</a>
-                                <a class="btn btn-primary" href=""><i class="fa fa-file-pdf-o" ></i> Export PDF</a>
                             </div>
                             <div class="col-sm-1">
                                 <img class="img-circle" src="<?php echo base_url('/assets/img/list.png') ?>" alt="User Avatar">

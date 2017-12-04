@@ -68,6 +68,21 @@ class Skripsi extends CI_Controller {
                 $data2 = $this->security->xss_clean($data2);
                 $result2 = $this->MahasiswaModel->update_password($userId, $data2);
 
+                //menambah status dashboard
+                $data6 = array(
+                    'mhs_id' => $this->input->post('mhs_id'),
+                    'judul'  => 'AKTIF',
+                    'bab1'   => 'AKTIF',
+                    'bab2'   => 'NON AKTIF',
+                    'bab3'   => 'NON AKTIF',
+                    'bab4'   => 'NON AKTIF',
+                    'bab5'   => 'NON AKTIF',
+                    'bab6'   => 'NON AKTIF',
+                );
+                $data6 = $this->security->xss_clean($data6);
+                $this->SkripsiModel->add_dashboard($data6);
+
+                //cek pembimbing
                 $mhs_id = $this->input->post('mhs_id');
                 $check_dospem = $this->input->post('pembimbing1');
 
@@ -85,12 +100,15 @@ class Skripsi extends CI_Controller {
                         'pembimbing1'=> '0',
                         'pembimbing2'=> '1',
                     );
+
                     //tambah dosen pembimbing pertama
                     $data3 = $this->security->xss_clean($data3);
                     $this->PembimbingModel->add_mhs_pembimbing($data3);
+
                     //tambah dosen pembimbing kedua
                     $data4 = $this->security->xss_clean($data4);
                     $this->PembimbingModel->add_mhs_pembimbing($data4);
+
                     //kirim pesan ke dosen pembimbing pertama
                     $katlap_id = 0;
                     $data5 = array(
@@ -156,9 +174,9 @@ class Skripsi extends CI_Controller {
                     'jdl_status' => $this->input->post('jdl_status'),
                     'jdl_tanggal' => $this->input->post('jdl_tanggal'),
                 );
-
                 $data = $this->security->xss_clean($data);
                 $result = $this->SkripsiModel->add_skripsi($data);
+
                 $data2 = array(
                     'mhs_password' => $this->input->post('konfirmasi_password')
                 );
@@ -166,9 +184,9 @@ class Skripsi extends CI_Controller {
                 $data2 = $this->security->xss_clean($data2);
                 $result2 = $this->MahasiswaModel->update_password($userId, $data2);
 
+                //Add Dosen Pembimbing
                 $mhs_id = $this->input->post('mhs_id');
                 $check_dospem = $this->input->post('pembimbing1');
-
                 $result3 = $this->PembimbingModel->check_pembimbing($mhs_id, $check_dospem);
                 if($result3 == FALSE){
                     $data3 = array(
@@ -186,9 +204,11 @@ class Skripsi extends CI_Controller {
                     //tambah dosen pembimbing pertama
                     $data3 = $this->security->xss_clean($data3);
                     $this->PembimbingModel->add_mhs_pembimbing($data3);
+
                     //tambah dosen pembimbing kedua
                     $data4 = $this->security->xss_clean($data4);
                     $this->PembimbingModel->add_mhs_pembimbing($data4);
+
                     //kirim pesan ke dosen pembimbing pertama
                     $katlap_id = 0;
                     $data5 = array(

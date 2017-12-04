@@ -1,4 +1,4 @@
-<?php 
+<?php
 $this->load->view('template/head');
 ?>
 
@@ -19,85 +19,85 @@ $this->load->view('mahasiswa/template/sidebar');
    </ol>
 </section>
 
-<!-- Header Content -->
 <section class="content">
-   <div class="row" >
-      <div class="col-md-12">
-         <div class="box box-info box-header with-border">
-            <div class="box-body ">
-            <div class="row">
-         <div class="widget-user-header">
-        <div class="col-sm-1">
-            <img class="img-circle" src="assets/img/view.png" alt="User Avatar">
-            <div class="col-sm-1">
-        </div>
-        </div>
-        <h3 class="widget-user-username">Profil</h3>
-        <h5 class="widget-user-desc">Detail Profil</h5>
-        <hr>
-  </div>
-</div>
-</div>
+    <div class="row" >
+        <div class="col-md-12">
+            <div class="box box-info box-header with-border">
+                <div class="box-body ">
+                    <div class="col-md-3">
+                        <div class="text-center">
+                            <img src="<?php echo base_url().'uploads/foto/mahasiswa/'.$this->session->userdata('foto');;?>" class="avatar img-circle" alt="avatar">
+                        </div>
+                    </div>
 
-<!-- Main Content -->              
-                  <div class="form-horizontal" name="form_Profil" id="form_Profil" >
-                   
-                    <div class="form-group ">
-                        <label for="content" class="col-sm-2 control-label">NIP</label>
-                        <div class="col-sm-8">
+                    <!-- edit form column -->
+                    <div class="widget-user-header">
+                        <div class="row col-md-4 pull-right">
+
                         </div>
+                        <div class="col-sm-1">
+                            <img class="img-circle" src="<?php echo base_url('/assets/img/list.png') ?>" alt="User Avatar">
+                        </div>
+                        <h3 class="widget-user-username col-sm-3"><strong>PERSONAL INFO</strong></h3>
                     </div>
-                                         
-                    <div class="form-group ">
-                        <label for="content" class="col-sm-2 control-label">Pass</label>
-                        <div class="col-sm-8">
+
+                    <div class="col-md-9 personal-info">
+                        <hr>
+                        <div class="form-horizontal" name="form_Admin" id="form_Admin" >
+                            <div class="form-group ">
+                                <label for="content" class="col-sm-2 control-label">NIM</label>
+                                <div class="col-sm-8"><?php echo $mahasiswa['mhs_nim']; ?></div>
+                            </div>
+                            <hr>
+                            <div class="form-group ">
+                                <label for="content" class="col-sm-2 control-label">Nama</label>
+                                <div class="col-sm-8"><?php echo $mahasiswa['mhs_nama']; ?></div>
+                            </div>
+                            <hr>
+                            <div class="form-group ">
+                                <label for="content" class="col-sm-2 control-label">Nomor Hp</label>
+                                <div class="col-sm-8"><?php echo $mahasiswa['mhs_nohp']; ?></div>
+                            </div>
+                            <hr>
+                            <div class="form-group ">
+                                <label for="content" class="col-sm-2 control-label">Alamat</label>
+                                <div class="col-sm-8"><?php echo $mahasiswa['mhs_alamat']; ?></div>
+                            </div>
+                            <hr>
+                            <div class="form-group ">
+                                <label for="content" class="col-sm-2 control-label">Email</label>
+                                <div class="col-sm-8"><?php echo $mahasiswa['mhs_email']; ?></div>
+                            </div>
+                            <hr>
+                            <div class="form-group ">
+                                <label for="content" class="col-sm-2 control-label">Angkatan</label>
+                                <div class="col-sm-8"><?php echo $mahasiswa['mhs_angkatan']; ?></div>
+                            </div>
+                            <hr>
+                            <div class="form-group ">
+                                <label for="content" class="col-sm-2 control-label">Jurusan</label>
+                                <div class="col-sm-8"><?php echo $mahasiswa['jrs_nama']; ?></div>
+                            </div>
+                            <hr>
+                            <br>
+                            <br>
+                            <!-- Footer Content -->
+                            <div class="box box-footer">
+                                <a class="btn btn-primary" href="<?= base_url('mahasiswa'); ?>"><i class="fa fa-undo center-block"" data-stype='back'></i> Back to Dashboard</a>
+                                <a class="btn btn-primary" href="<?= base_url('mahasiswa/update_password'); ?>"><i class="fa fa-file-pdf-o" ></i> Change Password</a>
+                            </div>
                         </div>
-                    </div>
-                                         
-                    <div class="form-group ">
-                        <label for="content" class="col-sm-2 control-label">Nama</label>
-                        <div class="col-sm-8">
-                        </div>
-                    </div>
-                                         
-                    <div class="form-group ">
-                        <label for="content" class="col-sm-2 control-label">Alamat</label>
-                        <div class="col-sm-8">
-                        </div>
-                    </div>
-                                         
-                    <div class="form-group ">
-                        <label for="content" class="col-sm-2 control-label">No Hp</label>
-                        <div class="col-sm-8">
-                        </div>
-                    </div>
-                    <div class="form-group ">
-                        <label for="content" class="col-sm-2 control-label">Email</label>
-                        <div class="col-sm-8">
-                        </div>
-                    </div>
-                    <br>
-                    <br>
-                    
-<!-- Footer Content -->
-                    <div class="box box-footer">
-                            <button class="btn btn-primary" id="btn_save" data-stype='back'>
-                            <i class="ion ion-ios-list-outline" ></i> Edit Profil
-                            </button>
-                            <button class="btn btn-default col" id="btn_cancel">
-                            <i class="fa fa-undo"></i> Go Profil List
-                            </button> 
-                        </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
+                </div>
+
+
+
+        </div>
+    </div>
+    </div>
 </section>
 <!-- /.content -->
 
 
-<?php 
+<?php
 $this->load->view('template/js');
 ?>

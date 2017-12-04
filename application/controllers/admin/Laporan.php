@@ -5,7 +5,7 @@ class Laporan extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->model('LaporanModel');
+        $this->load->model('BimbinganModel');
     }
 
     public function validation(){
@@ -23,7 +23,7 @@ class Laporan extends CI_Controller {
         $this->validation();
         if ($this->input->post('submit')) {
 
-            $this->form_validation->set_rules('katlap_kategori', 'Kategori Laporan', 'trim|required');
+            $this->form_validation->set_rules('katlap_kategori', 'Kategori Bimbingan', 'trim|required');
             $this->form_validation->set_message('required', '%s tidak boleh kosong');
 
             if ($this->form_validation->run() == FALSE) {
@@ -50,7 +50,7 @@ class Laporan extends CI_Controller {
         $this->validation();
         if ($this->input->post('submit')) {
             $this->form_validation->set_rules('katlap_id', 'katlap_id', 'trim');
-            $this->form_validation->set_rules('katlap_kategori', 'Kategori Laporan', 'trim|required');
+            $this->form_validation->set_rules('katlap_kategori', 'Kategori Bimbingan', 'trim|required');
 
             if ($this->form_validation->run() == FALSE) {
                 $data['user'] = $this->LaporanModel->get_laporan_by_id($id);
@@ -104,6 +104,16 @@ class Laporan extends CI_Controller {
             $this->data['pesan_warning'] = 'Data Not Found';
             $this->load->view('admin/laporan/laporan_list', $this->data);
         }
+    }
+
+
+    function kat(){
+        $id = $this->session->userdata('id');
+        $no = $this->uri->segment(3);
+
+        $data['bab'] = $this->LaporanModel->get_bab($no);
+        $data['cek'] = $this->m_paper->get_last_bimbingankategori($id, $no);
+        $this->load->view('mahasiswa/laporan',$data);
     }
 }
 

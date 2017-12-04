@@ -31,16 +31,17 @@ class Dosen extends CI_Controller {
     }
 
     //detail pesan dari mahasiswa
-    public function detail_pesan(){
-        $this->validation();
+    function detail_pesan(){
         $id = $this->uri->segment(4);
-        $katid = $this->uri->segment(3);
-        $this->DosenModel->detail_pesan($id);
+        $mhsid = $this->uri->segment(5);
+        $katid = $this->uri->segment(6);
 
-        if($katid == 4 || $katid == 5 || $katid == 6 || $katid == 7 || $katid == 8 || $katid == 9){
-            redirect('bimbingan/kategori/'.$katid);
-        }else{
-            redirect('skripsi');
+        $this->db->where('pesmas_id',$id);
+        $this->db->set('pesmas_status',1);
+        $this->db->update('pesan_mahasiswa');
+
+        if($katid!=0){
+            redirect('bimbingan/detail_bimbingan/'.$mhsid);
         }
     }
 

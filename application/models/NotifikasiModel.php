@@ -7,8 +7,7 @@ class NotifikasiModel extends CI_Model
         parent::__construct();
     }
 
-    function notifikasi_count(){
-        $id = $this->session->userdata('id');
+    function notifikasi_count($id){
         $this->db->select('COUNT(*) as jumlah');
         $this->db->from(' pesan_dosen');
         $this->db->where('mhs_id',$id);

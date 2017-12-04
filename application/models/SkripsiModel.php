@@ -98,6 +98,7 @@ class SkripsiModel extends CI_Model
         return $query->result();
     }
 
+    //mengambil kategori laporan berdasarkan katlap_id
     function get_bab($no){
         $this->db->select('*');
         $this->db->from('kategori_laporan');

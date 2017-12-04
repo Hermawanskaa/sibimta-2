@@ -191,5 +191,8 @@ class Bimbingan extends CI_Controller
             $this->db->insert('bimbingan',$tdata);
         }
     }
+
+    //bimbingan untuk dosen
+
 }
 ?>

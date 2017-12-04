@@ -64,6 +64,7 @@ class BimbinganModel extends CI_Model {
         return $query;
     }
 
+    //mengambil data terakhir bimbingan
     function get_last_bimbingan($mhs){
         $this->db->select('*');
         $this->db->from('bimbingan');
@@ -75,6 +76,7 @@ class BimbinganModel extends CI_Model {
         return $query;
     }
 
+    //mengambil data terakhir bimbingan berdasarkan katlap_id
     function get_last_bimbingankategori($mhs, $no){
         $this->db->select('*');
         $this->db->from('bimbingan');
@@ -100,6 +102,7 @@ class BimbinganModel extends CI_Model {
         return $query;
     }
 
+    //edit laporan bimbingan
     function edit_laporan($id, $isi){
         $nama_file = preg_replace("/^(.+?);.*$/", "\\1", $isi);
         $data = array(
@@ -111,6 +114,7 @@ class BimbinganModel extends CI_Model {
         $this->db->update('laporan',$data);
     }
 
+    //menambahkan laporan bimbingan
     function add_laporan($kat_id, $isi){
         $data = array(
             'lap_id'=>null,
@@ -171,7 +175,7 @@ class BimbinganModel extends CI_Model {
         {
             if($ur=='admin'){
                 if($this->uri->segment(4)=='2'){
-                    $file_data = file_get_contents(base_url()."assets/upload/proposal/".$row->lap_file);
+                    $file_data = file_get_contents(base_url()."uploads/proposal/".$row->lap_file);
                 }else{
                     $file_data = file_get_contents(base_url()."assets/upload/laporan/".$row->lap_file);
                 }
@@ -190,7 +194,7 @@ class BimbinganModel extends CI_Model {
         $ur = $this->uri->segment(1);
         if($ur =="admin"){
             $requested_file = $this->uri->segment(5);
-        }else if($ur=="laporan"){
+        }else if($ur=="bimbingan"){
             $requested_file = $this->uri->segment(4);
         }else{
             $requested_file = $this->uri->segment(3);
@@ -207,6 +211,8 @@ class BimbinganModel extends CI_Model {
         }
         force_download($file_name, $file_data);
     }
+
+
 
 
 

@@ -1,5 +1,5 @@
 <header>
-    <body class="skin-blue">
+    <body class="skin-yellow">
     <div class="wrapper">
 
         <header class="main-header">
@@ -56,7 +56,7 @@
                                                     <?php echo $notif->mhs_nama; ?>
                                                     <small><i class="fa fa-clock-o"></i> <?php echo $notif->pesmas_tanggal; ?></small>
                                                 </h4>
-                                                <p>Menjawab <i>'Pengajuan <?php echo "<b>".$notif->katlap_kategori."</b>'</i>&nbsp;&nbsp;&nbsp;Anda</font> "; ?></p>
+                                                <p>Mengajukan <i>&nbsp<?php echo "<b>".$notif->katlap_kategori."</b></i></font> "; ?></p>
                                             </a>
                                         </li>
                                         <?php endforeach; ?>

@@ -10,7 +10,8 @@ class Notifikasi extends CI_Controller
     }
 
     public function index(){
-        $data['notifikasi_count'] = $this->NotifikasiModel->notifikasi_count();
+        $id = $this->session->userdata('id');
+        $data = $this->NotifikasiModel->notifikasi_count($id);
         $data['notifikasi'] = $this->NotifikasiModel->get_notifikasi();
         $this->load->view('mahasiswa/template/topbar',$data);
     }

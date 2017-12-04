@@ -8,6 +8,7 @@ class Mahasiswa extends CI_Controller {
         parent::__construct();
         $this->load->model('AdminModel');
         $this->load->model('MahasiswaModel');
+        $this->load->model('NotifikasiModel');
     }
 
     public function validation()
@@ -72,6 +73,7 @@ class Mahasiswa extends CI_Controller {
     }
 
     public function cek_password($old_password){
+        $this->validation();
         $user_id = $this->session->userdata('id');
         $result = $this->MahasiswaModel->cek_password($old_password,$user_id);
         if($result ==0){

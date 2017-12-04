@@ -27,6 +27,7 @@ class PembimbingModel extends CI_Model {
         return true;
     }
 
+    // untuk paginasi search
     public function total_rows(){
         if(!empty($_GET['keyword'])) {
             return $this->db->from('bagidosen')
@@ -42,6 +43,7 @@ class PembimbingModel extends CI_Model {
         }
     }
 
+    //paginasi search
     public function index_limit($limit, $start = 0){
         if(!empty($_GET['keyword'])) {
             return $this->db->select('*')
@@ -64,6 +66,7 @@ class PembimbingModel extends CI_Model {
         }
     }
 
+    //mengambil semua data dosen
     function get_bagidosen(){
         $this->db->select('*');
         $this->db->from('bagidosen');
@@ -72,6 +75,7 @@ class PembimbingModel extends CI_Model {
         return $query;
     }
 
+    //mengambil data dosen pembimbing 1
     public function get_bagidosen1(){
         $this->db->select('*');
         $this->db->from('bagidosen');
@@ -81,6 +85,7 @@ class PembimbingModel extends CI_Model {
         return $result;
     }
 
+    //mengambil data dosen pembimbing 2
     public function get_bagidosen2(){
         $this->db->select('*');
         $this->db->from('bagidosen');
@@ -90,6 +95,7 @@ class PembimbingModel extends CI_Model {
         return $result;
     }
 
+    //check pembimbing jika sudah ada maka data akan di update
     public function check_pembimbing($data, $id){
         $this->db->select('mhs_id');
         $this->db->from('pembimbing');

@@ -34,19 +34,20 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li class="header" id="load_row">Kamu memiliki <?php echo $jumlah; ?> pesan</li>
-                                <?php
-                                $this->db->select('*');
-                                $this->db->from('pesan_dosen');
-                                $this->db->join('dosen','pesan_dosen.dsn_id = dosen.dsn_id');
-                                $this->db->join('kategori_laporan','pesan_dosen.katlap_id = kategori_laporan.katlap_id');
-                                $this->db->where('mhs_id',$id);
-                                $this->db->where('pesdos_status',0);
-                                $this->db->where('pesan_dosen.katlap_id !=',3);
-                                $this->db->order_by('pesdos_id','desc');
-                                $query= $this->db->get();
-                                foreach($query->result() as $key=>$notif): ?>
+
                                 <li>
                                     <ul class="menu">
+                                        <?php
+                                        $this->db->select('*');
+                                        $this->db->from('pesan_dosen');
+                                        $this->db->join('dosen','pesan_dosen.dsn_id = dosen.dsn_id');
+                                        $this->db->join('kategori_laporan','pesan_dosen.katlap_id = kategori_laporan.katlap_id');
+                                        $this->db->where('mhs_id',$id);
+                                        $this->db->where('pesdos_status',0);
+                                        $this->db->where('pesan_dosen.katlap_id !=',3);
+                                        $this->db->order_by('pesdos_id','desc');
+                                        $query= $this->db->get();
+                                        foreach($query->result() as $key=>$notif): ?>
                                         <li>
                                             <a href="<?php echo site_url('mahasiswa/detail_pesan/'.$notif->katlap_id.'/'.$notif->pesdos_id);?>">
                                                 <div class="pull-left">
@@ -59,10 +60,9 @@
                                                 <p>Menjawab <i>'Pengajuan <?php echo "<b>".$notif->katlap_kategori."</b>'</i>&nbsp;&nbsp;&nbsp;Anda</font> "; ?></p>
                                             </a>
                                         </li>
+                                        <?php endforeach; ?>
                                     </ul>
-                                    <?php endforeach; ?>
                                 </li>
-
                                 <li class="footer"><a href="<?php echo base_url('mahasiswa/pesan/') ;?>">See All Messages</a></li>
                             </ul>
                         </li>
@@ -80,7 +80,7 @@
                                 </li>
                                 <li class="user-footer">
                                     <div class="pull-left">
-                                        <a href="<?php echo base_url('profil') ?>" class="btn btn-default btn-flat">Profile</a>
+                                        <a href="<?php echo base_url('profil/profil_mahasiswa') ?>" class="btn btn-default btn-flat">Profile</a>
                                     </div>
                                     <div class="pull-right">
                                         <a href="<?php echo base_url('auth/login/logout') ?>" class="btn btn-default btn-flat">Sign out</a>

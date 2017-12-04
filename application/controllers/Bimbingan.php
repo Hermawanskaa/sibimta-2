@@ -59,7 +59,7 @@ class Bimbingan extends CI_Controller
 
     function edit_bimbingan(){
         $no = $this->uri->segment(3);
-        if(empty($no) || $no==11 || $no==12 || $no==13 || $no==14 || $no==15 || $no==16){
+        if(empty($no) || $no==4 || $no==5 || $no==6 || $no==7 || $no==8 || $no==9){
             $data['bab']=$this->m_paper->get_bab($no);
             $data['file']='';
             $id = $this->uri->segment(4);
@@ -190,7 +190,6 @@ class Bimbingan extends CI_Controller
             );
             $this->db->insert('bimbingan',$tdata);
         }
-
     }
 }
 ?>

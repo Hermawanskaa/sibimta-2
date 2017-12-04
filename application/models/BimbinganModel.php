@@ -175,14 +175,10 @@ class BimbinganModel extends CI_Model {
         {
             if($ur=='admin'){
                 if($this->uri->segment(4)=='2'){
-                    $file_data = file_get_contents(base_url()."uploads/proposal/".$row->lap_file);
-                }else{
-                    $file_data = file_get_contents(base_url()."assets/upload/laporan/".$row->lap_file);
+                    $file_data = file_get_contents(base_url()."uploads/laporan/".$row->lap_file);
                 }
             }else if($ur=="bimbingan"){
-                $file_data = file_get_contents(base_url()."assets/upload/laporan/".$row->lap_file);
-            }else{
-                $file_data = file_get_contents(base_url()."assets/upload/proposal/".$row->lap_file);
+                $file_data = file_get_contents(base_url()."uploads/laporan/".$row->lap_file);
             }
             $file_name = $row->lap_file;
         }

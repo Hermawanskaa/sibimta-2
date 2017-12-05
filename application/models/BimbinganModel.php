@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class BimbinganModel extends CI_Model {
+class BimbinganModel extends CI_Model{
     public function __construct(){
         parent::__construct();
     }
@@ -17,7 +17,7 @@ class BimbinganModel extends CI_Model {
     }
 
     public function total_rows(){
-        if(!empty($_GET['keyword'])) {
+        if(!empty($_GET['keyword'])){
             return $this->db->from('laporan')
                 ->like('katlap_id', $_GET['keyword'])
                 ->or_like('katlap_kategori', $_GET['keyword'])
@@ -136,7 +136,6 @@ class BimbinganModel extends CI_Model {
         $this->db->order_by('lap_id','desc');
         $this->db->limit('1');
         $query= $this->db->get();
-
         return $query;
     }
 
@@ -153,14 +152,14 @@ class BimbinganModel extends CI_Model {
     //mengambil data proposal
     function get_lap($id){
         $this->db->where('lap_id',$id);
-        $q=$this->db->get('laporan');
-        return $q;
+        $query = $this->db->get('laporan');
+        return $query;
     }
 
     //download file laporan bimbingan
-    function download_laporan() {
+    function download_laporan(){
         $ur = $this->uri->segment(1);
-        if($ur =="dosen"){
+        if($ur =='admin'){
             $requested_file = $this->uri->segment(5);
         }else if($ur=="bimbingan"){
             $requested_file = $this->uri->segment(4);
@@ -202,10 +201,147 @@ class BimbinganModel extends CI_Model {
         $query =  $this->db->get('bimbingan');
         foreach ($query->result() as $row)
         {
-            $file_data = file_get_contents(base_url()."assets/upload/bimbingan/".$row->bimb_file);
+            $file_data = file_get_contents(base_url()."uploads/bimbingan/".$row->bimb_file);
             $file_name = $row->bimb_file;
         }
         force_download($file_name, $file_data);
+    }
+
+    //mengambil dan join tabel bimbingan
+    function getall_laporan_dospem($mhsid){
+        $id	= $this->session->userdata('id');
+        $this->db->select('*');
+        $this->db->from('bimbingan a');
+        $this->db->join('laporan b', 'a.lap_id = b.lap_id');
+        $this->db->join('kategori_laporan c', 'b.katlap_id = c.katlap_id');
+        $this->db->join('pembimbing d', 'b.mhs_id = d.mhs_id');
+        $this->db->join('mahasiswa e', 'b.mhs_id = e.mhs_id');
+        $this->db->where('b.mhs_id', $mhsid);
+        $this->db->where('d.dsn_id', $id);
+        $this->db->group_by('b.lap_id');
+        $this->db->order_by('a.bimb_id','desc');
+        $query = $this->db->get();
+        return $query;
+    }
+
+    //mengambil data bimbingan berdasarkan lap_id
+    function get_bimbingan($id){
+        $this->db->select('*');
+        $this->db->from('bimbingan a');
+        $this->db->join('laporan b', 'a.lap_id = b.lap_id');
+        $this->db->join('kategori_laporan c', 'b.katlap_id = c.katlap_id');
+        $this->db->where('b.lap_id', $id);
+        $query = $this->db->get();
+        return $query;
+    }
+
+    function update_bimbingan($file){
+        $pgw		= $this->session->userdata('id');
+        $id			= $this->input->post('bimid', TRUE);
+        $lapid		= $this->input->post('lapid', TRUE);
+        $mhs		= $this->input->post('mhs', TRUE);
+        $katlap		= $this->input->post('katlap', TRUE);
+        $koment		= $this->input->post('komentar',TRUE);
+        if (empty($koment)){
+            $komentar ='Tak ada Komentar';
+        }else{
+            $komentar = $koment;
+        }
+        $stat = $this->input->post('status',TRUE);
+
+        //cek status dospem
+        $this->db->select('*');
+        $this->db->from('pembimbing');
+        $this->db->where('dsn_id',$pgw);
+        $this->db->where('mhs_id',$mhs);
+        $cek = $this->db->get();
+
+        foreach($cek->result() as $key){
+            $dos_id = $key->pemb_id;
+            $dosp1 = $key->pembimbing1;
+            $dosp2 = $key->pembimbing2;
+
+            if($dos_id % 2 == 0){
+                if($stat =="ACC"){
+                    $up_stat = 'Menunggu Diperiksa Dosen P1';
+                }else{
+                    $up_stat = 'REVISI - P2';
+                }
+            }else{
+                if($stat =="ACC"){
+                    $up_stat = $stat;
+                }else{
+                    $up_stat = 'REVISI - P1';
+                }
+            }
+            if($dosp1=='1'){
+                $dp1 = '1';
+            }else{
+                $dp1 = '0';
+            }
+
+            if($dosp2=='1'){
+                $dp2 = '1';
+            }else{
+                $dp2 = '0';
+            }
+        }
+
+        $data = array(
+            'dsn_id'=>$pgw,
+            'bimb_file'=>$file,
+            'bimb_catatan'=>$komentar,
+            'bimb_tgl'=>date('Y-m-d'),
+            'bimb_wkt'=>date('H:i:s'),
+            'bimb_status'=>$up_stat,
+            'dosbing1'=>$dp1,
+            'dosbing2'=>$dp2
+        );
+
+        $this->db->where('bimb_id',$id);
+        $this->db->update('bimbingan',$data);
+
+        if($up_stat=='ACC'){
+            $this->open_dashboard($mhs);
+        }
+    }
+
+    function open_dashboard($mhs){
+        $this->db->select('*');
+        $this->db->from('dashboard');
+        $this->db->where('mhs_id',$mhs);
+        $cek = $this->db->get();
+
+        foreach($cek->result() as $dash){
+            $judul 		= $dash->judul;
+            $bab1		= $dash->bab1;
+            $bab2		= $dash->bab2;
+            $bab3		= $dash->bab3;
+            $bab4		= $dash->bab4;
+            $bab5		= $dash->bab5;
+            $bab6		= $dash->bab6;
+        }
+
+        if($bab1=='AKTIF'){
+            $data = array('bab2'=>'AKTIF');
+        }
+        if($bab2=='AKTIF'){
+            $data = array('bab3'=>'AKTIF');
+        }
+        if($bab3=='AKTIF'){
+            $data = array('bab4'=>'AKTIF');
+        }
+        if($bab4=='AKTIF'){
+            $data = array('bab5'=>'AKTIF');
+        }
+        if($bab5=='AKTIF'){
+            $data = array('bab6'=>'AKTIF');
+        }
+        if($bab5=='AKTIF'){
+            $data = array('bab6'=>'AKTIF');
+        }
+        $this->db->where('mhs_id',$mhs);
+        $this->db->update('dashboard',$data);
     }
 
 

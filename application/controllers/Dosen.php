@@ -32,16 +32,12 @@ class Dosen extends CI_Controller {
 
     //detail pesan dari mahasiswa
     function detail_pesan(){
-        $id = $this->uri->segment(4);
-        $mhsid = $this->uri->segment(5);
-        $katid = $this->uri->segment(6);
-
-        $this->db->where('pesmas_id',$id);
-        $this->db->set('pesmas_status',1);
-        $this->db->update('pesan_mahasiswa');
-
-        if($katid!=0){
-            redirect('bimbingan/detail_bimbingan/'.$mhsid);
+        $this->validation();
+        $mhsid = $this->uri->segment(4);
+        $katid = $this->uri->segment(3);
+        $this->DosenModel->detail_pesan($mhsid);
+        if($katid!= 0){
+            redirect('admin/bimbingan/detail_bimbingan/'.$mhsid);
         }
     }
 
@@ -82,6 +78,7 @@ class Dosen extends CI_Controller {
 
     //cek password untuk dosen
     public function cek_password($old_password){
+        $this->validation();
         $user_id = $this->session->userdata('id');
         $result = $this->DosenModel->cek_password($old_password,$user_id);
         if($result ==0){

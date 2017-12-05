@@ -113,11 +113,32 @@ class PembimbingModel extends CI_Model {
             return false;
         }
     }
-
     public function add_mhs_pembimbing($data){
     $this->db->insert('pembimbing', $data);
     return true;
-}
+    }
+
+    //mengambil data pembimbing beserta judul dan mahasiswa yang dibimbing
+    function get_dosenpembimbing($mhsid){
+            $this->db->select('a.*, b.*, c.*, d.*, GROUP_CONCAT(c.dsn_nama ORDER BY a.pemb_id) as dosen');
+            $this->db->from('pembimbing a');
+            $this->db->join('mahasiswa b', 'a.mhs_id = b.mhs_id');
+            $this->db->join('dosen c', 'a.dsn_id = c.dsn_id');
+            $this->db->join('judul d', 'b.mhs_id = d.mhs_id');
+            $this->db->where('b.mhs_id', $mhsid);
+            $this->db->group_by('a.mhs_id');
+            $query = $this->db->get();
+            return $query->result_array();
+    }
+
+    public function count_dosenpembimbing(){
+        $this->db->select('COUNT(*) countrow');
+        $this->db->group_by('mhs_id');
+        $this->db->order_by('count(*)', 'desc');
+        $query = $this->db->get('pembimbing');
+        return $query->row_array();
+    }
+
 
 
 

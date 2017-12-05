@@ -1,5 +1,5 @@
 <header>
-    <body class="skin-yellow">
+    <body class="skin-green">
     <div class="wrapper">
 
         <header class="main-header">
@@ -48,7 +48,7 @@
                                         $query= $this->db->get();
                                         foreach($query->result() as $key=>$notif): ?>
                                         <li>
-                                            <a href="<?php echo site_url('dosen/detail_pesan/'.$notif->katlap_id.'/'.$notif->pesmas_id);?>">
+                                            <a href="<?php echo site_url('dosen/detail_pesan/'.$notif->pesmas_id.'/'.$notif->mhs_id.'/'.$notif->katlap_id);?>">
                                                 <div class="pull-left">
                                                     <img src="<?php echo base_url().'uploads/foto/mahasiswa/'.$notif->mhs_foto;?>" class="img-circle" alt="User Image"/>
                                                 </div>

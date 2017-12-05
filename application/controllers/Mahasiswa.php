@@ -26,6 +26,8 @@ class Mahasiswa extends CI_Controller {
     public function dashboard(){
         $this->validation();
         $id = $this->session->userdata('id');
+
+        //menampilkan dosenpembimbing
         $result = $this->MahasiswaModel->dospem_dashboard($id);
         if($result){
             foreach($result as $key=>$res){

@@ -131,7 +131,7 @@ class MahasiswaModel extends CI_Model {
         return $query;
     }
 
-    //dashboard mahasiswa
+    //info dosen pembimbing pada dashboard mahasiswa
     function dospem_dashboard($id){
             $this->db->select('a.*, b.*, c.*, d.*, GROUP_CONCAT(c.dsn_nama ORDER BY a.pemb_id) as dosen');
             $this->db->from('pembimbing a');

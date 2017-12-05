@@ -57,7 +57,7 @@
                                                     <?php echo $notif->dsn_nama; ?>
                                                     <small><i class="fa fa-clock-o"></i> <?php echo $notif->pesdos_tanggal; ?></small>
                                                 </h4>
-                                                <p>Menjawab <i>'Pengajuan <?php echo "<b>".$notif->katlap_kategori."</b>'</i>&nbsp;&nbsp;&nbsp;Anda</font> "; ?></p>
+                                                <p> <i>'Menanggapi Laporan <?php echo "<b>".$notif->katlap_kategori."</b>'</i>&nbsp;&nbsp;&nbsp;Anda</font> "; ?></p>
                                             </a>
                                         </li>
                                         <?php endforeach; ?>

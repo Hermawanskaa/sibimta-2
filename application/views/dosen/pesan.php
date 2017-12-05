@@ -10,7 +10,7 @@ $this->load->view('dosen/template/sidebar');
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        Mahasiswa Dashboard        <small>List All Pesan</small>
+        Dosen Dashboard        <small>List All Pesan</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -27,16 +27,13 @@ $this->load->view('dosen/template/sidebar');
                 <div class="box-body">
                     <div class="row">
                         <div class="widget-user-header">
-                            <div class="row col-md-2 pull-right">
-                                <a class="btn btn-primary" id="btn_add_new" href="<?= base_url('dosen/pesan/add_pesan'); ?>"><i class="fa fa-plus-square-o" ></i> Add Pesan</a>
-                            </div>
                             <div class="col-sm-1">
                                 <img class="img-circle" src="<?php echo base_url('/assets/img/list.png') ?>" alt="User Avatar">
                                 <div class="col-sm-1">
                                 </div>
                             </div>
                             <h3 class="widget-user-username">Pesan</h3>
-                            <h5 class="widget-user-desc">List All Pesan <i href="" class="label bg-yellow">items</i></h5>
+                            <h5 class="widget-user-desc">List All Pesan</h5>
                             <hr>
                         </div>
                     </div>
@@ -72,11 +69,11 @@ $this->load->view('dosen/template/sidebar');
                                 <tbody id="tbody_pesan">
                                 <?php foreach($pesan as $row): ?>
                                     <td><?php echo $row->pesmas_id?></td>
-                                    <td><?php echo "<b>".$row->mhs_nama."</b>"; ?>&nbsp; Menjawab Pesan <?php echo "<b>".$row->katlap_kategori."</b> Anda"; ?></td>
+                                    <td><?php echo "<b>".$row->mhs_nama."</b>"; ?>&nbsp;Mengajukan Laporan <?php echo "<b>".$row->katlap_kategori."</b>"; ?></td>
                                     <td><?php echo $row->pesmas_tanggal;?></td>
                                     <td><?php echo $row->waktu;?></td>
                                     <td>
-                                        <a href="<?php echo base_url('mahasiswa/detail_pesan/'.$row->katlap_id.'/'.$row->pesmas_id);?>" />
+                                        <a href="<?php echo site_url('dosen/detail_pesan/'.$row->pesmas_id.'/'.$row->mhs_id.'/'.$row->katlap_id);?>" />
                                         <button class="btn btn-xs btn-primary btn-info" type="submit" name="detail" value="Detail">Detail</button>
                                         </a>
                                     </td>

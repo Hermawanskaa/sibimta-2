@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Laporan extends CI_Controller {
 
-    public function __construct() {
+    public function __construct(){
         parent::__construct();
         $this->load->model('BimbinganModel');
     }
@@ -21,7 +21,7 @@ class Laporan extends CI_Controller {
 
     public function add_laporan(){
         $this->validation();
-        if ($this->input->post('submit')) {
+        if ($this->input->post('submit')){
 
             $this->form_validation->set_rules('katlap_kategori', 'Kategori Bimbingan', 'trim|required');
             $this->form_validation->set_message('required', '%s tidak boleh kosong');
@@ -105,7 +105,6 @@ class Laporan extends CI_Controller {
             $this->load->view('admin/laporan/laporan_list', $this->data);
         }
     }
-
 
     function kat(){
         $id = $this->session->userdata('id');

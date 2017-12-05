@@ -1,13 +1,11 @@
-<!-- Left side column. contains the sidebar -->
 <aside class="main-sidebar">
-    <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
-        <!-- Sidebar user panel -->
+        <br>
+        <div class="text-center image">
+            <img src="<?php echo base_url().'uploads/foto/mahasiswa/'.$this->session->userdata('foto');;?>" width="50%" class="img-circle" alt="User Image" />
+        </div>
         <div class="user-panel">
-            <div class="pull-left image">
-                <img src="<?php echo base_url().'uploads/foto/mahasiswa/'.$this->session->userdata('foto');;?>" class="img-circle" alt="User Image" />
-            </div>
-            <div class="pull-left info">
+            <div class="text-center info">
                 <p><?= ucwords($this->session->userdata('nama')); ?></p>
                 <p><?= ucwords($this->session->userdata('nim')); ?></p>
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
@@ -17,18 +15,29 @@
             <li class="header"><center><b>MENU MAHASISWA</b></center></li>
             <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-dashboard"></i> <span>Mahasiswa</span> <i class="fa fa-angle-left pull-right"></i>
+                    <i class="fa fa-dashboard"></i> <span>User Profile</span> <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="<?php echo site_url('Admin1/list_dosen') ?>"><i class="fa fa-circle-o"></i>Daftar Dosen</a></li>
-                    <li><a href="<?php echo site_url('Admin1/add_dosen') ?>"><i class="fa fa-circle-o"></i> Input Dosen</a></li>
+                    <li><a href="<?php echo base_url('profil/profil_mahasiswa') ?>"><i class="fa fa-circle-o"></i>Detail Mahasiswa</a></li>
+                    <li><a href="<?= base_url('mahasiswa/update_password'); ?>"><i class="fa fa-circle-o"></i> Ganti Password</a></li>
                 </ul>
             </li>
-
-
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-dashboard"></i> <span>Pesan Masuk</span> <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="<?php echo base_url('mahasiswa/pesan') ?>"><i class="fa fa-circle-o"></i>Pesan Masuk</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-dashboard"></i> <span>Tugas Akhir</span> <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="<?php echo base_url('skripsi') ?>"><i class="fa fa-circle-o"></i>Status TA</a></li>
+                </ul>
+            </li>
     </section>
-    <!-- /.sidebar -->
 </aside>
-
-<!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">

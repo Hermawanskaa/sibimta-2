@@ -87,6 +87,12 @@ class DosenModel extends CI_Model
         return true;
     }
 
+    //pesan dari dosen ke mahasiswa
+    function add_pesan_dosen($data){
+        $this->db->insert('pesan_dosen', $data);
+        return true;
+    }
+
     //pesan ke dospem setelah input skripsi mahasiswa
     function pesantodospem($mhsid, $kat_lap_id){
         $this->db->select('dsn_id');

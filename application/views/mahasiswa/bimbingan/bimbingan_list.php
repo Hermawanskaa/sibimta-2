@@ -18,12 +18,12 @@ foreach($bab->result() as $row){}
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        Admin Dashboard        <small>List BIMBINGAN</small>
+        Mahasiswa Dashboard        <small>List Bimbingan</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class=""><a  href="">BIMBINGAN</a></li>
-        <li class="active">LIST BIMBINGAN</li>
+        <li class=""><a  href="">Bimbingan</a></li>
+        <li class="active">List Bimbingan</li>
     </ol>
 </section>
 
@@ -40,16 +40,16 @@ foreach($bab->result() as $row){}
                                 <?php if($cek->num_rows() <> 0){
                                     foreach($cek->result() as $row){ $status = $row->bimb_status; }
                                         if($status == 'Menunggu Diperiksa' || $status == 'Menunggu Diperiksa Dosen P1' || $status == 'Diajukan Untuk Diperiksa Dosen P1' || $status== 'ACC'){
-                                            echo"<button class='btn btn-flat'><i class='fa fa-plus-square-o'></i> Add Data</button>";
+                                            echo"<button class='btn btn-flat'><i class='fa fa-plus-square-o'></i> Add Bimbingan</button>";
                                         }else{
                                             echo"<a href='".site_url('bimbingan/add_bimbingan/'.$no)."'>
-												<button class='btn btn-primary btn-square'>Add Data</button>
+												<button class='btn btn-primary btn-square'>Add Bimbingan</button>
 											     </a>
 											    ";
                                         }
                                     }else{
                                         echo"<a href='".site_url('bimbingan/add_bimbingan/'.$no)."'>
-                                             <button class='btn btn-primary btn-square'>Add Data</button>
+                                             <button class='btn btn-primary btn-square'>Add Bimbingan</button>
 											 </a>
 											";
                                     } ?>
@@ -59,8 +59,10 @@ foreach($bab->result() as $row){}
                                 <div class="col-sm-1">
                                 </div>
                             </div>
-                            <h3 class="widget-user-username">BIMBINGAN</h3>
-                            <h5 class="widget-user-desc">LIST BIMBINGAN</h5>
+                            <?php foreach($bab->result() as $row): ?>
+                            <h3 class="widget-user-username">BIMBINGAN - <b><?php echo $row->katlap_kategori;?></b></h3>
+                            <?php endforeach; ?>
+                            <h5 class="widget-user-desc">Riwayat Bimbingan</h5>
                             <hr>
                         </div>
                     </div>
@@ -115,7 +117,7 @@ foreach($bab->result() as $row){}
                                 <td><a href="<?php echo site_url('bimbingan/get_file_laporan/'.$no.'/'.$key->lap_file); ?>"><?= substr($key->lap_file,14,5); ?>...</a></td>
                                 <td><?= $tanggal_jdl.'-'.$bulan_jdl.'-'.$tahun_jdl;?></td>
                                 <td><?= $key->lap_waktu; ?></td>
-                                    <?php if($key->bimb_status =="Menunggu Diperiksa Dosen P1"){ ?>
+                                    <?php if($key->bimb_status =="Menunggu Diperiksa Dosen P1" || $key->bimb_status =="Menunggu Diperiksa Dosen P2" ){ ?>
                                         <td>
                                             <a href='<?php echo site_url('bimbingan/edit_bimbingan/'.$no.'/'.$key->lap_id); ?>'>
                                                 <button class="btn btn-xs btn-flat btn-success btnbrg-edit">
@@ -134,7 +136,7 @@ foreach($bab->result() as $row){}
                                     <?php if($key->bimb_file == "Tak ada File Revisi"){ ?>
                                     <td><?= $key->bimb_file; ?></td>
                                     <?php } else { ?>
-                                    <td><a href="<?php echo site_url('laporan/get_file_revisi/'.$no.'/'.$key->bimb_file); ?>"><?= substr($key->bimb_file,6,5); ?>...</a></td>
+                                    <td><a href="<?php echo site_url('bimbingan/get_file_revisi/'.$no.'/'.$key->bimb_file); ?>"><?= substr($key->bimb_file,6,5); ?>...</a></td>
                                     <?php } ?>
                                     <td><?= $key->bimb_catatan; ?></td>
                                     <td><?= $bulan_bim.'-'.$bulan_bim.'-'.$tahun_bim; ?></td>

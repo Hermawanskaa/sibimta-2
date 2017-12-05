@@ -128,7 +128,6 @@ class Pembimbing extends CI_Controller {
             $this->data['pembimbing_data'] = $confirm;
             $this->data['pagination'] = $this->pagination->create_links();
             $this->data['start'] = $start;
-
             $this->load->view('admin/pembimbing/dosbing_list', $this->data);
         } else {
             $this->data['pesan_warning'] = 'Data Not Found';

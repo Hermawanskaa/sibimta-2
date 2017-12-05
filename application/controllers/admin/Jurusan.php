@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Jurusan extends CI_Controller {
 
-    public function __construct() {
+    public function __construct(){
         parent::__construct();
         $this->load->model('JurusanModel');
         $this->load->model('FakultasModel');
@@ -12,7 +12,6 @@ class Jurusan extends CI_Controller {
     public function validation(){
         if(!$this->session->userdata('is_admin_login')){
             redirect('login','refresh');
-
         }
     }
 
@@ -76,7 +75,6 @@ class Jurusan extends CI_Controller {
                 $data['view'] = 'admin/jurusan/jurusan_edit';
                 $this->load->view('admin/jurusan/jurusan_edit', $data);
             } else {
-
                 $data = array(
                     'jrs_nama' => $this->input->post('jrs_nama'),
                     'jrs_kode' => $this->input->post('jrs_kode'),

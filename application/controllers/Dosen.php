@@ -3,21 +3,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Dosen extends CI_Controller {
 
-    public function __construct()
-    {
+    public function __construct(){
         parent::__construct();
         $this->load->model('DosenModel');
     }
 
-    public function validation()
-    {
+    public function validation(){
         if (!$this->session->userdata('is_dosen_login')) {
             redirect('login', 'refresh');
         }
     }
 
-    public function index()
-    {
+    public function index(){
         $this->validation();
         $this->load->view('dosen/dashboard');
     }
@@ -32,16 +29,13 @@ class Dosen extends CI_Controller {
 
     //detail pesan dari mahasiswa
     function detail_pesan(){
-        $id = $this->uri->segment(4);
-        $mhsid = $this->uri->segment(5);
-        $katid = $this->uri->segment(6);
-
-        $this->db->where('pesmas_id',$id);
-        $this->db->set('pesmas_status',1);
-        $this->db->update('pesan_mahasiswa');
-
-        if($katid!=0){
-            redirect('bimbingan/detail_bimbingan/'.$mhsid);
+        $this->validation();
+        $mhsid = $this->uri->segment(4);
+        $pesmasid = $this->uri->segment(3);
+        $katid = $this->uri->segment(5);
+        $this->DosenModel->detail_pesan($pesmasid);
+        if($katid!= 0){
+            redirect('admin/bimbingan/detail_bimbingan/'.$mhsid);
         }
     }
 
@@ -82,6 +76,7 @@ class Dosen extends CI_Controller {
 
     //cek password untuk dosen
     public function cek_password($old_password){
+        $this->validation();
         $user_id = $this->session->userdata('id');
         $result = $this->DosenModel->cek_password($old_password,$user_id);
         if($result ==0){
@@ -91,6 +86,6 @@ class Dosen extends CI_Controller {
             return TRUE ;
         }
     }
-
-
 }
+
+?>

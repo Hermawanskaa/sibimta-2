@@ -118,7 +118,6 @@ class Fakultas extends CI_Controller {
             $this->data['fakultas_data'] = $confirm;
             $this->data['pagination'] = $this->pagination->create_links();
             $this->data['start'] = $start;
-
             $this->load->view('admin/fakultas/fakultas_list', $this->data);
         } else {
             $this->data['pesan_warning'] = 'Data Not Found';

@@ -3,10 +3,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Dosen extends CI_Controller {
 
-    public function __construct() {
+    public function __construct(){
         parent::__construct();
         $this->load->model('DosenModel');
-
     }
 
     public function validation(){
@@ -69,7 +68,7 @@ class Dosen extends CI_Controller {
                     redirect(base_url('admin/dosen/add_dosen'));
                 }
             }
-        } else {
+        }else {
             $data['view'] = 'admin/dosen/dosen_add';
             $this->load->view('admin/dosen/dosen_add', $data);
         }
@@ -108,7 +107,6 @@ class Dosen extends CI_Controller {
                 } else {
                     $gambar = 'anonim.png';
                 }
-
                 $data = array(
                     'dsn_nama' => $this->input->post('nama'),
                     'dsn_password' => $this->input->post('password'),
@@ -117,7 +115,6 @@ class Dosen extends CI_Controller {
                     'dsn_email' => $this->input->post('email'),
                     'dsn_foto' => $gambar,
                 );
-
                 $data = $this->security->xss_clean($data);
                 $result = $this->DosenModel->edit_dosen($data, $id);
                 if ($result) {

@@ -7,7 +7,6 @@ $this->load->view('dosen/template/topbar');
 $this->load->view('dosen/template/sidebar');
 ?>
 
-<!-- Page Header -->
 <section class="content-header">
     <h1>
         Profil      <small>Detail Profil</small>
@@ -26,11 +25,10 @@ $this->load->view('dosen/template/sidebar');
                 <div class="box-body ">
                     <div class="col-md-3">
                         <div class="text-center">
-                            <img src="<?php echo base_url().'uploads/foto/dosen/'.$this->session->userdata('foto');;?>" class="avatar img-circle" alt="avatar">
+                            <img src="<?php echo base_url().'uploads/foto/dosen/'.$this->session->userdata('foto');;?>" width="50%" class="avatar img-circle" alt="avatar">
                         </div>
                     </div>
 
-                    <!-- edit form column -->
                     <div class="widget-user-header">
                         <div class="row col-md-4 pull-right">
 
@@ -74,7 +72,7 @@ $this->load->view('dosen/template/sidebar');
                             <br>
                             <!-- Footer Content -->
                             <div class="box box-footer">
-                                <a class="btn btn-primary" href="<?= base_url('dosen'); ?>"><i class="fa fa-undo center-block"" data-stype='back'></i> Back to Dashboard</a>
+                                <a class="btn btn-warning" href="<?= base_url('dosen'); ?>"><i class="fa fa-undo center-block"" data-stype='back'></i> Back to Dashboard</a>
                                 <a class="btn btn-primary" href="<?= base_url('dosen/update_password'); ?>"><i class="fa fa-file-pdf-o" ></i> Change Password</a>
                             </div>
                         </div>

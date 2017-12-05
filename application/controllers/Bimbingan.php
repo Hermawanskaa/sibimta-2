@@ -26,26 +26,20 @@ class Bimbingan extends CI_Controller
 
     function kategori_bimbingan(){
         $this->validation();
-
         //mengambil data session mahasiswa
         $id = $this->session->userdata('id');
-
         //nilai katlap kategori laporan
         $no = $this->uri->segment(3);
-
         //mengambil nilai kolom katlap_id
         $data['bab'] = $this->BimbinganModel->get_bab($no);
-
         //mengambil semua data bimbingan mahasiswa
         $data['bimbingan'] = $this->BimbinganModel->get_all_bimbingan($id, $no);
-
         //mengecek nilai kolom katlap_id di tabel bimbingan
         $data['cek'] = $this->BimbinganModel->get_last_bimbingankategori($id, $no);
         $this->load->view('mahasiswa/bimbingan/bimbingan_list',$data);
     }
 
     function add_bimbingan(){
-
         //mencocokan nilai kategori laporan pada uri segmen
         $no = $this->uri->segment(3);
         if(empty($no) || $no==4 || $no==5 || $no==6 || $no==7 || $no==8 || $no==9){
@@ -60,13 +54,12 @@ class Bimbingan extends CI_Controller
     function edit_bimbingan(){
         $no = $this->uri->segment(3);
         if(empty($no) || $no==4 || $no==5 || $no==6 || $no==7 || $no==8 || $no==9){
-            $data['bab']=$this->m_paper->get_bab($no);
+            $data['bab']=$this->BimbinganModel->get_bab($no);
             $data['file']='';
             $id = $this->uri->segment(4);
             //mengambil data proposal berdasarkan lap_id
             $data['bimbingan'] = $this->BimbinganModel->get_lap($id);
             $this->load->view('mahasiswa/bimbingan/bimbingan_add',$data);
-
         }else{
             redirect('mahasiswa');
         }
@@ -90,11 +83,9 @@ class Bimbingan extends CI_Controller
         }
     }
 
-
     function submit(){
         $no = $this->uri->segment(3);
         $data['bab'] = $this->SkripsiModel->get_bab($no);
-
         $kat 		= $this->uri->segment(1);
         $act 		= $this->input->post('act');
 
@@ -191,8 +182,5 @@ class Bimbingan extends CI_Controller
             $this->db->insert('bimbingan',$tdata);
         }
     }
-
-    //bimbingan untuk dosen
-
 }
 ?>

@@ -23,7 +23,6 @@ class Mahasiswa extends CI_Controller {
     public function add_mahasiswa(){
         $this->validation();
         $data['jurusan'] = $this->JurusanModel->get_jurusan();
-
         if ($this->input->post('submit')) {
             $this->form_validation->set_rules('nim', 'NIM', 'trim|required|is_unique[mahasiswa.mhs_nim]');
             $this->form_validation->set_rules('nama', 'NAMA', 'trim|required|xss_clean|min_length[5]');

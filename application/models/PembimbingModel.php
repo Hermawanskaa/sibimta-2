@@ -138,10 +138,6 @@ class PembimbingModel extends CI_Model {
         $query = $this->db->get('pembimbing');
         return $query->row_array();
     }
-
-
-
-
 }
 
 ?>

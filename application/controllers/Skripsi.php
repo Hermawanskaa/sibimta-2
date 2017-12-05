@@ -3,7 +3,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Skripsi extends CI_Controller
 {
-
     public function __construct(){
         parent::__construct();
         $this->load->model('MahasiswaModel');
@@ -37,7 +36,5 @@ class Skripsi extends CI_Controller
         $data['user'] = $this->SkripsiModel->detail_skripsi($id);
         $this->load->view('mahasiswa/skripsi/skripsi_view',$data);
     }
-
-
 }
 ?>

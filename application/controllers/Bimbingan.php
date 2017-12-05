@@ -60,7 +60,6 @@ class Bimbingan extends CI_Controller
             //mengambil data proposal berdasarkan lap_id
             $data['bimbingan'] = $this->BimbinganModel->get_lap($id);
             $this->load->view('mahasiswa/bimbingan/bimbingan_add',$data);
-
         }else{
             redirect('mahasiswa');
         }
@@ -87,7 +86,6 @@ class Bimbingan extends CI_Controller
     function submit(){
         $no = $this->uri->segment(3);
         $data['bab'] = $this->SkripsiModel->get_bab($no);
-
         $kat 		= $this->uri->segment(1);
         $act 		= $this->input->post('act');
 
@@ -184,6 +182,5 @@ class Bimbingan extends CI_Controller
             $this->db->insert('bimbingan',$tdata);
         }
     }
-
 }
 ?>

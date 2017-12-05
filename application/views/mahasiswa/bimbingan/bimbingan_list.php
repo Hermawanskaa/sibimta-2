@@ -59,7 +59,9 @@ foreach($bab->result() as $row){}
                                 <div class="col-sm-1">
                                 </div>
                             </div>
-                            <h3 class="widget-user-username">BIMBINGAN</h3>
+                            <?php foreach($bab->result() as $row): ?>
+                            <h3 class="widget-user-username">BIMBINGAN - <b><?php echo $row->katlap_kategori;?></b></h3>
+                            <?php endforeach; ?>
                             <h5 class="widget-user-desc">Riwayat Bimbingan</h5>
                             <hr>
                         </div>

@@ -36,7 +36,7 @@ $this->load->view('mahasiswa/template/sidebar');
 
                         </div>
                         <div class="col-sm-1">
-                            <img class="img-circle" src="<?php echo base_url('/assets/img/list.png') ?>" alt="User Avatar">
+                            <img class="img-circle" src="<?php echo base_url('/assets/img/list.png') ?>" width="50%" alt="User Avatar">
                         </div>
                         <h3 class="widget-user-username col-sm-3"><strong>PERSONAL INFO</strong></h3>
                     </div>
@@ -83,7 +83,7 @@ $this->load->view('mahasiswa/template/sidebar');
                             <br>
                             <!-- Footer Content -->
                             <div class="box box-footer">
-                                <a class="btn btn-primary" href="<?= base_url('mahasiswa'); ?>"><i class="fa fa-undo center-block"" data-stype='back'></i> Back to Dashboard</a>
+                                <a class="btn btn-warning" href="<?= base_url('mahasiswa'); ?>"><i class="fa fa-undo center-block"" data-stype='back'></i> Back to Dashboard</a>
                                 <a class="btn btn-primary" href="<?= base_url('mahasiswa/update_password'); ?>"><i class="fa fa-file-pdf-o" ></i> Change Password</a>
                             </div>
                         </div>

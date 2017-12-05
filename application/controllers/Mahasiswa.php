@@ -13,7 +13,7 @@ class Mahasiswa extends CI_Controller {
 
     public function validation()
     {
-        if (!$this->session->userdata('is_mahasiswa_login')) {
+        if (!$this->session->userdata('is_mahasiswa_login')){
             redirect('login', 'refresh');
         }
     }
@@ -26,7 +26,6 @@ class Mahasiswa extends CI_Controller {
     public function dashboard(){
         $this->validation();
         $id = $this->session->userdata('id');
-
         //menampilkan dosenpembimbing
         $result = $this->MahasiswaModel->dospem_dashboard($id);
         if($result){
@@ -101,13 +100,11 @@ class Mahasiswa extends CI_Controller {
         $this->MahasiswaModel->detail_pesan($id);
 
         if($katid == 4 || $katid == 5 || $katid == 6 || $katid == 7 || $katid == 8 || $katid == 9){
-            redirect('bimbingan/kategori/'.$katid);
+            redirect('bimbingan/kategori_bimbingan/'.$katid);
         }else{
             redirect('skripsi');
         }
     }
-
-
 }
 
 ?>

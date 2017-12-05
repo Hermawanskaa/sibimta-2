@@ -76,6 +76,18 @@ class Bimbingan extends CI_Controller
                 $this->BimbinganModel->update_bimbingan($file);
             }
         }
+        //kirim pesan dari dosen ke mahasiswa
+        $data5 = array(
+            'pesdos_id' => NULL,
+            'dsn_id'=> $this->session->userdata('id'),
+            'mhs_id'=>$this->input->post('mhs'),
+            'katlap_id'=>$this->input->post('katlap'),
+            'pesdos_pesan'=>null,
+            'pesdos_status'=>0,
+            'pesdos_tanggal'=>date('Y-m-d'),
+            'pesdos_waktu'=>date('H:i:s')
+        );
+        $this->DosenModel->add_pesan_dosen($data5);
         redirect( 'admin/bimbingan/detail_bimbingan/'.$this->input->post('mhs').'/'.$this->input->post('pengid'));
     }
 

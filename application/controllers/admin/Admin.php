@@ -113,7 +113,6 @@ class Admin extends CI_Controller
                 }else{
                     $gambar = 'anonim.png';
                 }
-
                 $data = array(
                     'adm_nama' => $this->input->post('nama'),
                     'adm_password' => $this->input->post('password'),
@@ -175,7 +174,6 @@ class Admin extends CI_Controller
             $this->load->view('admin/admin/admin_list', $this->data);
         }
     }
-
 }
 
 ?>

@@ -33,7 +33,7 @@ $this->load->view('mahasiswa/template/sidebar');
                                 </div>
                             </div>
                             <h3 class="widget-user-username">Pesan</h3>
-                            <h5 class="widget-user-desc">List All Pesan <i href="" class="label bg-yellow">items</i></h5>
+                            <h5 class="widget-user-desc">List All Pesan </h5>
                             <hr>
                         </div>
                     </div>
@@ -69,7 +69,7 @@ $this->load->view('mahasiswa/template/sidebar');
                                 <tbody id="tbody_pesan">
                                 <?php foreach($pesan as $row): ?>
                                     <td><?php echo $row->pesdos_id?></td>
-                                    <td><?php echo "<b>".$row->dsn_nama."</b>"; ?>&nbsp; Menjawab Pesan <?php echo "<b>".$row->katlap_kategori."</b> Anda"; ?></td>
+                                    <td><?php echo "<b>".$row->dsn_nama."</b>"; ?>&nbsp; Menanggapi Laporan <?php echo "<b>".$row->katlap_kategori."</b> Anda"; ?></td>
                                     <td><?php echo $row->pesdos_tanggal;?></td>
                                     <td><?php echo $row->pesdos_waktu;?></td>
                                     <td>

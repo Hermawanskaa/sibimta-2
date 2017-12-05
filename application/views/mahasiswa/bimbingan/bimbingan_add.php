@@ -80,7 +80,6 @@ foreach($bab->result() as $row){}
                         </div>
                         <div class="col-sm-offset-2 col-sm-8">
                            <p>format file yang bisa diupload : doc|docx|pdf|rtf|odt</p>
-                            <p>format nama file : Nim_NamaBAB.pdf</p>
                         </div>
                     </div>
 

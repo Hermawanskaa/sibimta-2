@@ -248,7 +248,6 @@ class BimbinganModel extends CI_Model{
             $komentar = $koment;
         }
         $stat = $this->input->post('status',TRUE);
-
         //cek status dospem
         $this->db->select('*');
         $this->db->from('pembimbing');

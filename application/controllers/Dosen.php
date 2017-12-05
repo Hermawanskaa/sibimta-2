@@ -3,21 +3,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Dosen extends CI_Controller {
 
-    public function __construct()
-    {
+    public function __construct(){
         parent::__construct();
         $this->load->model('DosenModel');
     }
 
-    public function validation()
-    {
+    public function validation(){
         if (!$this->session->userdata('is_dosen_login')) {
             redirect('login', 'refresh');
         }
     }
 
-    public function index()
-    {
+    public function index(){
         $this->validation();
         $this->load->view('dosen/dashboard');
     }
@@ -34,8 +31,9 @@ class Dosen extends CI_Controller {
     function detail_pesan(){
         $this->validation();
         $mhsid = $this->uri->segment(4);
-        $katid = $this->uri->segment(3);
-        $this->DosenModel->detail_pesan($mhsid);
+        $pesmasid = $this->uri->segment(3);
+        $katid = $this->uri->segment(5);
+        $this->DosenModel->detail_pesan($pesmasid);
         if($katid!= 0){
             redirect('admin/bimbingan/detail_bimbingan/'.$mhsid);
         }
@@ -88,6 +86,6 @@ class Dosen extends CI_Controller {
             return TRUE ;
         }
     }
-
-
 }
+
+?>

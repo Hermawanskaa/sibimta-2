@@ -56,7 +56,7 @@
                                                     <?php echo $notif->mhs_nama; ?>
                                                     <small><i class="fa fa-clock-o"></i> <?php echo $notif->pesmas_tanggal; ?></small>
                                                 </h4>
-                                                <p>Mengajukan <i>&nbsp<?php echo "<b>".$notif->katlap_kategori."</b></i></font> "; ?></p>
+                                                <p>Mengajukan Laporan<i>&nbsp<?php echo "<b>".$notif->katlap_kategori."</b></i></font> "; ?></p>
                                             </a>
                                         </li>
                                         <?php endforeach; ?>

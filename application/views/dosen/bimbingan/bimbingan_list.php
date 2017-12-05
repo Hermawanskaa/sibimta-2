@@ -54,7 +54,6 @@ $this->load->view('dosen/template/sidebar');
                                 <?php echo $this->session->flashdata('msg');?>
                             </div>
                         <?php endif; ?>
-                        <br>
 
                         <?php foreach($result as $row): ?>
                             <div class="box">
@@ -78,10 +77,7 @@ $this->load->view('dosen/template/sidebar');
                             </div>
                         <?php endforeach; ?>
 
-                        <div class='box'>
                             <div class="table-responsive" style="margin:5px;padding:5px" id="stack-personal">
-
-
                                 <div class='inline-popups' style='float:right;'>
                                     <div id="text-popup-html" class="white-popup mfp-with-anim mfp-hide">
                                         <form role='form' action='' method="POST" >
@@ -193,7 +189,6 @@ $this->load->view('dosen/template/sidebar');
                                 </table>
                             </div>
                         </div>
-                    </div>
                 </div>
                     <hr>
                     <div class="row">

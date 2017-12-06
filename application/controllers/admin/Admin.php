@@ -54,7 +54,6 @@ class Admin extends CI_Controller
                 if (!empty($foto)) {
                     $gambar = $foto;
                 } else {
-                    // No file selected - set default image
                     $gambar = 'anonim.png';
                 }
                 $data = array(

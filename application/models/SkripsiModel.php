@@ -12,20 +12,9 @@ class SkripsiModel extends CI_Model
         return true;
     }
 
-    public function get_all_skripsi(){
-        $query = $this->db->get('judul');
-        return $result = $query->result_array();
-    }
-
     public function get_judul_by_id($id){
         $query = $this->db->get_where('judul', array('jdl_id' => $id));
         return $result = $query->row_array();
-    }
-
-    public function edit_judul($data, $id){
-        $this->db->where('jdl_id', $id);
-        $this->db->update('jdl_id', $data);
-        return true;
     }
 
     public function total_rows(){
@@ -71,16 +60,6 @@ class SkripsiModel extends CI_Model
                 ->limit($limit, $start)
                 ->get()->result();
         }
-    }
-
-    public function add_dospem1($data){
-        $this->db->insert('pembimbing', $data);
-        return true;
-    }
-
-    public function add_dospem2($data){
-        $this->db->insert('pembimbing', $data);
-        return true;
     }
 
     public function add_dashboard($data){

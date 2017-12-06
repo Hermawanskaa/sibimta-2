@@ -14,12 +14,6 @@ class DosenModel extends CI_Model
         return true;
     }
 
-    //mengambil semua data dosen dalam bentuk array
-    public function get_all_dosen(){
-        $query = $this->db->get('dosen');
-        return $result = $query->result_array();
-    }
-
     //filter data dosen berdasarkan id dosen
     public function get_dosen_by_id($id){
         $query = $this->db->get_where('dosen', array('dsn_nip' => $id));

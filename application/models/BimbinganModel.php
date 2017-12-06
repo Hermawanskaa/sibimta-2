@@ -6,10 +6,6 @@ class BimbinganModel extends CI_Model{
         parent::__construct();
     }
 
-    public function get_all_laporan(){
-        $query = $this->db->get('laporan');
-        return $result = $query->result_array();
-    }
 
     public function get_laporan_by_id($id){
         $query = $this->db->get_where('laporan', array('katlap_id' => $id));
@@ -45,14 +41,6 @@ class BimbinganModel extends CI_Model{
                 ->limit($limit, $start)
                 ->get()->result();
         }
-    }
-
-    public function get_laporan(){
-        $this->db->select('*')
-            ->from('laporan')
-            ->where('katlap_id !=',0);
-        $query = $this->db->get();
-        return $query;
     }
 
     //mengambil katlap_id dari tabel kategori laporan
@@ -342,11 +330,6 @@ class BimbinganModel extends CI_Model{
         $this->db->where('mhs_id',$mhs);
         $this->db->update('dashboard',$data);
     }
-
-
-
-
-
 }
 
 ?>

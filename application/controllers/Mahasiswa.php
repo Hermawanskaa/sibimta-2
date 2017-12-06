@@ -11,8 +11,7 @@ class Mahasiswa extends CI_Controller {
         $this->load->model('NotifikasiModel');
     }
 
-    public function validation()
-    {
+    public function validation(){
         if (!$this->session->userdata('is_mahasiswa_login')){
             redirect('login', 'refresh');
         }
@@ -104,6 +103,22 @@ class Mahasiswa extends CI_Controller {
         }else{
             redirect('skripsi');
         }
+    }
+
+    function open_status($id){
+        $this->db->where('pesdos_id',$id);
+        $this->db->set('pesdos_status',1);
+        $this->db->update('pesan_dosen');
+
+        redirect('mahasiswa/pesan');
+    }
+
+    function delete_pesan($id){
+        $this->validation();
+        $this->db->delete('pesan_dosen', array('pesdos_id' => $id));
+        $this->session->set_flashdata('msg', 'Data Berhasil Dihapus!');
+
+        redirect('mahasiswa/pesan');
     }
 }
 

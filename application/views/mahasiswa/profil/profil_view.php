@@ -26,7 +26,7 @@ $this->load->view('mahasiswa/template/sidebar');
                 <div class="box-body ">
                     <div class="col-md-3">
                         <div class="text-center">
-                            <img src="<?php echo base_url().'uploads/foto/mahasiswa/'.$this->session->userdata('foto');;?>" class="avatar img-circle" alt="avatar">
+                            <img src="<?php echo base_url().'uploads/foto/mahasiswa/'.$this->session->userdata('foto');;?>" width="50%" class="avatar img-circle" alt="avatar">
                         </div>
                     </div>
 
@@ -36,7 +36,7 @@ $this->load->view('mahasiswa/template/sidebar');
 
                         </div>
                         <div class="col-sm-1">
-                            <img class="img-circle" src="<?php echo base_url('/assets/img/list.png') ?>" width="50%" alt="User Avatar">
+                            <img class="img-circle" src="<?php echo base_url('/assets/img/list.png') ?>" alt="User Avatar">
                         </div>
                         <h3 class="widget-user-username col-sm-3"><strong>PERSONAL INFO</strong></h3>
                     </div>

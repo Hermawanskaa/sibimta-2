@@ -6,6 +6,11 @@ $this->load->view('template/head');
 $this->load->view('admin/template/topbar');
 $this->load->view('admin/template/sidebar');
 ?>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+
 <!-- Page Header -->
 <section class="content-header">
     <h1>
@@ -58,6 +63,12 @@ $this->load->view('admin/template/sidebar');
 
                     <?php echo form_open_multipart(base_url('admin/skripsi/add_skripsi'),  'class="form-horizontal"');  ?>
                     <div class="box-body">
+                        <div class="form-group">
+                            <label for="mhs_id" class="col-sm-2 control-label">Mahasiswa</label>
+                            <div class="col-sm-6">
+                                <select class="itemName form-control" style="width:510px" name="itemName"></select>
+                            </div>
+                        </div>
                         <div class="form-group">
                             <label for="mhs_id" class="col-sm-2 control-label">Mahasiswa</label>
                             <div class="col-sm-6">
@@ -137,7 +148,11 @@ $this->load->view('admin/template/sidebar');
                         <div class="form-group">
                             <label for="jdl_status" class="col-sm-2 control-label">Status Judul</label>
                             <div class="col-sm-6">
-                                <input type="text" class="form-control" name="jdl_status" id="jdl_status" placeholder="Status Judul">
+                                <select name='jdl_status' id='jdl_status' class="form-control">
+                                    <option value=''>Please Select</option>
+                                    <option value="AKTIF">AKTIF</option>
+                                    <option value="NON AKTIF">NON AKTIF</option>
+                                </select>
                             </div>
                         </div>
                         <div class="form-group">
@@ -146,27 +161,41 @@ $this->load->view('admin/template/sidebar');
                                 <input type="date" class="form-control" name="jdl_tanggal" id="jdl_tanggal" placeholder="Tanggal Mulai">
                             </div>
                         </div>
-                    </div>
                 </div>
 
-                <!-- Footer Content -->
-                <div class="box box-footer">
+
+                <div class="box-footer col-sm-offset-2">
                     <button class="btn btn-primary" type="submit" name="submit" value="Add User" id="submit" data-stype='stay'>
                         <i class="fa fa-save" ></i> Save
                     </button>
-                    <a class="btn btn-primary" href="<?= base_url('admin/skripsi/list_skripsi'); ?>"><i class="fa fa-undo" data-stype='back'></i> Back to List</a>
-
-
+                    <a class="btn btn-warning" href="<?= base_url('admin/skripsi/list_skripsi'); ?>"><i class="fa fa-undo" data-stype='back'></i> Back to List</a>
                 </div>
                 <?php echo form_close( ); ?>
             </div>
         </div>
     </div>
-    <!--/box body -->
     </div>
-    <!--/box -->
     </div>
 </section>
+
+<script type="text/javascript">
+    $('.itemName').select2({
+        placeholder: '--- Please Select ---',
+        ajax: {
+            url: '/select',
+            dataType: 'json',
+            type: "POST",
+            delay: 250,
+            processResults: function (data) {
+                return {
+                    results: data
+                };
+            },
+
+            cache: true
+        }
+    });
+</script>
 
 <?php
 $this->load->view('template/js');

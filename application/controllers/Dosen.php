@@ -39,6 +39,22 @@ class Dosen extends CI_Controller {
         }
     }
 
+    function delete_pesan($id){
+        $this->validation();
+        $this->db->delete('pesan_mahasiswa', array('pesmas_id' => $id));
+        $this->session->set_flashdata('msg', 'Data Berhasil Dihapus!');
+
+        redirect('dosen/pesan');
+    }
+
+    function open_status($id){
+        $this->db->where('pesmas_id',$id);
+        $this->db->set('pesmas_status',1);
+        $this->db->update('pesan_mahasiswa');
+
+        redirect('dosen/pesan');
+    }
+
     //update password untuk dosen
     public function update_password($id = null){
         $this->validation();

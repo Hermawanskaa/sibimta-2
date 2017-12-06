@@ -11,11 +11,6 @@ class JurusanModel extends CI_Model{
         return true;
     }
 
-    public function get_all_jurusan(){
-        $query = $this->db->get('jurusan');
-        return $result = $query->result_array();
-    }
-
     public function get_jurusan_by_id($id){
         $query = $this->db->join('fakultas', 'fakultas.fak_id = jurusan.jrs_id')
                           ->get_where('jurusan', array('jrs_id' => $id));

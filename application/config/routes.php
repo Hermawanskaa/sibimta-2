@@ -58,3 +58,5 @@ $route['Admin'] = 'admin/dashboard';
 
 //auth
 $route['login'] = 'auth/login';
+
+$route['select'] = "select/";

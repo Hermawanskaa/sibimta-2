@@ -34,7 +34,7 @@ class Skripsi extends CI_Controller {
             $this->form_validation->set_rules('jdl_deskripsi', 'DESKRIPSI', 'trim|required|xss_clean|min_length[10]');
             $this->form_validation->set_rules('jdl_enjudul', 'DESKRIPSI ENGLISH', 'trim|required|xss_clean|min_length[10]');
             $this->form_validation->set_rules('jdl_status', 'STATUS', 'trim|required|xss_clean|min_length[2]');
-            $this->form_validation->set_rules('jdl_tanggal', 'TANGGAL', 'trim|required|xss_clean');
+            $this->form_validation->set_rules('jdl_tanggal', 'TANGGAL', 'trim|required');
 
             $this->form_validation->set_rules('password_baru', 'PASSWORD', 'required|min_length[5]');
             $this->form_validation->set_rules('konfirmasi_password', 'KONFIRMASI PASSWORD', 'required|matches[password_baru]');
@@ -110,13 +110,13 @@ class Skripsi extends CI_Controller {
                     //kirim pesan ke dosen pembimbing pertama
                     $katlap_id = 0;
                     $data5 = array(
-                        'mhs_id'=>$this->input->post('mhs_id'),
                         'dsn_id'=>$this->input->post('pembimbing1'),
+                        'mhs_id'=>$this->input->post('mhs_id'),
                         'katlap_id'=>$katlap_id,
-                        'pesmas_pesan'=>null,
-                        'pesmas_status'=>0,
-                        'pesmas_tanggal'=>date('Y-m-d'),
-                        'waktu'=>date('H:i:s')
+                        'pesdos_pesan'=>null,
+                        'pesdos_status'=>0,
+                        'pesdos_tanggal'=>date('Y-m-d'),
+                        'pesdos_waktu'=>date('H:i:s')
                     );
                     $this->DosenModel->add_pesan($data5);
                 }

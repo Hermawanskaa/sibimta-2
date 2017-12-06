@@ -11,11 +11,6 @@ class MahasiswaModel extends CI_Model {
         return true;
     }
 
-    public function get_all_mahasiswa(){
-        $query = $this->db->get('mahasiswa');
-        return $result = $query->result_array();
-    }
-
     public function get_mahasiswa_by_id($id){
         $query = $this->db->join('jurusan', 'jurusan.jrs_id = mahasiswa.jrs_id')
                           ->get_where('mahasiswa', array('mhs_nim' => $id));
@@ -146,8 +141,6 @@ class MahasiswaModel extends CI_Model {
             $query = $this->db->get();
             return $query->result_array();
         }
-
-
 }
 
 ?>

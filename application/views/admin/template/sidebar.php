@@ -1,8 +1,5 @@
-<!-- Left side column. contains the sidebar -->
 <aside class="main-sidebar">
-    <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
-        <!-- Sidebar user panel -->
         <div class="user-panel">
             <div class="pull-left image">
                 <img src="<?php echo base_url().'uploads/foto/admin/'.$this->session->userdata('foto');;?>" class="img-circle" alt="User Image" />
@@ -13,7 +10,6 @@
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
         </div>
-        <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
             <li class="header"><center><b>MENU ADMIN</b></center></li>
             <li class="treeview">
@@ -94,8 +90,6 @@
                 </ul>
             </li>
     </section>
-    <!-- /.sidebar -->
 </aside>
 
-<!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">

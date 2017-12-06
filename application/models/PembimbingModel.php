@@ -10,11 +10,6 @@ class PembimbingModel extends CI_Model {
         return true;
     }
 
-    public function get_all_pembimbing(){
-        $query = $this->db->get('bagidosen');
-        return $result = $query->result_array();
-    }
-
     public function get_pembimbing_by_id($id){
         $query = $this->db->join('dosen', 'dosen.dsn_id = bagidosen.dsn_id')
                           ->get_where('bagidosen', array('bagi_id' => $id));

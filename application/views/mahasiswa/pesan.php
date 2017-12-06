@@ -79,7 +79,7 @@ $this->load->view('mahasiswa/template/sidebar');
                                     </td>
                                     <td width="50px">
                                         <?php if($row->pesdos_status == 0){ ?>
-                                            <a href='<?php echo base_url('mahasiswa/open/'.$row->pesdos_id); ?>' onClick="return confirm('Tandai Pesan Sudah Terbaca?')" >
+                                            <a href='<?php echo base_url('mahasiswa/open_status/'.$row->pesdos_id); ?>' onClick="return confirm('Tandai Pesan Sudah Terbaca?')" >
                                             <img src="<?php echo base_url();?>assets/img/mail_close.png" width="50%"></a>
                                         <?php }else { ?>
                                             <img src="<?php echo base_url();?>assets/img/mail_open.png" width="50%">

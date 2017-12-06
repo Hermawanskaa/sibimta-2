@@ -147,6 +147,14 @@ class MahasiswaModel extends CI_Model {
             return $query->result_array();
         }
 
+    function search_field($mhs_nim){
+        $this->db->select("*");
+        $this->db->from('mahasiswa');
+        $this->db->like('mhs_nim', $mhs_nim);
+        $this->db->limit(10);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
 
 }
 

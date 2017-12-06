@@ -83,7 +83,7 @@ class DosenModel extends CI_Model
 
     //pesan ke dosen
     function add_pesan($data){
-        $this->db->insert('pesan_mahasiswa', $data);
+        $this->db->insert('pesan_dosen', $data);
         return true;
     }
 

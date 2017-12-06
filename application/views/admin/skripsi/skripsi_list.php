@@ -27,8 +27,8 @@ $this->load->view('admin/template/sidebar');
                 <div class="box-body">
                     <div class="row">
                         <div class="widget-user-header">
-                            <div class="row col-md-4 pull-right">
-                                <a class="btn btn-primary" id="btn_add_new" href="<?= base_url('admin/skripsi/add_skripsi'); ?>"><i class="fa fa-plus-square-o" ></i> Add Data</a>
+                            <div class="row col-md-2 pull-right">
+                                <a class="btn btn-primary" id="btn_add_new" href="<?= base_url('admin/skripsi/add_skripsi'); ?>"><i class="fa fa-plus-square-o" ></i> Add Skripsi</a>
                             </div>
                             <div class="col-sm-1">
                                 <img class="img-circle" src="<?php echo base_url('/assets/img/list.png') ?>" alt="User Avatar">
@@ -36,7 +36,7 @@ $this->load->view('admin/template/sidebar');
                                 </div>
                             </div>
                             <h3 class="widget-user-username">Skripsi</h3>
-                            <h5 class="widget-user-desc">List All Skripsi <i href="" class="label bg-yellow">items</i></h5>
+                            <h5 class="widget-user-desc">List All Skripsi</h5>
                             <hr>
                         </div>
                     </div>

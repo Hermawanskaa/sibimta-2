@@ -77,11 +77,11 @@ $this->load->view('admin/template/sidebar');
                 </div>
 
                 <!-- Footer Content -->
-                <div class="box box-footer">
+                <div class="box box-footer col-sm-offset-2 col-sm-8">
                     <button class="btn btn-primary" type="submit" name="submit" value="Add User" id="submit" data-stype='stay'>
                         <i class="fa fa-save" ></i> Save
                     </button>
-                    <a class="btn btn-primary" href="<?= base_url('admin/fakultas/list_fakultas'); ?>"><i class="fa fa-undo" data-stype='back'></i> Back to List</a>
+                    <a class="btn btn-warning" href="<?= base_url('admin/fakultas/list_fakultas'); ?>"><i class="fa fa-undo" data-stype='back'></i> Back to List</a>
 
 
                 </div>

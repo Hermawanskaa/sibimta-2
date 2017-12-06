@@ -92,9 +92,9 @@ $this->load->view('admin/template/sidebar');
                     <br>
 
                     <!-- Footer Content -->
-                    <div class="box box-footer">
+                    <div class="box box-footer col-sm-offset-2 col-sm-8">
                         <a href="<?= base_url('admin/mahasiswa/edit_mahasiswa/'.$user['mhs_nim']); ?>" class="btn btn-primary" ><i class="ion ion-ios-list-outline""></i> Update</a>
-                        <a class="btn btn-primary" href="<?= base_url('admin/mahasiswa/list_mahasiswa'); ?>"><i class="fa fa-undo"" data-stype='back'></i> Back to List</a>
+                        <a class="btn btn-warning" href="<?= base_url('admin/mahasiswa/list_mahasiswa'); ?>"><i class="fa fa-undo"" data-stype='back'></i> Back to List</a>
                     </div>
                 </div>
             </div>

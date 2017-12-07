@@ -26,15 +26,10 @@ class Bimbingan extends CI_Controller
 
     function kategori_bimbingan(){
         $this->validation();
-        //mengambil data session mahasiswa
         $id = $this->session->userdata('id');
-        //nilai katlap kategori laporan
         $no = $this->uri->segment(3);
-        //mengambil nilai kolom katlap_id
         $data['bab'] = $this->BimbinganModel->get_bab($no);
-        //mengambil semua data bimbingan mahasiswa
         $data['bimbingan'] = $this->BimbinganModel->get_all_bimbingan($id, $no);
-        //mengecek nilai kolom katlap_id di tabel bimbingan
         $data['cek'] = $this->BimbinganModel->get_last_bimbingankategori($id, $no);
         $this->load->view('mahasiswa/bimbingan/bimbingan_list',$data);
     }
@@ -134,7 +129,7 @@ class Bimbingan extends CI_Controller
                 }
                 $kat_lap_id = $kat_id;
                 $mhsid = $this->session->userdata('id');
-                $this->DosenModel->pesantodospem($mhsid, $kat_lap_id);
+                $this->DosenModel->pesan_dospem($mhsid, $kat_lap_id);
                 redirect('bimbingan/kategori_bimbingan/'.$no);
             }
         }

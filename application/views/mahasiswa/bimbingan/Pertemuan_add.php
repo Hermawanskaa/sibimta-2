@@ -79,7 +79,21 @@ foreach($bab->result() as $row){}
                             <span><?php echo form_error('userfile'); ?></span>
                         </div>
                         <div class="col-sm-offset-2 col-sm-8">
-                           <p>format file yang bisa diupload : doc|docx|pdf|rtf|odt</p>
+                            <p>format file yang bisa diupload : doc|docx|pdf|rtf|odt</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="jdl_tanggal" class="col-sm-2 control-label">Tanggal Bimbingan</label>
+                        <div class="col-sm-6">
+                            <input type="date" class="form-control" name="jdl_tanggal" id="jdl_tanggal" placeholder="Tanggal Bimbingan">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="fakultas" class="col-sm-2 control-label">Topik Bimbingan</label>
+                        <div class="col-sm-6">
+                            <input type="input" class="form-control" name="fak_nama" id="fak_nama" placeholder="Topik Bimbingan">
+                            <small class="info help-block">
+                            </small>
                         </div>
                     </div>
 

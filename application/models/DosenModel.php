@@ -88,7 +88,7 @@ class DosenModel extends CI_Model
     }
 
     //pesan ke dospem setelah input skripsi mahasiswa
-    function pesantodospem($mhsid, $kat_lap_id){
+    function pesan_dospem($mhsid, $kat_lap_id){
         $this->db->select('dsn_id');
         $this->db->where('mhs_id',$mhsid);
         $query = $this->db->get('pembimbing');

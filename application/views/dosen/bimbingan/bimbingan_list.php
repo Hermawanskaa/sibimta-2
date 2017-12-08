@@ -79,31 +79,23 @@ $this->load->view('dosen/template/sidebar');
 
                             <div class="table-responsive" style="margin:5px;padding:5px" id="stack-personal">
                                 <div class='inline-popups' style='float:right;'>
-                                    <div id="text-popup-html" class="white-popup mfp-with-anim mfp-hide">
-                                        <form role='form' action='' method="POST" >
-                                            <input type='hidden' name='mhsid' id='mhsid' value='<?php echo $_res['mhs_id']; ?>' />
-                                            <input type='hidden' name='jdl_id' id='jdl_id' value='<?php echo $_res['jdl_id']; ?>' />
-                                        </form>
+
                                     </div>
                                 </div>
-                                <table id="tbl-personal" class="table table-bordered table-hover">
-                                    <thead>
-                                    <tr>
-                                        <th rowspan=2>NO</th>
-                                        <th rowspan=2>KATEGORI LAPORAN</th>
-                                        <th rowspan=2>FILE</th>
-                                        <th colspan=2>PENGAJUAN</th>
-                                        <th rowspan=2>STATUS</th>
-                                        <th rowspan=2>REVISI</th>
-                                        <th rowspan=2>BIMBINGAN</th>
-                                        <th colspan=2>BIMBINGAN</th>
-                                        <th rowspan=2>AKSI</th>
-                                    </tr>
-                                    <tr>
+                                <div class="table-responsive">
+                                    <table id="list_dosen" class="table table-bordered table-striped dataTable">
+                                        <div id="text-popup-html" class="white-popup mfp-with-anim mfp-hide">
+                                            <form role='form' action='' method="POST" >
+                                                <input type='hidden' name='mhsid' id='mhsid' value='<?php echo $_res['mhs_id']; ?>' />
+                                                <input type='hidden' name='jdl_id' id='jdl_id' value='<?php echo $_res['jdl_id']; ?>' />
+                                            </form>
+                                        <thead>
+                                        <th>NO</th>
+                                        <th>KAT BAB</th>
+                                        <th>TOPIK BIMBINGAN</th>
                                         <th>TANGGAL</th>
                                         <th>WAKTU</th>
-                                        <th>TANGGAL</th>
-                                        <th>WAKTU</th>
+                                        <th>DETAIL</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -126,62 +118,15 @@ $this->load->view('dosen/template/sidebar');
                                             <td><?php echo $no++;?></td>
                                             <td><?php echo $key->katlap_kategori; ?></td>
                                             <td>
-                                                <a href="<?php echo site_url('bimbingan/get_file_laporan/'.$key->katlap_id.'/'.$key->lap_file); ?>"><?= substr($key->lap_file,14,5); ?></a>
+                                                <?php echo$key->lap_topik; ?></a>
                                             </td>
                                             <td><?php echo $tanggal_jdl.'-'.$bulan_jdl.'-'.$tahun_jdl; ?></td>
                                             <td><?php echo $key->lap_waktu; ?></td>
-                                            <td><?php echo $status; ?></td>
-                                            <td>
-                                                <?php if($key->bimb_file=="Tak ada File Revisi"){
-                                                    echo $key->bimb_file;
-                                                } else { echo "
-															<a href='".site_url('bimbingan/get_file_revisi/'.$key->katlap_id.'/'.$key->bimb_file)."'>
-															".substr($key->bimb_file,14,5)."
-															</a>
-															"; } ?>
-                                            </td>
-                                            <td><?php echo $key->bimb_catatan; ?></td>
-                                            <td><?php echo $tanggal_bim.'-'.$bulan_bim.'-'.$tahun_bim; ?></td>
-                                            <td><?php echo $key->bimb_wkt; ?></td>
-                                            <td>
-                                                <?php foreach($terakhir->result() as $s){ $lapid  = $s->lap_id; }
-                                                if ($key->lap_id == $lapid){
-                                                    if($dos_id % 2 == 0){
-                                                        if($status=='Menunggu Diperiksa' or $status=='REVISI - P2'){
-                                                            echo"
-																<a href='".site_url('admin/bimbingan/edit_bimbingan/'.$key->lap_id.'/'.$pengid)."'>
-																	<button class='btn btn-xs btn-flat btn-success'>
-																		<i class='fa fa-edit'></i>
-																	</button>
-																</a>
-																";
-                                                        }else{ echo"
-																<button class='btn btn-xs btn-flat btn-default'>
-																	<i class='fa fa-edit'></i>
-																</button>
-																	";
-                                                        }
-                                                    }
-                                                    if($dos_id % 2 == 1){
-                                                        if($status != 'ACC'){ echo"
-																<a href='".site_url('admin/bimbingan/edit_bimbingan/'.$key->lap_id.'/'.$pengid)."'>
-																	<button class='btn btn-xs btn-flat btn-success'>
-																		<i class='fa fa-edit'></i>
-																	</button>
-																</a>
-																	";
-                                                        }else{ echo"
-																<button class='btn btn-xs btn-flat btn-default'>
-																	<i class='fa fa-edit'></i>
-																</button>
-																	";
-                                                        }
-                                                    }
-                                                }else { echo"
-														<button class='btn btn-xs btn-flat btn-default'>
-															<i class='fa fa-edit'></i>
-														</button>
-															"; } ?>
+                                            <td><a href="<?php echo site_url('admin/bimbingan/open_bimbingan/'.$key->mhs_id);?>" />
+                                                <button class="btn btn-xs btn-flat btn-info btnbrg-edit" type="submit" name="detail" value="Detail">
+                                                    Detail
+                                                </button>
+                                                </a>
                                             </td>
                                         </tr>
                                         <?php } ?>

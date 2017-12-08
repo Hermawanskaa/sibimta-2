@@ -36,23 +36,22 @@ foreach($bab->result() as $row){}
                     <div class="row">
                         <div class="widget-user-header">
                             <div class="row col-md-2 pull-right">
-
                                 <?php if($cek->num_rows() <> 0){
                                     foreach($cek->result() as $row){ $status = $row->bimb_status; }
-                                        if($status == 'Menunggu Diperiksa' || $status == 'Menunggu Diperiksa Dosen P1' || $status == 'Diajukan Untuk Diperiksa Dosen P1' || $status== 'ACC'){
-                                            echo"<button class='btn btn-flat'><i class='fa fa-plus-square-o'></i> Add Bimbingan</button>";
-                                        }else{
-                                            echo"<a href='".site_url('bimbingan/add_bimbingan/'.$no)."'>
+                                    if($status == 'Menunggu Diperiksa' || $status == 'Menunggu Diperiksa Dosen P1' || $status == 'Diajukan Untuk Diperiksa Dosen P1' || $status== 'ACC'){
+                                        echo"<button class='btn btn-flat'><i class='fa fa-plus-square-o'></i> Add Bimbingan</button>";
+                                    }else{
+                                        echo"<a href='".site_url('bimbingan/add_bimbingan/'.$no)."'>
 												<button class='btn btn-primary btn-square'>Add Bimbingan</button>
 											     </a>
 											    ";
-                                        }
-                                    }else{
-                                        echo"<a href='".site_url('bimbingan/add_bimbingan/'.$no)."'>
+                                    }
+                                }else{
+                                    echo"<a href='".site_url('bimbingan/add_bimbingan/'.$no)."'>
                                              <button class='btn btn-primary btn-square'>Add Bimbingan</button>
 											 </a>
 											";
-                                    } ?>
+                                } ?>
                             </div>
                             <div class="col-sm-1">
                                 <img class="img-circle" src="<?php echo base_url('/assets/img/list.png') ?>" alt="User Avatar">
@@ -84,72 +83,42 @@ foreach($bab->result() as $row){}
                             </div>
                         <?php endif; ?>
                         <br>
-                        <div class="table-responsive">
-                            <table id="list_dosen" class="table table-bordered table-striped dataTable">
-                                <thead>
-                                <th>NO</th>
-                                <th>LAPORAN</th>
-                                <th>TANGGAL PENGAJUAN</th>
-                                <th>WAKTU PENGAJUAN</th>
-                                <th>AKSI</th>
-                                <th>STATUS</th>
-                                <th>REVISI</th>
-                                <th>BIMBINGAN</th>
-                                <th>TANGGAL BIMBINGAN</th>
-                                <th>WAKTU BIMBINGAN</th>
 
-                                </tr>
-                                </thead>
-                                <tbody id="tbody_dosen">
-                                <?php
-                                $number=1;
-                                foreach($bimbingan->result() as $key){
-                                $tahun_jdl = substr($key->lap_tanggal,0,4);
-                                $bulan_jdl = substr($key->lap_tanggal,5,2);
-                                $tanggal_jdl = substr($key->lap_tanggal,8,2);
-
-                                $tahun_bim = substr($key->bimb_tgl,0,4);
-                                $bulan_bim = substr($key->bimb_tgl,5,2);
-                                $tanggal_bim = substr($key->bimb_tgl,8,2);
-                                ?>
+                    <div class="table-responsive">
+                        <table id="list_dosen" class="table table-bordered table-striped dataTable">
+                            <thead>
+                            <th>NO</th>
+                            <th>TOPIK BIMBINGAN</th>
+                            <th>JENIS BIMBINGAN</th>
+                            <th>TANGGAL BIMBINGAN</th>
+                            <th>WAKTU BIMBINGAN</th>
+                            <th>DETAIL</th>
+                            </tr>
+                            </thead>
+                            <tbody id="tbody_dosen">
+                            <?php $number=1; foreach($laporan->result() as $key){
+                                $tahun_lap = substr($key->lap_tanggal,0,4);
+                                $bulan_lap = substr($key->lap_tanggal,5,2);
+                                $tanggal_lap = substr($key->lap_tanggal,8,2); ?>
 
                                 <td><?php echo $number++;?></td>
-                                <td><a href="<?php echo site_url('bimbingan/get_file_laporan/'.$no.'/'.$key->lap_file); ?>"><?= substr($key->lap_file,14,5); ?>...</a></td>
-                                <td><?= $tanggal_jdl.'-'.$bulan_jdl.'-'.$tahun_jdl;?></td>
+                                <td><?= $key->lap_topik; ?></td>
+                                <td><?= $key->lap_jenis; ?></td>
+                                <td><?= $tanggal_lap.'-'.$bulan_lap.'-'.$tahun_lap;?></td>
                                 <td><?= $key->lap_waktu; ?></td>
-                                    <?php if($key->bimb_status =="Menunggu Diperiksa Dosen P1" || $key->bimb_status =="Menunggu Diperiksa Dosen P2" ){ ?>
-                                        <td>
-                                            <a href='<?php echo site_url('bimbingan/edit_bimbingan/'.$no.'/'.$key->lap_id); ?>'>
-                                                <button class="btn btn-xs btn-flat btn-success btnbrg-edit">
-                                                    <i class="fa fa-edit"></i>
-                                                </button>
-                                            </a>
-                                        </td>
-                                    <?php }else{ echo "
-															<td>
-																<button class='btn btn-xs btn-flat btn-default'>
-																	<i class='fa fa-edit'></i>
-																</button>
-															</td>"
-                                    ;} ?>
-                                    <td><?= $key->bimb_status; ?></td>
-                                    <?php if($key->bimb_file == "Tak ada File Revisi"){ ?>
-                                    <td><?= $key->bimb_file; ?></td>
-                                    <?php } else { ?>
-                                    <td><a href="<?php echo site_url('bimbingan/get_file_revisi/'.$no.'/'.$key->bimb_file); ?>"><?= substr($key->bimb_file,6,5); ?>...</a></td>
-                                    <?php } ?>
-                                    <td><?= $key->bimb_catatan; ?></td>
-                                    <td><?= $bulan_bim.'-'.$bulan_bim.'-'.$tahun_bim; ?></td>
-                                    <td><?= $key->bimb_wkt; ?></td>
-                                    </tr>
-                                    <?php
-                                    }?>
-                                </tbody>
-                            </table>
-                        </div>
+                                <td><a href="<?php echo site_url('bimbingan/detail_bimbingan/'.$key->lap_id);?>" />
+                                    <button class="btn btn-xs btn-flat btn-info btnbrg-edit" type="submit" name="detail" value="Detail">
+                                        Detail
+                                    </button>
+                                    </a>
+                                </td>
+                                </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
                     </div>
-                    <hr>
-                    <!-- /.widget-user -->
+                </div>
+
                     <div class="row">
                         <div class="col-md-12">
                             <div class="text-right" >

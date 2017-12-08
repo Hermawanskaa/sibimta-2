@@ -41,6 +41,44 @@ class Bimbingan extends CI_Controller
         $this->load->view('dosen/bimbingan/bimbingan_list',$data);
     }
 
+    function open_bimbingan(){
+        $this->validation();
+        $mhsid = $this->uri->segment(4);
+        $data['log'] = $this->BimbinganModel->get_last_bimbingan($mhsid);
+        $this->load->view('dosen/bimbingan/bimbingan_detail',$data);
+    }
+
+    function add_bimbingan()
+    {
+        $nim = $this->BimbinganModel->get_last();
+        foreach ($nim->result() as $key) {
+            $data['id'] = $key->lap_id;
+            $mhsid = $key->mhs_id;
+        }
+        $bim_file = 'tak ada revisi';
+        $id = $this->uri->segment('4');
+        $p1 = '1';
+        $result = $this->BimbinganModel->check_pembimbing($id, $p1);
+        foreach ($result->result() as $dsn) {
+            $tdata = array(
+                'bimb_id' => null,
+                'lap_id' => 156,
+                'dsn_id' => $this->session->userdata('id'),
+                'mhs_id' => null,
+                'bimb_file' => $bim_file,
+                'bimb_catatan' => $this->input->post('bimb_catatan'),
+                'bimb_tgl' => date('Y-m-d'),
+                'bimb_wkt' => date('H:i:s'),
+                'bimb_status' => 'none',
+                'dosbing1' => 1,
+                'dosbing2' => 0,
+            );
+            $this->db->insert('bimbingan', $tdata);
+
+        }
+        redirect('admin/bimbingan/add_bimbingan'.$mhsid);
+    }
+
     function edit_bimbingan(){
         $this->validation();
         $id = $this->uri->segment(4);
@@ -92,3 +130,5 @@ class Bimbingan extends CI_Controller
     }
 
 }
+
+?>

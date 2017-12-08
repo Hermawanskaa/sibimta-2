@@ -89,7 +89,7 @@ $this->load->view('mahasiswa/template/sidebar');
                         </div>
                     </div>
                     <hr>
-                    <!-- /.widget-user -->
+
                     <div class="row">
                         <div class="col-md-12">
                             <div class="text-right" >

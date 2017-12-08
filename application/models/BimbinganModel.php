@@ -53,11 +53,12 @@ class BimbinganModel extends CI_Model{
     }
 
     //mengambil data terakhir bimbingan
-    function get_last_bimbingan($mhs){
+    function get_last_bimbingan($mhsid){
         $this->db->select('*');
         $this->db->from('bimbingan');
         $this->db->join('laporan','bimbingan.lap_id = laporan.lap_id');
-        $this->db->where('laporan.mhs_id', $mhs);
+        $this->db->join('mahasiswa', 'bimbingan.mhs_id = mahasiswa.mhs_id');
+        $this->db->where('laporan.mhs_id', $mhsid);
         $this->db->order_by('bimb_id','desc');
         $this->db->limit('1');
         $query= $this->db->get();
@@ -83,43 +84,43 @@ class BimbinganModel extends CI_Model{
         $this->db->from('bimbingan a');
         $this->db->join('laporan b', 'a.lap_id = b.lap_id');
         $this->db->join('kategori_laporan c', 'b.katlap_id = c.katlap_id');
+        $this->db->join('mahasiswa d', 'a.mhs_id = d.mhs_id');
         $this->db->where('b.mhs_id', $id);
-        $this->db->where('b.katlap_id', $no);
+        $this->db->where('b.lap_id', $no);
         $this->db->order_by('a.bimb_id','desc');
         $query = $this->db->get();
         return $query;
     }
 
+    function get_all_laporan($id, $no){
+        $this->db->select('*');
+        $this->db->from('laporan a');
+        $this->db->join('kategori_laporan b', 'a.katlap_id = b.katlap_id');
+        $this->db->where('a.mhs_id', $id);
+        $this->db->where('b.katlap_id', $no);
+        $this->db->order_by('a.lap_id','desc');
+        $query = $this->db->get();
+        return $query;
+    }
+
     //edit laporan bimbingan
-    function edit_laporan($id, $isi){
-        $nama_file = preg_replace("/^(.+?);.*$/", "\\1", $isi);
-        $data = array(
-            'lap_file'=>$isi,
-            'lap_tanggal'=>date('Y-m-d'),
-            'lap_waktu'=>date('H:i:s')
-        );
+    function edit_laporan($id, $data){
         $this->db->where('lap_id',$id);
         $this->db->update('laporan',$data);
+        return true;
     }
 
     //menambahkan laporan bimbingan
-    function add_laporan($kat_id, $isi){
-        $data = array(
-            'lap_id'=>null,
-            'mhs_id'=>$this->session->userdata('id'),
-            'katlap_id'=>$kat_id,
-            'lap_file'=>$isi,
-            'lap_tanggal'=>date('Y-m-d'),
-            'lap_waktu'=>date('H:i:s'),
-        );
+    function add_laporan($data){
         $this->db->insert('laporan',$data);
+        return true;
     }
 
     function get_last(){
         $id	= $this->session->userdata('id');
         $this->db->select('lap_id, laporan.mhs_id');
         $this->db->from('laporan');
-        $this->db->join('mahasiswa','laporan.mhs_id=mahasiswa.mhs_id');
+        $this->db->join('mahasiswa','laporan.mhs_id = mahasiswa.mhs_id');
         $this->db->where('laporan.mhs_id', $id);
         $this->db->order_by('lap_id','desc');
         $this->db->limit('1');
@@ -137,8 +138,8 @@ class BimbinganModel extends CI_Model{
         return $query;
     }
 
-    //mengambil data proposal
-    function get_lap($id){
+    //mengambil data laporan
+    function get_laporan($id){
         $this->db->where('lap_id',$id);
         $query = $this->db->get('laporan');
         return $query;

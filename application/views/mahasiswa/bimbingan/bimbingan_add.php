@@ -46,6 +46,21 @@ foreach($bab->result() as $row){}
                         </div>
                     </div>
                 </div>
+                <?php if(isset($msg) || validation_errors() !== ''): ?>
+                    <div class="alert alert-warning alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <h4><i class="icon fa fa-warning"></i> Peringatan!</h4>
+                        <?= validation_errors();?>
+                        <?= isset($msg)? $msg: ''; ?>
+                    </div>
+                <?php endif; ?>
+                <?php if ($this->session->flashdata('msg')) { ?>
+                    <div class="alert alert-success alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <h4><i class="icon fa fa-warning"></i> Peringatan!</h4>
+                        <?php echo $this->session->flashdata('msg');?>
+                    </div>
+                <?php }?>
 
                 <?php if($this->uri->segment(2)=="add_bimbingan"){
                     $files = $file;
@@ -60,30 +75,39 @@ foreach($bab->result() as $row){}
                     $lap_id = $this->uri->segment(3);
                 }
                 elseif($this->uri->segment(2)=="submit"){
-                    $files = $file;
                     $act = $link;
                     $lap_id = $id;
                 } ?>
 
                 <form role="form" class="form-horizontal" enctype="multipart/form-data" action="<?=site_url('bimbingan/submit/'.$this->uri->segment(3));?>" method="POST" >
+                    <input type="hidden" id="lap_id" name="lap_id" value="<?php echo $lap_id; ?>" />
+                    <input type="hidden" id="act" name="act" value="<?php echo $act; ?>" />
                     <div class="form-group">
-                        <input type="hidden" id="lap_id" name="lap_id" value="<?php echo $lap_id; ?>" />
-                        <input type="hidden" id="act" name="act" value="<?php echo $act; ?>" />
-                        <label class="col-sm-2 control-label">File</label>
-                        <div class="col-sm-8">
-                            <input name="userfile" id="fileInput" class="form-control" type="file" />
-                            <span><p class="text-danger"><?php echo $files; ?></p></span>
-                            <?php if($this->uri->segment(2)=="submit"){
-                                echo '<p class="text-danger">'.$pfile.'</p>';
-                            }?>
-                            <span><?php echo form_error('userfile'); ?></span>
-                        </div>
-                        <div class="col-sm-offset-2 col-sm-8">
-                           <p>format file yang bisa diupload : doc|docx|pdf|rtf|odt</p>
+                        <label for="lap_topik" class="col-sm-2 control-label">Topik Bimbingan</label>
+                        <div class="col-sm-6">
+                            <input type="input" class="form-control" name="lap_topik" id="lap_topik" placeholder="Topik Bimbingan">
+                            <small class="info help-block">
+                            </small>
                         </div>
                     </div>
-
-
+                    <div class="form-group">
+                        <label for="lap_jenis" class="col-sm-2 control-label">Jenis Bimbingan</label>
+                        <div class="col-sm-6">
+                            <select name='lap_jenis' id='lap_jenis' class="form-control">
+                                <option value=''>Please Select</option>
+                                <option value="ONLINE">ONLINE</option>
+                                <option value="OFFLINE">OFFLINE</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="bimb_catatan" class="col-sm-2 control-label">Pembahasan Topik</label>
+                        <div class="col-sm-6">
+                            <textarea type="input" rows="5" class="form-control"  name="bimb_catatan" id="bimb_catatan" placeholder="Pembahasan Topik"></textarea>
+                            <small class="info help-block">
+                            </small>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-8">
                             <button class="btn btn-primary btn-square">Simpan</button>

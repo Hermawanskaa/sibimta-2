@@ -31,14 +31,6 @@
                     <li><a href="<?php echo base_url('dosen/pesan') ?>"><i class="fa fa-circle-o"></i>Pesan Masuk</a></li>
                 </ul>
             </li>
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-dashboard"></i> <span>Tugas Akhir</span> <i class="fa fa-angle-left pull-right"></i>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="<?php echo base_url('bimbingan') ?>"><i class="fa fa-circle-o"></i>Status TA</a></li>
-                </ul>
-            </li>
     </section>
     <!-- /.sidebar -->
 </aside>

@@ -29,13 +29,12 @@ class Bimbingan extends CI_Controller
         $id = $this->session->userdata('id');
         $no = $this->uri->segment(3);
         $data['bab'] = $this->BimbinganModel->get_bab($no);
-        $data['bimbingan'] = $this->BimbinganModel->get_all_bimbingan($id, $no);
+        $data['laporan'] = $this->BimbinganModel->get_all_laporan($id, $no);
         $data['cek'] = $this->BimbinganModel->get_last_bimbingankategori($id, $no);
         $this->load->view('mahasiswa/bimbingan/bimbingan_list',$data);
     }
 
     function add_bimbingan(){
-        //mencocokan nilai kategori laporan pada uri segmen
         $no = $this->uri->segment(3);
         if(empty($no) || $no==4 || $no==5 || $no==6 || $no==7 || $no==8 || $no==9){
             $data['bab']=$this->SkripsiModel->get_bab($no);
@@ -53,7 +52,7 @@ class Bimbingan extends CI_Controller
             $data['file']='';
             $id = $this->uri->segment(4);
             //mengambil data proposal berdasarkan lap_id
-            $data['bimbingan'] = $this->BimbinganModel->get_lap($id);
+            $data['bimbingan'] = $this->BimbinganModel->get_laporan($id);
             $this->load->view('mahasiswa/bimbingan/bimbingan_add',$data);
         }else{
             redirect('mahasiswa');
@@ -78,6 +77,14 @@ class Bimbingan extends CI_Controller
         }
     }
 
+    function detail_bimbingan(){
+        $this->validation();
+        $id = $this->session->userdata('id');
+        $lap_id = $this->uri->segment(3);
+        $data['log'] = $this->BimbinganModel->get_all_bimbingan($id, $lap_id);
+        $this->load->view('mahasiswa/bimbingan/bimbingan_detail',$data);
+    }
+
     function submit(){
         $no = $this->uri->segment(3);
         $data['bab'] = $this->SkripsiModel->get_bab($no);
@@ -92,46 +99,47 @@ class Bimbingan extends CI_Controller
                 $kat_id = $link[$i];
             }
         }
-        if (empty($_FILES['userfile']['name'])){
-            $data['file'] = '';
-            $data['pfile'] = 'Tidak ada File yang dipilih';
+        $this->form_validation->set_rules('lap_topik', 'TOPIK BIMBINGAN', 'required|min_length[10]');
+        $this->form_validation->set_rules('lap_jenis', 'JENIS BIMBINGAN', 'required');
+        $this->form_validation->set_rules('bimb_catatan', 'PEMBAHASAN TOPIK', 'required|min_length[10]');
+
+        $this->form_validation->set_message('required', '%s tidak boleh kosong!');
+        $this->form_validation->set_message('min_length', '{field} minimal {param} karakter.');
+        $this->form_validation->set_message('matches', '{field} tidak sama dengan {param}.');
+
+        if ($this->form_validation->run() == FALSE) {
             $data['link'] = $this->input->post('act');
             $data['id'] = $this->input->post('lap_id');
             $this->load->view('mahasiswa/bimbingan/bimbingan_add',$data);
-
-        }else if(!empty($_FILES['userfile']['name'])){
-            $upload='userfile';
-            $isi =  md5($this->session->userdata('nim')
-                    .date('Y-m-d').date('H:i:s'))
-                    .preg_replace("/\s+/", "_", $_FILES['userfile']['name']);
-
-            $config['upload_path'] = "./uploads/laporan/";
-            $config['allowed_types'] = 'doc|docx|pdf|rtf|odt';
-            $config['max_size'] = '10000';
-            $config['file_name'] = $isi;
-            $config['overwrite'] = false;
-            $this->load->library('upload');
-            $this->upload->initialize($config);
-
-            if (!$this->upload->do_upload($upload)){
-                $data['file'] = '';
-                $data['pfile'] = $this->upload->display_errors();
-                $data['link'] = $this->input->post('act');
-                $data['id'] = $this->input->post('lap_id');
-                $this->load->view('mahasiswa/bimbingan/bimbingan_add',$data);
+        }else{
+            $id = $this->input->post('lap_id');
+            if ($id!=0){
+                $data = array(
+                    'lap_topik'=>$this->input->post('lap_topik'),
+                    'lap_jenis' =>$this->input->post('lap_jenis'),
+                    'lap_tanggal'=>date('Y-m-d'),
+                    'lap_waktu'=>date('H:i:s')
+                );
+                $this->BimbinganModel->edit_laporan($id, $data);
             }else{
-                $id = $this->input->post('lap_id');
-                if ($id!=0){
-                    $this->BimbinganModel->edit_laporan($id,$isi);
-                }else{
-                    $this->BimbinganModel->add_laporan($kat_id,  $isi);
-                    $this->add_bimbingan_data();
-                }
+                $data = array(
+                    'lap_id'=>null,
+                    'mhs_id'=>$this->session->userdata('id'),
+                    'katlap_id'=> $kat_id,
+                    'lap_topik' => $this->input->post('lap_topik'),
+                    'lap_jenis' =>$this->input->post('lap_jenis'),
+                    'lap_tanggal'=>date('Y-m-d'),
+                    'lap_waktu'=>date('H:i:s'),
+                );
+                $this->BimbinganModel->add_laporan($data);
+                $this->add_bimbingan_data();
                 $kat_lap_id = $kat_id;
+
                 $mhsid = $this->session->userdata('id');
                 $this->DosenModel->pesan_dospem($mhsid, $kat_lap_id);
-                redirect('bimbingan/kategori_bimbingan/'.$no);
             }
+            $id = $this->BimbinganModel->get_last();
+            redirect('bimbingan/detail_bimbingan/'.$id);
         }
     }
 
@@ -141,7 +149,6 @@ class Bimbingan extends CI_Controller
             $data['id'] = $key->lap_id;
             $mhsid		= $key->mhs_id;
         }
-        //cek last status
         $cek = $this->BimbinganModel->get_last_bimbingan($mhsid);
         if($cek->num_rows <>0){
             foreach($cek->result() as $row){
@@ -166,11 +173,12 @@ class Bimbingan extends CI_Controller
                 'bimb_id'=>null,
                 'lap_id'=>$data['id'],
                 'dsn_id'=>$dsn->dsn_id,
+                'mhs_id'=>$dsn->mhs_id,
                 'bimb_file'=>$default_f,
-                'bimb_catatan'=>$default_k,
+                'bimb_catatan'=>$this->input->post('bimb_catatan'),
                 'bimb_tgl'=>date('Y-m-d'),
                 'bimb_wkt'=>date('H:i:s'),
-                'bimb_status'=>$default_b,
+                'bimb_status'=>'none',
                 'dosbing1'=>1,
                 'dosbing2'=>0,
             );

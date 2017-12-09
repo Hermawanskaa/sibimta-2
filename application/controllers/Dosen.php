@@ -3,24 +3,30 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Dosen extends CI_Controller {
 
-    public function __construct(){
+    function __construct(){
         parent::__construct();
         $this->load->model('DosenModel');
     }
 
-    public function validation(){
+    function validation(){
         if (!$this->session->userdata('is_dosen_login')) {
             redirect('login', 'refresh');
         }
     }
 
-    public function index(){
+    function index(){
         $this->validation();
-        $this->load->view('dosen/dashboard');
+        $this->dosen_dashboard();
+    }
+
+    function dosen_dashboard(){
+      $dsn_id = $this->session->userdata('id');
+      $data['mahasiswa_bimbingan'] = $this->DosenModel->get_pembimbing($dsn_id);
+      $this->load->view('dosen/dashboard',$data);
     }
 
     //pesan dari mahasiswa
-    public function pesan(){
+    function pesan(){
         $this->validation();
         $id = $this->session->userdata('id');
         $data['pesan'] = $this->DosenModel->all_pesan($id);
@@ -56,7 +62,7 @@ class Dosen extends CI_Controller {
     }
 
     //update password untuk dosen
-    public function update_password($id = null){
+    function update_password($id = null){
         $this->validation();
 
         if ($this->input->post('submit')) {
@@ -91,7 +97,7 @@ class Dosen extends CI_Controller {
     }
 
     //cek password untuk dosen
-    public function cek_password($old_password){
+    function cek_password($old_password){
         $this->validation();
         $user_id = $this->session->userdata('id');
         $result = $this->DosenModel->cek_password($old_password,$user_id);

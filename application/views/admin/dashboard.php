@@ -7,6 +7,17 @@ $this->load->view('admin/template/topbar');
 $this->load->view('admin/template/sidebar');
 ?>
 
+<section class="content-header">
+    <h1>
+        Dashboard Admin
+        <small>Control panel</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Admin Dashboard</li>
+    </ol>
+</section>
+
 <section class="content">
     <div class="row">
         <div class="col-md-12">
@@ -34,3 +45,5 @@ $this->load->view('admin/template/sidebar');
 <?php
 $this->load->view('template/js');
 ?>
+
+

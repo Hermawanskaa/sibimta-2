@@ -98,12 +98,12 @@ $this->load->view('admin/template/sidebar');
                                     <td><?php echo $row->pembimbing1; ?></td>
                                     <td><?php echo $row->pembimbing2; ?></td>
                                     <td width="200">
-                                        <a href="<?= base_url('admin/pembimbing/view_pembimbing/'.$row->bagi_id); ?>" class="label-default bg">
-                                            <i class="fa fa-newspaper-o"></i> View</a>
-                                        <a href="<?= base_url('admin/pembimbing/edit_pembimbing/'.$row->bagi_id); ?>" class="label-default">
-                                            <i class="fa fa-edit "></i> Update</a>
-                                        <a href="<?= base_url('admin/pembimbing/delete_pembimbing/'.$row->bagi_id); ?>" class="label-default remove-data">
-                                            <i class="fa fa-close"></i> Remove</a>
+                                        <a href="<?= base_url('admin/pembimbing/view_pembimbing/'.$row->bagi_id); ?>" class="btn btn-xs btn-info">
+                                            <i class="fa fa-newspaper-o"></i> view</a>
+                                        <a href="<?= base_url('admin/pembimbing/edit_pembimbing/'.$row->bagi_id); ?>" class="btn btn-xs btn-warning">
+                                            <i class="fa fa-edit "></i> update</a>
+                                        <a href="<?= base_url('admin/pembimbing/delete_pembimbing/'.$row->bagi_id); ?>" class="btn btn-xs btn-danger">
+                                            <i class="fa fa-close"></i> remove</a>
                                     </td>
                                     </tr>
                                 <?php endforeach; ?>

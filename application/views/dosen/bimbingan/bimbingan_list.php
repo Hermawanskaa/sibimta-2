@@ -55,39 +55,22 @@ $this->load->view('dosen/template/sidebar');
                             </div>
                         <?php endif; ?>
 
-                        <?php foreach($result as $row): ?>
-                            <div class="box">
-                                <div class="box-header with-border">
-                                    <h2 class="box-title">NIM : </h2>
-                                    <strong><?php echo strtoupper($row['mhs_nim']);?></strong>
-                                </div>
-                                <div class="box-header with-border">
-                                    <h2 class="box-title">Nama : </h2>
-                                    <strong><?php echo strtoupper($row['mhs_nama']);?></strong>
-                                </div>
-                                <div class="box-header with-border">
-                                    <h2 class="box-title">Judul : </h2>
-                                    <strong><?php echo strtoupper($row['jdl_judul']);?></strong>
-                                </div>
+                        <div class="box box-info box-header with-border">
+                            <?php foreach($result as $row): ?>
+                                <h5><p><strong>NIM : </strong><?php echo strtoupper($row['mhs_nim']);?><br></p></h5><hr>
+                                <h5><p><strong>Nama : </strong><?php echo strtoupper($row['mhs_nama']);?><br></p></h5><hr>
+                                <h5><p><strong>Judul : </strong><?php echo strtoupper($row['jdl_judul']);?><br></p></h5><hr>
+                                <h5><p><strong>Dosen Pembimbing : </strong><?php foreach($dosen[$row['dsn_id']] as $dos) { echo"&nbsp;$dos,"; } ?><br></p></h5>
+                            <?php endforeach; ?>
+                        </div>
 
-                                <div class="box-header with-border">
-                                    <h3 class="box-title">Dosen Pembimbing  : </h3>
-                                    <strong><?php foreach($dosen[$row['dsn_id']] as $dos) { echo"&nbsp;$dos,"; } ?></strong>
-                                </div>
-                            </div>
-                        <?php endforeach; ?>
-
-                            <div class="table-responsive" style="margin:5px;padding:5px" id="stack-personal">
-                                <div class='inline-popups' style='float:right;'>
-
-                                    </div>
-                                </div>
                                 <div class="table-responsive">
                                     <table id="list_dosen" class="table table-bordered table-striped dataTable">
                                         <div id="text-popup-html" class="white-popup mfp-with-anim mfp-hide">
                                             <form role='form' action='' method="POST" >
                                                 <input type='hidden' name='mhsid' id='mhsid' value='<?php echo $_res['mhs_id']; ?>' />
                                                 <input type='hidden' name='jdl_id' id='jdl_id' value='<?php echo $_res['jdl_id']; ?>' />
+                                                <input type='hidden' name='lap_id' id='lap_id' value='<?php echo $_res['lap_id']; ?>' />
                                             </form>
                                         <thead>
                                         <th>NO</th>
@@ -122,7 +105,7 @@ $this->load->view('dosen/template/sidebar');
                                             </td>
                                             <td><?php echo $tanggal_jdl.'-'.$bulan_jdl.'-'.$tahun_jdl; ?></td>
                                             <td><?php echo $key->lap_waktu; ?></td>
-                                            <td><a href="<?php echo site_url('admin/bimbingan/open_bimbingan/'.$key->mhs_id);?>" />
+                                            <td><a href="<?php echo site_url('admin/bimbingan/open_bimbingan/'.$key->mhs_id.'/'.$key->lap_id);?>" />
                                                 <button class="btn btn-xs btn-flat btn-info btnbrg-edit" type="submit" name="detail" value="Detail">
                                                     Detail
                                                 </button>

@@ -103,12 +103,12 @@ $this->load->view('admin/template/sidebar');
                                         <td><?php echo $row->dsn_alamat; ?></td>
                                         <td><?php echo $row->dsn_email; ?></td>
                                         <td width="200">
-                                            <a href="<?= base_url('admin/dosen/view_dosen/'.$row->dsn_nip); ?>" class="label-default bg">
-                                                <i class="fa fa-newspaper-o"></i> View</a>
-                                            <a href="<?= base_url('admin/dosen/edit_dosen/'.$row->dsn_nip); ?>" class="label-default">
-                                                <i class="fa fa-edit "></i> Update</a>
-                                            <a href="<?= base_url('admin/dosen/delete_dosen/'.$row->dsn_nip); ?>" class="label-default remove-data">
-                                                <i class="fa fa-close"></i> Remove</a>
+                                            <a href="<?= base_url('admin/dosen/view_dosen/'.$row->dsn_nip); ?>" class="btn btn-xs btn-info">
+                                                <i class="fa fa-newspaper-o"></i> view</a>
+                                            <a href="<?= base_url('admin/dosen/edit_dosen/'.$row->dsn_nip); ?>" class="btn btn-xs btn-warning">
+                                                <i class="fa fa-edit "></i> update</a>
+                                            <a href="<?= base_url('admin/dosen/delete_dosen/'.$row->dsn_nip); ?>" class="btn btn-xs btn-danger">
+                                                <i class="fa fa-close"></i> delete</a>
                                         </td>
                                         </tr>
                                     <?php endforeach; ?>

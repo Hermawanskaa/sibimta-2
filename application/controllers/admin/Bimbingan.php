@@ -44,7 +44,9 @@ class Bimbingan extends CI_Controller
     function open_bimbingan(){
         $this->validation();
         $mhsid = $this->uri->segment(4);
+        $lap_id = $this->uri->segment(5);
         $data['log'] = $this->BimbinganModel->get_last_bimbingan($mhsid);
+        $data['topik'] = $this->BimbinganModel->get_topik($mhsid, $lap_id);
         $this->load->view('dosen/bimbingan/bimbingan_detail',$data);
     }
 
@@ -56,13 +58,14 @@ class Bimbingan extends CI_Controller
             $mhsid = $key->mhs_id;
         }
         $bim_file = 'tak ada revisi';
-        $id = $this->uri->segment('4');
+        $mhsid = $this->uri->segment(4);
+        $lap_id = $this->uri->segment(5);
         $p1 = '1';
-        $result = $this->BimbinganModel->check_pembimbing($id, $p1);
+        $result = $this->BimbinganModel->check_pembimbing($mhsid, $p1);
         foreach ($result->result() as $dsn) {
             $tdata = array(
                 'bimb_id' => null,
-                'lap_id' => 156,
+                'lap_id' => $lap_id,
                 'dsn_id' => $this->session->userdata('id'),
                 'mhs_id' => null,
                 'bimb_file' => $bim_file,
@@ -76,7 +79,7 @@ class Bimbingan extends CI_Controller
             $this->db->insert('bimbingan', $tdata);
 
         }
-        redirect('admin/bimbingan/add_bimbingan'.$mhsid);
+        redirect('admin/bimbingan/open_bimbingan/'.$mhsid.'/'.$lap_id);
     }
 
     function edit_bimbingan(){

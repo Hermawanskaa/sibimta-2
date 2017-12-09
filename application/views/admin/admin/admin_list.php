@@ -105,14 +105,14 @@ $this->load->view('admin/template/sidebar');
                                     <td><?php echo $row->adm_email; ?></td>
                                     <td><?php echo $row->adm_level; ?></td>
                                     <td width="200">
-                                        <a href="<?= base_url('admin/admin/view_admin/'.$row->adm_nip); ?>" class="label-default bg">
-                                            <i class="fa fa-newspaper-o"></i> View</a>
-                                        <a href="<?= base_url('admin/admin/edit_admin/'.$row->adm_nip); ?>" class="label-default">
-                                            <i class="fa fa-edit "></i> Update</a>
-                                        <a href="<?= base_url('admin/admin/delete_admin/'.$row->adm_nip); ?>" class="label-default remove-data">
-                                            <i class="fa fa-close"></i> Remove</a>
+                                        <a href="<?= base_url('admin/admin/view_admin/'.$row->adm_nip); ?>" class="btn btn-xs btn-info">
+                                            <i class="fa fa-newspaper-o"></i> view</a>
+                                        <a href="<?= base_url('admin/admin/edit_admin/'.$row->adm_nip); ?>" class="btn btn-xs btn-warning">
+                                            <i class="fa fa-edit "></i> update</a>
+                                        <a href="<?= base_url('admin/admin/delete_admin/'.$row->adm_nip); ?>" class="btn btn-xs btn-danger">
+                                            <i class="fa fa-close"></i> delete</a>
                                     </td>
-                                    </tr>
+\                                    </tr>
                                 <?php endforeach; ?>
                                 </tbody>
                             </table>

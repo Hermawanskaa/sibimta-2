@@ -96,12 +96,12 @@ $this->load->view('admin/template/sidebar');
                                     <td><?php echo $row->fak_nama; ?></td>
                                     <td><?php echo $row->fak_kode; ?></td>
                                     <td width="200">
-                                        <a href="<?= base_url('admin/fakultas/view_fakultas/'.$row->fak_id); ?>" class="label-default bg">
-                                            <i class="fa fa-newspaper-o"></i> View</a>
-                                        <a href="<?= base_url('admin/fakultas/edit_fakultas/'.$row->fak_id); ?>" class="label-default">
-                                            <i class="fa fa-edit "></i> Update</a>
-                                        <a href="<?= base_url('admin/fakultas/delete_fakultas/'.$row->fak_id); ?>" class="label-default remove-data">
-                                            <i class="fa fa-close"></i> Remove</a>
+                                        <a href="<?= base_url('admin/fakultas/view_fakultas/'.$row->fak_id); ?>" class="btn btn-xs btn-info">
+                                            <i class="fa fa-newspaper-o"></i> view</a>
+                                        <a href="<?= base_url('admin/fakultas/edit_fakultas/'.$row->fak_id); ?>" class="btn btn-xs btn-warning">
+                                            <i class="fa fa-edit "></i> update</a>
+                                        <a href="<?= base_url('admin/fakultas/delete_fakultas/'.$row->fak_id); ?>" class="btn btn-xs btn-danger">
+                                            <i class="fa fa-close"></i> remove</a>
                                     </td>
                                     </tr>
                                 <?php endforeach; ?>

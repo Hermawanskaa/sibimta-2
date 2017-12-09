@@ -23,7 +23,12 @@ $this->load->view('mahasiswa/template/sidebar');
     <div class="row" >
         <div class="col-md-12">
             <div class="box box-info box-header with-border">
-
+                    <?php foreach($topik->result() as $row): ?>
+                    <h4><p><strong>Topik : </strong><?php echo $row->lap_topik;?><br></p></h4><hr>
+                    <h4><p><strong>Jenis : </strong><?php echo $row->lap_jenis;?><br></p></h4><hr>
+                    <h4><p><strong>Tanggal : </strong><?php echo $row->lap_tanggal;?><br></p></h4><hr>
+                    <h4><p><strong>Waktu : </strong><?php echo $row->lap_waktu;?><br></p></h4>
+                    <?php endforeach; ?>
             </div>
 
                 <?php if(isset($msg) || validation_errors() !== ''): ?>
@@ -50,6 +55,7 @@ $this->load->view('mahasiswa/template/sidebar');
                             </div>
                             <br>
                             <div class="container">
+                                <?php if(count($log) > 0):?>
                                 <?php foreach($log->result() as $key): ?>
                                     <div class="row">
                                         <div class="col-sm-1">
@@ -61,7 +67,7 @@ $this->load->view('mahasiswa/template/sidebar');
                                         <div class="col-md-10">
                                             <div class="panel panel-default">
                                                 <div class="panel-heading">
-                                                    <strong><?= $key->mhs_nama; ?></strong> <span class="text-muted">commented on <?php echo $key->bimb_tgl; ?></span>
+                                                    <strong><?= $key->mhs_nama; ?></strong> <span class="text-muted">commented on <?php echo $key->bimb_wkt; ?></span>
                                                 </div>
                                                 <div class="panel-body">
                                                     <?= $key->bimb_catatan; ?>
@@ -70,6 +76,7 @@ $this->load->view('mahasiswa/template/sidebar');
                                         </div>
                                     </div>
                                 <?php endforeach; ?>
+                                <?php endif; ?>
                             </div>
 
                             <div class="panel-footer">

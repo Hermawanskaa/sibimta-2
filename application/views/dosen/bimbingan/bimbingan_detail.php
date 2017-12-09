@@ -23,7 +23,12 @@ $this->load->view('dosen/template/sidebar');
     <div class="row" >
         <div class="col-md-12">
             <div class="box box-info box-header with-border">
-
+                <?php foreach($topik->result() as $row): ?>
+                    <h4><p><strong>Topik : </strong><?php echo $row->lap_topik;?><br></p></h4><hr>
+                    <h4><p><strong>Jenis : </strong><?php echo $row->lap_jenis;?><br></p></h4><hr>
+                    <h4><p><strong>Tanggal : </strong><?php echo $row->lap_tanggal;?><br></p></h4><hr>
+                    <h4><p><strong>Waktu : </strong><?php echo $row->lap_waktu;?><br></p></h4>
+                <?php endforeach; ?>
             </div>
 
                 <?php if(isset($msg) || validation_errors() !== ''): ?>
@@ -74,7 +79,7 @@ $this->load->view('dosen/template/sidebar');
 
                             <div class="panel-footer">
                                 <div class="input-group col-md-12">
-                                    <?php echo form_open_multipart(base_url('admin/bimbingan/add_bimbingan/'.$key->mhs_id),  'class="form-horizontal"');  ?>
+                                    <?php echo form_open_multipart(base_url('admin/bimbingan/add_bimbingan/'.$key->mhs_id.'/'.$key->lap_id),  'class="form-horizontal"');  ?>
                                     <textarea id="btn-input" type="text" id='bimb_catatan' name="bimb_catatan" class="form-control" rows="4" placeholder="Type your message here..."></textarea>
                                     <hr>
                                     <span><p class="text-danger"><hr>Attachment (Optional)</p></span>

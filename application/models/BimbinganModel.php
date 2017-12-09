@@ -145,6 +145,13 @@ class BimbinganModel extends CI_Model{
         return $query;
     }
 
+    function get_topik($mhsid,$lapid){
+        $this->db->where('mhs_id',$mhsid);
+        $this->db->where('lap_id',$lapid);
+        $query = $this->db->get('laporan');
+        return $query;
+    }
+
     //download file laporan bimbingan
     function download_laporan(){
         $ur = $this->uri->segment(1);

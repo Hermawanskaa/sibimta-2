@@ -82,6 +82,7 @@ class Bimbingan extends CI_Controller
         $id = $this->session->userdata('id');
         $lap_id = $this->uri->segment(3);
         $data['log'] = $this->BimbinganModel->get_all_bimbingan($id, $lap_id);
+        $data['topik'] = $this->BimbinganModel->get_topik($id, $lap_id);
         $this->load->view('mahasiswa/bimbingan/bimbingan_detail',$data);
     }
 
@@ -138,8 +139,8 @@ class Bimbingan extends CI_Controller
                 $mhsid = $this->session->userdata('id');
                 $this->DosenModel->pesan_dospem($mhsid, $kat_lap_id);
             }
-            $id = $this->BimbinganModel->get_last();
-            redirect('bimbingan/detail_bimbingan/'.$id);
+
+            redirect('bimbingan/detail_bimbingan/'.$mhsid.'/'.$kat_lap_id);
         }
     }
 

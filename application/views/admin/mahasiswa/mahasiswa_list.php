@@ -109,12 +109,12 @@ $this->load->view('admin/template/sidebar');
 
 
                                     <td width="200">
-                                        <a href="<?= base_url('admin/mahasiswa/view_mahasiswa/'.$row->mhs_nim); ?>" class="label-default bg">
-                                            <i class="fa fa-newspaper-o"></i> View</a>
-                                        <a href="<?= base_url('admin/mahasiswa/edit_mahasiswa/'.$row->mhs_nim); ?>" class="label-default">
-                                            <i class="fa fa-edit "></i> Update</a>
-                                        <a href="<?= base_url('admin/mahasiswa/delete_mahasiswa/'.$row->mhs_nim); ?>" class="label-default remove-data">
-                                            <i class="fa fa-close"></i> Remove</a>
+                                        <a href="<?= base_url('admin/mahasiswa/view_mahasiswa/'.$row->mhs_nim); ?>" class="btn btn-xs btn-info">
+                                            <i class="fa fa-newspaper-o"></i> view</a>
+                                        <a href="<?= base_url('admin/mahasiswa/edit_mahasiswa/'.$row->mhs_nim); ?>" class="btn btn-xs btn-warning">
+                                            <i class="fa fa-edit "></i> update</a>
+                                        <a href="<?= base_url('admin/mahasiswa/delete_mahasiswa/'.$row->mhs_nim); ?>" class="btn btn-xs btn-danger">
+                                            <i class="fa fa-close"></i> remove</a>
                                     </td>
                                     </tr>
                                 <?php endforeach; ?>

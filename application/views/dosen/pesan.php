@@ -96,14 +96,6 @@ $this->load->view('dosen/template/sidebar');
                         </div>
                     </div>
                     <hr>
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="text-right" >
-                                <?/*= $pagination; */?>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

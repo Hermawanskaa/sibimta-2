@@ -7,7 +7,6 @@ $this->load->view('dosen/template/topbar');
 $this->load->view('dosen/template/sidebar');
 ?>
 
-<!-- Page Header -->
 <section class="content-header">
     <h1>
         Dosen Dashboard     <small>Respon Bimbingan</small>
@@ -93,7 +92,6 @@ $this->load->view('dosen/template/sidebar');
             </div>
         </div>
 </section>
-
 
 <?php
 $this->load->view('template/js');

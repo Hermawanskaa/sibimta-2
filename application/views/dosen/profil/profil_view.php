@@ -70,22 +70,17 @@ $this->load->view('dosen/template/sidebar');
                             <hr>
                             <br>
                             <br>
-                            <!-- Footer Content -->
+
                             <div class="box box-footer">
                                 <a class="btn btn-warning" href="<?= base_url('dosen'); ?>"><i class="fa fa-undo center-block"" data-stype='back'></i> Back to Dashboard</a>
                                 <a class="btn btn-primary" href="<?= base_url('dosen/update_password'); ?>"><i class="fa fa-file-pdf-o" ></i> Change Password</a>
                             </div>
                         </div>
                     </div>
-
-
-
                 </div>
             </div>
         </div>
 </section>
-<!-- /.content -->
-
 
 <?php
 $this->load->view('template/js');

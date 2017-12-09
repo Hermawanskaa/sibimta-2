@@ -6,7 +6,7 @@ $this->load->view('template/head');
 $this->load->view('dosen/template/topbar');
 $this->load->view('dosen/template/sidebar');
 ?>
-<!-- Content Header (Page header) -->
+
 <section class="content-header">
     <h1>
         Dosen Dashboard        <small>Riwayat Bimbingan</small>

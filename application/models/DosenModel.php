@@ -144,18 +144,6 @@ class DosenModel extends CI_Model
         $query = $this->db->get('dosen');
         return $query->num_rows();
     }
-
-    function get_pembimbing($dsn_id){
-        $this->db->select('*');
-        $this->db->from('pembimbing');
-        $this->db->join('mahasiswa','pembimbing.mhs_id = mahasiswa.mhs_id');
-        $this->db->join('judul','judul.mhs_id = mahasiswa.mhs_id');
-        $this->db->join('dosen','dosen.dsn_id = pembimbing.dsn_id');
-        $this->db->where('pembimbing.pembimbing1',1);
-        $this->db->where('pembimbing.dsn_id',$dsn_id);
-        $query= $this->db->get();
-        return $query;
-    }
 }
 
 ?>

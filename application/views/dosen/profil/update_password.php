@@ -6,7 +6,7 @@ $this->load->view('template/head');
 $this->load->view('dosen/template/topbar');
 $this->load->view('dosen/template/sidebar');
 ?>
-<!-- Page Header -->
+
 <section class="content-header">
     <h1>
         Dosen Dashboard      <small>Update Password</small>
@@ -18,7 +18,6 @@ $this->load->view('dosen/template/sidebar');
     </ol>
 </section>
 
-<!-- Header Content -->
 <section class="content">
     <div class="row" >
         <div class="col-md-12">
@@ -38,7 +37,6 @@ $this->load->view('dosen/template/sidebar');
                     </div>
                 </div>
 
-                <!-- Main Content -->
                 <div class="boxbox-widget widget-user-2">
                     <?php if(isset($msg) || validation_errors() !== ''): ?>
                         <div class="alert alert-warning alert-dismissible">
@@ -84,7 +82,6 @@ $this->load->view('dosen/template/sidebar');
                         </div>
                     </div>
 
-                    <!-- Footer Content -->
                     <div class="box box-footer col-sm-offset-2 col-sm-8">
                         <button class="btn btn-primary" type="submit" name="submit" value="Add User" id="submit" data-stype='stay'>
                             <i class="fa fa-save" ></i> Save
@@ -95,9 +92,7 @@ $this->load->view('dosen/template/sidebar');
                 </div>
             </div>
         </div>
-        <!--/box body -->
     </div>
-    <!--/box -->
     </div>
 </section>
 

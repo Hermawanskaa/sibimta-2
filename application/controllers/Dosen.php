@@ -6,6 +6,7 @@ class Dosen extends CI_Controller {
     function __construct(){
         parent::__construct();
         $this->load->model('DosenModel');
+        $this->load->model('PembimbingModel');
     }
 
     function validation(){
@@ -21,7 +22,7 @@ class Dosen extends CI_Controller {
 
     function dosen_dashboard(){
       $dsn_id = $this->session->userdata('id');
-      $data['mahasiswa_bimbingan'] = $this->DosenModel->get_pembimbing($dsn_id);
+      $data['mahasiswa_bimbingan'] = $this->PembimbingModel->get_pembimbingmahasiswa($dsn_id);
       $this->load->view('dosen/dashboard',$data);
     }
 

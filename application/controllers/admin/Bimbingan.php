@@ -50,10 +50,9 @@ class Bimbingan extends CI_Controller
         $this->load->view('dosen/bimbingan/bimbingan_detail',$data);
     }
 
-    function add_bimbingan()
-    {
+    function add_bimbingan(){
         $nim = $this->BimbinganModel->get_last();
-        foreach ($nim->result() as $key) {
+        foreach ($nim->result() as $key){
             $data['id'] = $key->lap_id;
             $mhsid = $key->mhs_id;
         }
@@ -77,7 +76,6 @@ class Bimbingan extends CI_Controller
                 'dosbing2' => 0,
             );
             $this->db->insert('bimbingan', $tdata);
-
         }
         redirect('admin/bimbingan/open_bimbingan/'.$mhsid.'/'.$lap_id);
     }
